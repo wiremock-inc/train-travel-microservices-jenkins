@@ -1,0 +1,23 @@
+# Gateway config for one CI build, rendered by the WireMock CLI once the build's WireMock environment is ready
+# (mode: {{environment.mode}}, environment: {{environment.id}}). Spring Boot loads ./config/application.yml on top of
+# the packaged application.yml, so only the downstream URLs are overridden here.
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: {{services.google-idp.base_url}}
+
+traintravel:
+  stations:
+    base-url: {{services.stations.base_url}}
+  trips:
+    base-url: {{services.trips.base_url}}
+  bookings:
+    base-url: {{services.bookings.base_url}}
+  payments:
+    base-url: {{services.payrail.base_url}}/payrail/v1
+  stripe:
+    base-url: {{services.stripe.base_url}}
+  webhook:
+    url: {{services.webhook.base_url}}/new-booking

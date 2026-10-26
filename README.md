@@ -232,6 +232,26 @@ The collection's first two requests script the same login → token exchange (ca
 automatically); every later request sends it as a bearer token. Run the collection top to bottom to walk
 the whole journey.
 
+## CI with Jenkins
+
+The [`Jenkinsfile`](Jenkinsfile) runs the Postman collection against the gateway in CI. The
+[WireMock Cloud Jenkins plugin](https://github.com/wiremock-inc/wiremock-cloud-jenkins-plugin) creates a WireMock Cloud
+environment for each build from [`.wiremock/`](.wiremock/), renders the environment's mock URLs into the gateway's
+config with [`ci/application.yml.hbs`](ci/application.yml.hbs), and deletes the environment afterwards.
+[`ci/postman.sh`](ci/postman.sh) starts the gateway and runs the collection with newman.
+
+To try it, boot Jenkins in Docker with the plugin installed and a `train-travel` job that builds the Jenkinsfile:
+
+```bash
+cp jenkins/.env.example jenkins/.env   # and set WIREMOCK_API_TOKEN
+jenkins/up.sh                          # http://localhost:8080, admin / admin
+jenkins/down.sh
+```
+
+The script downloads the plugin's latest GitHub release with `gh`, so `gh` must be logged in with access to
+wiremock-inc. The job clones the current branch from GitHub, so push it first. See [`jenkins/up.sh`](jenkins/up.sh)
+for the other settings, including installing a local plugin build or CLI JAR.
+
 ## Resetting the demo
 
 Bookings accumulate in the bookings mock's per-user state contexts. In WireMock Cloud open
@@ -255,6 +275,9 @@ ui/                                  SolidJS UI (Vite, :3000) - OAuth login, boo
 e2e/                                 Puppeteer browser journey against the running stack
 docs/train-travel-microservices/     full specification documents
 postman/                             collection + environment
+.wiremock/                           mock definitions the Jenkins plugin builds each CI environment from
+ci/                                  scripts and the config template the Jenkinsfile uses
+jenkins/                             Docker Jenkins with the WireMock Cloud plugin, for trying the Jenkinsfile
 ```
 
 ## License

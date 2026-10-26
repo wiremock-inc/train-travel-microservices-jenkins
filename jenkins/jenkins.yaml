@@ -1,0 +1,54 @@
+# JCasC for the Docker Jenkins started by jenkins/up.sh. ${...} values come from the container's environment.
+jenkins:
+  systemMessage: "Train Travel CI with the WireMock Cloud plugin. Log in as admin / admin."
+  numExecutors: 2
+  securityRealm:
+    local:
+      allowsSignup: false
+      users:
+        - id: admin
+          password: admin
+  authorizationStrategy: loggedInUsersCanDoAnything
+
+credentials:
+  system:
+    domainCredentials:
+      - credentials:
+          - string:
+              scope: GLOBAL
+              id: wiremock-token
+              description: WireMock Cloud API token (from WIREMOCK_API_TOKEN)
+              secret: "${WIREMOCK_API_TOKEN}"
+
+unclassified:
+  location:
+    url: "http://localhost:${JENKINS_PORT:-8080}/"
+  wiremockCloud:
+    apiEndpoint: "${WIREMOCK_API_ENDPOINT:-https://api.wiremock.cloud}"
+    defaultCredentialsId: wiremock-token
+
+tool:
+  wiremockCli:
+    installations:
+      # Copied into the image by the Dockerfile. Once a CLI release on npm has the features the plugin needs, this can
+      # use the npm installer instead.
+      - name: wiremock
+        home: /opt/wiremock-cli
+
+jobs:
+  - script: |
+      pipelineJob('train-travel') {
+        description('Runs the Postman collection against the gateway, with its downstream services mocked in a WireMock Cloud environment created for each build.')
+        definition {
+          cpsScm {
+            scm {
+              git {
+                remote { url('https://github.com/wiremock-inc/train-travel-microservices-jenkins.git') }
+                branch('${TRAIN_TRAVEL_BRANCH:-main}')
+              }
+            }
+            scriptPath('Jenkinsfile')
+            lightweight(true)
+          }
+        }
+      }

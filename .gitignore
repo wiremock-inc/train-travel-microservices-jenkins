@@ -18,3 +18,7 @@ node_modules/
 
 # Logs
 *.log
+# Jenkins: the plugin and CLI fetched by jenkins/up.sh, its secrets, and the config the plugin renders in builds
+jenkins/.build/
+jenkins/.env
+/config/

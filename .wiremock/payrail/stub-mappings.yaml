@@ -1,0 +1,65 @@
+---
+mappings:
+- id: "4faecf65-9dbd-4b67-b9f7-d520ef896ab4"
+  name: "ProcessPayment - card declined"
+  request:
+    urlPathTemplate: "/payrail/v1"
+    method: "POST"
+    bodyPatterns:
+    - matchesXPath: "//*[local-name()='processPaymentRequest']//*[local-name()='cardNumber'][text()='4000000000000002']"
+  response:
+    status: 200
+    bodyFileName: "processpayment-card-declined-4faecf.xml"
+    headers:
+      Content-Type: "text/xml; charset=utf-8"
+  priority: 1
+- id: "c4771c4f-c2ba-431d-b35c-7c7aa0ac0cc6"
+  name: "ProcessPayment - card 4242 approved"
+  request:
+    urlPathTemplate: "/payrail/v1"
+    method: "POST"
+    bodyPatterns:
+    - matchesXPath: "//*[local-name()='processPaymentRequest']//*[local-name()='cardNumber'][text()='4242424242424242']"
+  response:
+    status: 200
+    bodyFileName: "processpayment-card-4242-approved-c4771c.xml"
+    headers:
+      Content-Type: "text/xml; charset=utf-8"
+  priority: 3
+- id: "a72ad8f1-3810-4d1d-a613-5c82e9bba779"
+  name: "ProcessPayment - card approved"
+  request:
+    urlPathTemplate: "/payrail/v1"
+    method: "POST"
+    bodyPatterns:
+    - matchesXPath: "//*[local-name()='processPaymentRequest']/*[local-name()='paymentMethod']/*[local-name()='card']"
+  response:
+    status: 200
+    bodyFileName: "processpayment-card-approved-a72ad8.xml"
+    headers:
+      Content-Type: "text/xml; charset=utf-8"
+  priority: 5
+- id: "8ec44daf-f308-44d6-9a10-9cfe5025988a"
+  name: "ProcessPayment - bank account approved"
+  request:
+    urlPathTemplate: "/payrail/v1"
+    method: "POST"
+    bodyPatterns:
+    - matchesXPath: "//*[local-name()='processPaymentRequest']/*[local-name()='paymentMethod']/*[local-name()='bankAccount']"
+  response:
+    status: 200
+    bodyFileName: "processpayment-bank-account-approved-8ec44d.xml"
+    headers:
+      Content-Type: "text/xml; charset=utf-8"
+  priority: 5
+- id: "7320c44a-88a0-4dd8-a1d0-bf8698b9570f"
+  name: "ProcessPayment - validation fault"
+  request:
+    urlPathTemplate: "/payrail/v1"
+    method: "POST"
+  response:
+    status: 500
+    bodyFileName: "processpayment-validation-fault-7320c4.xml"
+    headers:
+      Content-Type: "text/xml; charset=utf-8"
+  priority: 9

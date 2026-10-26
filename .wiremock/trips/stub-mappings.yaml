@@ -1,0 +1,350 @@
+---
+mappings:
+- id: "aa9b8a49-d54f-46c0-946b-5edbb9e355c5"
+  name: "Find connections DE-BER-HBF to DE-MUC-HBF"
+  request:
+    urlPathTemplate: "/connections"
+    method: "GET"
+    queryParameters:
+      from:
+        equalTo: "DE-BER-HBF"
+      to:
+        equalTo: "DE-MUC-HBF"
+      date:
+        matches: "\\d{4}-\\d{2}-\\d{2}"
+      page:
+        or:
+        - absent: true
+        - equalTo: "1"
+  response:
+    status: 200
+    bodyFileName: "find-connections-de-ber-hbf-to-de-muc-hbf-aa9b8a.json"
+    headers:
+      Content-Type: "application/json"
+  priority: 5
+- id: "0eb4ef17-58f7-4fed-8d49-5afb8789db3c"
+  name: "Find connections DE-MUC-HBF to DE-BER-HBF"
+  request:
+    urlPathTemplate: "/connections"
+    method: "GET"
+    queryParameters:
+      from:
+        equalTo: "DE-MUC-HBF"
+      to:
+        equalTo: "DE-BER-HBF"
+      date:
+        matches: "\\d{4}-\\d{2}-\\d{2}"
+      page:
+        or:
+        - absent: true
+        - equalTo: "1"
+  response:
+    status: 200
+    bodyFileName: "find-connections-de-muc-hbf-to-de-ber-hbf-0eb4ef.json"
+    headers:
+      Content-Type: "application/json"
+  priority: 5
+- id: "ede95bc1-62e9-4028-afef-e8673d2e71f4"
+  name: "Find connections DE-BER-HBF to DE-HAM-HBF"
+  request:
+    urlPathTemplate: "/connections"
+    method: "GET"
+    queryParameters:
+      from:
+        equalTo: "DE-BER-HBF"
+      to:
+        equalTo: "DE-HAM-HBF"
+      date:
+        matches: "\\d{4}-\\d{2}-\\d{2}"
+      page:
+        or:
+        - absent: true
+        - equalTo: "1"
+  response:
+    status: 200
+    bodyFileName: "find-connections-de-ber-hbf-to-de-ham-hbf-ede95b.json"
+    headers:
+      Content-Type: "application/json"
+  priority: 5
+- id: "a92753cd-6e41-4d1a-9f97-f0a1f739fbca"
+  name: "Find connections DE-HAM-HBF to DE-BER-HBF"
+  request:
+    urlPathTemplate: "/connections"
+    method: "GET"
+    queryParameters:
+      from:
+        equalTo: "DE-HAM-HBF"
+      to:
+        equalTo: "DE-BER-HBF"
+      date:
+        matches: "\\d{4}-\\d{2}-\\d{2}"
+      page:
+        or:
+        - absent: true
+        - equalTo: "1"
+  response:
+    status: 200
+    bodyFileName: "find-connections-de-ham-hbf-to-de-ber-hbf-a92753.json"
+    headers:
+      Content-Type: "application/json"
+  priority: 5
+- id: "632e8368-b92c-4db8-904b-9e0c7c75261c"
+  name: "Find connections DE-FRA-HBF to DE-CGN-HBF"
+  request:
+    urlPathTemplate: "/connections"
+    method: "GET"
+    queryParameters:
+      from:
+        equalTo: "DE-FRA-HBF"
+      to:
+        equalTo: "DE-CGN-HBF"
+      date:
+        matches: "\\d{4}-\\d{2}-\\d{2}"
+      page:
+        or:
+        - absent: true
+        - equalTo: "1"
+  response:
+    status: 200
+    bodyFileName: "find-connections-de-fra-hbf-to-de-cgn-hbf-632e83.json"
+    headers:
+      Content-Type: "application/json"
+  priority: 5
+- id: "ba36dec5-d718-4b85-9e1b-6ec55ff845d5"
+  name: "Find connections FR-PAR-GDN to BE-BRU-MID"
+  request:
+    urlPathTemplate: "/connections"
+    method: "GET"
+    queryParameters:
+      from:
+        equalTo: "FR-PAR-GDN"
+      to:
+        equalTo: "BE-BRU-MID"
+      date:
+        matches: "\\d{4}-\\d{2}-\\d{2}"
+      page:
+        or:
+        - absent: true
+        - equalTo: "1"
+  response:
+    status: 200
+    bodyFileName: "find-connections-fr-par-gdn-to-be-bru-mid-ba36de.json"
+    headers:
+      Content-Type: "application/json"
+  priority: 5
+- id: "a78fc681-2929-4013-b7e7-264bfaf7d501"
+  name: "Find connections BE-BRU-MID to NL-AMS-CEN"
+  request:
+    urlPathTemplate: "/connections"
+    method: "GET"
+    queryParameters:
+      from:
+        equalTo: "BE-BRU-MID"
+      to:
+        equalTo: "NL-AMS-CEN"
+      date:
+        matches: "\\d{4}-\\d{2}-\\d{2}"
+      page:
+        or:
+        - absent: true
+        - equalTo: "1"
+  response:
+    status: 200
+    bodyFileName: "find-connections-be-bru-mid-to-nl-ams-cen-a78fc6.json"
+    headers:
+      Content-Type: "application/json"
+  priority: 5
+- id: "40fb382e-62ef-4642-9727-03ee41d33ab1"
+  name: "Find connections GB-LON-STP to FR-PAR-GDN"
+  request:
+    urlPathTemplate: "/connections"
+    method: "GET"
+    queryParameters:
+      from:
+        equalTo: "GB-LON-STP"
+      to:
+        equalTo: "FR-PAR-GDN"
+      date:
+        matches: "\\d{4}-\\d{2}-\\d{2}"
+      page:
+        or:
+        - absent: true
+        - equalTo: "1"
+  response:
+    status: 200
+    bodyFileName: "find-connections-gb-lon-stp-to-fr-par-gdn-40fb38.json"
+    headers:
+      Content-Type: "application/json"
+  priority: 5
+- id: "82cec76d-39f5-4a3d-9df6-d8deac2e55de"
+  name: "Find connections FR-PAR-GDL to FR-LYS-PDI"
+  request:
+    urlPathTemplate: "/connections"
+    method: "GET"
+    queryParameters:
+      from:
+        equalTo: "FR-PAR-GDL"
+      to:
+        equalTo: "FR-LYS-PDI"
+      date:
+        matches: "\\d{4}-\\d{2}-\\d{2}"
+      page:
+        or:
+        - absent: true
+        - equalTo: "1"
+  response:
+    status: 200
+    bodyFileName: "find-connections-fr-par-gdl-to-fr-lys-pdi-82cec7.json"
+    headers:
+      Content-Type: "application/json"
+  priority: 5
+- id: "8607fd6a-0a04-4b47-856e-638abd64801b"
+  name: "Find connections FR-LYS-PDI to FR-MRS-STC"
+  request:
+    urlPathTemplate: "/connections"
+    method: "GET"
+    queryParameters:
+      from:
+        equalTo: "FR-LYS-PDI"
+      to:
+        equalTo: "FR-MRS-STC"
+      date:
+        matches: "\\d{4}-\\d{2}-\\d{2}"
+      page:
+        or:
+        - absent: true
+        - equalTo: "1"
+  response:
+    status: 200
+    bodyFileName: "find-connections-fr-lys-pdi-to-fr-mrs-stc-8607fd.json"
+    headers:
+      Content-Type: "application/json"
+  priority: 5
+- id: "38ae2764-b551-410d-88d5-0a0e49c875da"
+  name: "Find connections IT-MIL-CEN to IT-ROM-TER"
+  request:
+    urlPathTemplate: "/connections"
+    method: "GET"
+    queryParameters:
+      from:
+        equalTo: "IT-MIL-CEN"
+      to:
+        equalTo: "IT-ROM-TER"
+      date:
+        matches: "\\d{4}-\\d{2}-\\d{2}"
+      page:
+        or:
+        - absent: true
+        - equalTo: "1"
+  response:
+    status: 200
+    bodyFileName: "find-connections-it-mil-cen-to-it-rom-ter-38ae27.json"
+    headers:
+      Content-Type: "application/json"
+  priority: 5
+- id: "4a4714f8-f371-4752-90c4-c9b0b8be2bb7"
+  name: "Find connections IT-MIL-CEN to IT-VCE-SLU"
+  request:
+    urlPathTemplate: "/connections"
+    method: "GET"
+    queryParameters:
+      from:
+        equalTo: "IT-MIL-CEN"
+      to:
+        equalTo: "IT-VCE-SLU"
+      date:
+        matches: "\\d{4}-\\d{2}-\\d{2}"
+      page:
+        or:
+        - absent: true
+        - equalTo: "1"
+  response:
+    status: 200
+    bodyFileName: "find-connections-it-mil-cen-to-it-vce-slu-4a4714.json"
+    headers:
+      Content-Type: "application/json"
+  priority: 5
+- id: "34fb8554-02b2-4480-897f-7a58cc86e278"
+  name: "Find connections CH-ZRH-HBF to IT-MIL-CEN"
+  request:
+    urlPathTemplate: "/connections"
+    method: "GET"
+    queryParameters:
+      from:
+        equalTo: "CH-ZRH-HBF"
+      to:
+        equalTo: "IT-MIL-CEN"
+      date:
+        matches: "\\d{4}-\\d{2}-\\d{2}"
+      page:
+        or:
+        - absent: true
+        - equalTo: "1"
+  response:
+    status: 200
+    bodyFileName: "find-connections-ch-zrh-hbf-to-it-mil-cen-34fb85.json"
+    headers:
+      Content-Type: "application/json"
+  priority: 5
+- id: "27a64a27-e702-41ee-944e-ff201ccd7c9c"
+  name: "Find connections DE-MUC-HBF to AT-VIE-HBF"
+  request:
+    urlPathTemplate: "/connections"
+    method: "GET"
+    queryParameters:
+      from:
+        equalTo: "DE-MUC-HBF"
+      to:
+        equalTo: "AT-VIE-HBF"
+      date:
+        matches: "\\d{4}-\\d{2}-\\d{2}"
+      page:
+        or:
+        - absent: true
+        - equalTo: "1"
+  response:
+    status: 200
+    bodyFileName: "find-connections-de-muc-hbf-to-at-vie-hbf-27a64a.json"
+    headers:
+      Content-Type: "application/json"
+  priority: 5
+- id: "170bccbe-d4eb-41cd-9c55-f28fe0c98f25"
+  name: "Find connections ES-MAD-ATO to ES-BCN-SAN"
+  request:
+    urlPathTemplate: "/connections"
+    method: "GET"
+    queryParameters:
+      from:
+        equalTo: "ES-MAD-ATO"
+      to:
+        equalTo: "ES-BCN-SAN"
+      date:
+        matches: "\\d{4}-\\d{2}-\\d{2}"
+      page:
+        or:
+        - absent: true
+        - equalTo: "1"
+  response:
+    status: 200
+    bodyFileName: "find-connections-es-mad-ato-to-es-bcn-san-170bcc.json"
+    headers:
+      Content-Type: "application/json"
+  priority: 5
+- id: "29feaac7-47d3-490a-9082-5fe5948afd99"
+  name: "Find connections on a route with no service"
+  request:
+    urlPathTemplate: "/connections"
+    method: "GET"
+    queryParameters:
+      from:
+        matches: ".+"
+      to:
+        matches: ".+"
+      date:
+        matches: "\\d{4}-\\d{2}-\\d{2}"
+  response:
+    status: 200
+    bodyFileName: "find-connections-on-a-route-with-no-service-29feaa.json"
+    headers:
+      Content-Type: "application/json"
+  priority: 9

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+  <soapenv:Body>
+    <soapenv:Fault>
+      <faultcode>soapenv:Client</faultcode>
+      <faultstring>VALIDATION: request must be a processPaymentRequest with a card or bank account payment method</faultstring>
+      <detail>
+        <ns2:PayRailFault xmlns:ns2="http://payrail.example.com/v1">
+          <ns2:faultCode>VALIDATION</ns2:faultCode>
+          <ns2:faultText>request must be a processPaymentRequest with a card or bank account payment method</ns2:faultText>
+        </ns2:PayRailFault>
+      </detail>
+    </soapenv:Fault>
+  </soapenv:Body>
+</soapenv:Envelope>

@@ -1,0 +1,75 @@
+{
+  "connections": [
+    {
+      "connectionId": "ICE-1012",
+      "from": {
+        "stationCode": "DE-HAM-HBF",
+        "scheduledDeparture": "2026-11-02T06:45:00Z"
+      },
+      "to": {
+        "stationCode": "DE-BER-HBF",
+        "scheduledArrival": "2026-11-02T08:30:00Z"
+      },
+      "operator": {
+        "code": "DB",
+        "name": "Deutsche Bahn"
+      },
+      "fare": {
+        "amount": 49.9,
+        "currency": "EUR"
+      },
+      "facilities": {
+        "bicyclesAllowed": false,
+        "dogsAllowed": true
+      }
+    },
+    {
+      "connectionId": "ICE-1013",
+      "from": {
+        "stationCode": "DE-HAM-HBF",
+        "scheduledDeparture": "2026-11-02T12:45:00Z"
+      },
+      "to": {
+        "stationCode": "DE-BER-HBF",
+        "scheduledArrival": "2026-11-02T14:31:00Z"
+      },
+      "operator": {
+        "code": "DB",
+        "name": "Deutsche Bahn"
+      },
+      "fare": {
+        "amount": 49.9,
+        "currency": "EUR"
+      },
+      "facilities": {
+        "bicyclesAllowed": false,
+        "dogsAllowed": true
+      }
+    },
+    {
+      "connectionId": "ICE-1014",
+      "from": {
+        "stationCode": "DE-HAM-HBF",
+        "scheduledDeparture": "2026-11-02T18:45:00Z"
+      },
+      "to": {
+        "stationCode": "DE-BER-HBF",
+        "scheduledArrival": "2026-11-02T20:30:00Z"
+      },
+      "operator": {
+        "code": "DB",
+        "name": "Deutsche Bahn"
+      },
+      "fare": {
+        "amount": 49.9,
+        "currency": "EUR"
+      },
+      "facilities": {
+        "bicyclesAllowed": false,
+        "dogsAllowed": true
+      }
+    }
+  ],
+  "page": 1,
+  "pageSize": 10
+}

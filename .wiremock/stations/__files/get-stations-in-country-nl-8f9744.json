@@ -1,0 +1,34 @@
+{
+  "stations": [
+    {
+      "stationCode": "NL-AMS-CEN",
+      "stationName": "Amsterdam Centraal",
+      "addressLines": [
+        "Stationsplein 1",
+        "1012 AB Amsterdam"
+      ],
+      "countryIsoCode": "NL",
+      "geo": {
+        "latitude": 52.3791,
+        "longitude": 4.9003
+      },
+      "tzId": "Europe/Amsterdam"
+    },
+    {
+      "stationCode": "NL-RTM-CEN",
+      "stationName": "Rotterdam Centraal",
+      "addressLines": [
+        "Stationsplein 1",
+        "3013 AJ Rotterdam"
+      ],
+      "countryIsoCode": "NL",
+      "geo": {
+        "latitude": 51.9244,
+        "longitude": 4.469
+      },
+      "tzId": "Europe/Amsterdam"
+    }
+  ],
+  "offset": 0,
+  "pageSize": 100
+}

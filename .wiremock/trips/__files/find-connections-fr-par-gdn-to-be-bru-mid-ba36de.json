@@ -1,0 +1,75 @@
+{
+  "connections": [
+    {
+      "connectionId": "EST-1017",
+      "from": {
+        "stationCode": "FR-PAR-GDN",
+        "scheduledDeparture": "2026-11-02T07:25:00Z"
+      },
+      "to": {
+        "stationCode": "BE-BRU-MID",
+        "scheduledArrival": "2026-11-02T08:47:00Z"
+      },
+      "operator": {
+        "code": "EUR",
+        "name": "Eurostar"
+      },
+      "fare": {
+        "amount": 59.0,
+        "currency": "EUR"
+      },
+      "facilities": {
+        "bicyclesAllowed": false,
+        "dogsAllowed": false
+      }
+    },
+    {
+      "connectionId": "EST-1018",
+      "from": {
+        "stationCode": "FR-PAR-GDN",
+        "scheduledDeparture": "2026-11-02T12:25:00Z"
+      },
+      "to": {
+        "stationCode": "BE-BRU-MID",
+        "scheduledArrival": "2026-11-02T13:47:00Z"
+      },
+      "operator": {
+        "code": "EUR",
+        "name": "Eurostar"
+      },
+      "fare": {
+        "amount": 59.0,
+        "currency": "EUR"
+      },
+      "facilities": {
+        "bicyclesAllowed": false,
+        "dogsAllowed": false
+      }
+    },
+    {
+      "connectionId": "EST-1019",
+      "from": {
+        "stationCode": "FR-PAR-GDN",
+        "scheduledDeparture": "2026-11-02T17:25:00Z"
+      },
+      "to": {
+        "stationCode": "BE-BRU-MID",
+        "scheduledArrival": "2026-11-02T18:47:00Z"
+      },
+      "operator": {
+        "code": "EUR",
+        "name": "Eurostar"
+      },
+      "fare": {
+        "amount": 59.0,
+        "currency": "EUR"
+      },
+      "facilities": {
+        "bicyclesAllowed": false,
+        "dogsAllowed": false
+      }
+    }
+  ],
+  "page": 1,
+  "pageSize": 10
+}

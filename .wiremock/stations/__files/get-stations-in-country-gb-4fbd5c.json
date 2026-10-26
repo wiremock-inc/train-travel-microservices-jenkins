@@ -1,0 +1,20 @@
+{
+  "stations": [
+    {
+      "stationCode": "GB-LON-STP",
+      "stationName": "London St Pancras International",
+      "addressLines": [
+        "Euston Road",
+        "London N1C 4QP"
+      ],
+      "countryIsoCode": "GB",
+      "geo": {
+        "latitude": 51.532,
+        "longitude": -0.1263
+      },
+      "tzId": "Europe/London"
+    }
+  ],
+  "offset": 0,
+  "pageSize": 100
+}

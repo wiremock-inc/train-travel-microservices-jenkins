@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+  <soapenv:Body>
+    <ns2:processPaymentResponse xmlns:ns2="http://payrail.example.com/v1">
+      <ns2:transactionId>PR-TXN-00000002</ns2:transactionId>
+      <ns2:responseCode>DECLINED</ns2:responseCode>
+      <ns2:declineReason>card_declined</ns2:declineReason>
+      <ns2:maskedCardNumber>************0002</ns2:maskedCardNumber>
+      <ns2:processedAt>2026-11-02T09:15:00Z</ns2:processedAt>
+    </ns2:processPaymentResponse>
+  </soapenv:Body>
+</soapenv:Envelope>

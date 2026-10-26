@@ -9,7 +9,7 @@
  * the gateway validates locally against the IdP's JWKS.
  */
 
-const IDP_BASE_URL = 'https://<google-idp-mock-id>.wiremockapi.cloud';
+const IDP_BASE_URL = 'http://q1ooe.local.wiremock.cloud';
 const CLIENT_ID = 'train-travel-demo';
 const SCOPES = 'openid email';
 const STATE_STORAGE_KEY = 'traintravel.oauth_state';

@@ -1,0 +1,146 @@
+{
+  "stations": [
+    {
+      "stationCode": "NL-AMS-CEN",
+      "stationName": "Amsterdam Centraal",
+      "addressLines": [
+        "Stationsplein 1",
+        "1012 AB Amsterdam"
+      ],
+      "countryIsoCode": "NL",
+      "geo": {
+        "latitude": 52.3791,
+        "longitude": 4.9003
+      },
+      "tzId": "Europe/Amsterdam"
+    },
+    {
+      "stationCode": "ES-BCN-SAN",
+      "stationName": "Barcelona Sants",
+      "addressLines": [
+        "Plaça dels Països Catalans 1",
+        "08014 Barcelona"
+      ],
+      "countryIsoCode": "ES",
+      "geo": {
+        "latitude": 41.3792,
+        "longitude": 2.14
+      },
+      "tzId": "Europe/Madrid"
+    },
+    {
+      "stationCode": "DE-BER-HBF",
+      "stationName": "Berlin Hauptbahnhof",
+      "addressLines": [
+        "Europaplatz 1",
+        "10557 Berlin"
+      ],
+      "countryIsoCode": "DE",
+      "geo": {
+        "latitude": 52.5251,
+        "longitude": 13.3694
+      },
+      "tzId": "Europe/Berlin"
+    },
+    {
+      "stationCode": "BE-BRU-MID",
+      "stationName": "Bruxelles-Midi",
+      "addressLines": [
+        "Avenue Fonsny 47b",
+        "1060 Bruxelles"
+      ],
+      "countryIsoCode": "BE",
+      "geo": {
+        "latitude": 50.8357,
+        "longitude": 4.3364
+      },
+      "tzId": "Europe/Brussels"
+    },
+    {
+      "stationCode": "DE-FRA-HBF",
+      "stationName": "Frankfurt (Main) Hauptbahnhof",
+      "addressLines": [
+        "Am Hauptbahnhof",
+        "60329 Frankfurt am Main"
+      ],
+      "countryIsoCode": "DE",
+      "geo": {
+        "latitude": 50.1071,
+        "longitude": 8.6638
+      },
+      "tzId": "Europe/Berlin"
+    },
+    {
+      "stationCode": "DE-HAM-HBF",
+      "stationName": "Hamburg Hauptbahnhof",
+      "addressLines": [
+        "Hachmannplatz 16",
+        "20099 Hamburg"
+      ],
+      "countryIsoCode": "DE",
+      "geo": {
+        "latitude": 53.553,
+        "longitude": 10.0069
+      },
+      "tzId": "Europe/Berlin"
+    },
+    {
+      "stationCode": "DE-CGN-HBF",
+      "stationName": "Köln Hauptbahnhof",
+      "addressLines": [
+        "Trankgasse 11",
+        "50667 Köln"
+      ],
+      "countryIsoCode": "DE",
+      "geo": {
+        "latitude": 50.943,
+        "longitude": 6.9589
+      },
+      "tzId": "Europe/Berlin"
+    },
+    {
+      "stationCode": "GB-LON-STP",
+      "stationName": "London St Pancras International",
+      "addressLines": [
+        "Euston Road",
+        "London N1C 4QP"
+      ],
+      "countryIsoCode": "GB",
+      "geo": {
+        "latitude": 51.532,
+        "longitude": -0.1263
+      },
+      "tzId": "Europe/London"
+    },
+    {
+      "stationCode": "FR-LYS-PDI",
+      "stationName": "Lyon Part-Dieu",
+      "addressLines": [
+        "5 Place Charles Béraudier",
+        "69003 Lyon"
+      ],
+      "countryIsoCode": "FR",
+      "geo": {
+        "latitude": 45.7606,
+        "longitude": 4.8593
+      },
+      "tzId": "Europe/Paris"
+    },
+    {
+      "stationCode": "ES-MAD-ATO",
+      "stationName": "Madrid Puerta de Atocha",
+      "addressLines": [
+        "Plaza del Emperador Carlos V",
+        "28045 Madrid"
+      ],
+      "countryIsoCode": "ES",
+      "geo": {
+        "latitude": 40.4066,
+        "longitude": -3.6892
+      },
+      "tzId": "Europe/Madrid"
+    }
+  ],
+  "offset": 0,
+  "pageSize": 10
+}

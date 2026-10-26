@@ -1,0 +1,52 @@
+{
+  "connections": [
+    {
+      "connectionId": "FR-1033",
+      "from": {
+        "stationCode": "IT-MIL-CEN",
+        "scheduledDeparture": "2026-11-02T08:35:00Z"
+      },
+      "to": {
+        "stationCode": "IT-VCE-SLU",
+        "scheduledArrival": "2026-11-02T10:59:00Z"
+      },
+      "operator": {
+        "code": "TI",
+        "name": "Trenitalia"
+      },
+      "fare": {
+        "amount": 29.9,
+        "currency": "EUR"
+      },
+      "facilities": {
+        "bicyclesAllowed": true,
+        "dogsAllowed": true
+      }
+    },
+    {
+      "connectionId": "FR-1034",
+      "from": {
+        "stationCode": "IT-MIL-CEN",
+        "scheduledDeparture": "2026-11-02T16:35:00Z"
+      },
+      "to": {
+        "stationCode": "IT-VCE-SLU",
+        "scheduledArrival": "2026-11-02T18:59:00Z"
+      },
+      "operator": {
+        "code": "TI",
+        "name": "Trenitalia"
+      },
+      "fare": {
+        "amount": 29.9,
+        "currency": "EUR"
+      },
+      "facilities": {
+        "bicyclesAllowed": true,
+        "dogsAllowed": true
+      }
+    }
+  ],
+  "page": 1,
+  "pageSize": 10
+}

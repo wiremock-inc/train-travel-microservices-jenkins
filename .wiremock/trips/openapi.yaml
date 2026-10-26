@@ -1,0 +1,209 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "European Rail Timetable",
+    "description": "Timetable and fare service serving scheduled connections between European rail stations.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://lm556.local.wiremock.cloud"
+    }
+  ]
+  ,
+  "paths": {
+    "/connections": {
+      "get": {
+        "summary": "Find scheduled connections",
+        "operationId": "findConnections",
+        "parameters": [
+          {
+            "name": "from",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Origin station code"
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Destination station code"
+          },
+          {
+            "name": "date",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "description": "Travel date (YYYY-MM-DD)"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 1,
+              "minimum": 1
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 10,
+              "minimum": 1,
+              "maximum": 100
+            }
+          }
+        ]
+        ,
+        "responses": {
+          "200": {
+            "description": "Connections on the requested date, ordered by scheduled departure",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectionsResponse"
+                },
+                "example": {
+                  "connections": [
+                    {
+                      "connectionId": "ICE-1001",
+                      "from": {
+                        "stationCode": "DE-BER-HBF",
+                        "scheduledDeparture": "2026-10-01T06:00:00Z"
+                      },
+                      "to": {
+                        "stationCode": "DE-MUC-HBF",
+                        "scheduledArrival": "2026-10-01T10:00:00Z"
+                      },
+                      "operator": {
+                        "code": "DB",
+                        "name": "Deutsche Bahn"
+                      },
+                      "fare": {
+                        "amount": 89.9,
+                        "currency": "EUR"
+                      },
+                      "facilities": {
+                        "bicyclesAllowed": true,
+                        "dogsAllowed": true
+                      }
+                    }
+                  ]
+                  ,
+                  "page": 1,
+                  "pageSize": 10
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "StationPoint": {
+        "type": "object",
+        "properties": {
+          "stationCode": {
+            "type": "string"
+          },
+          "scheduledDeparture": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "scheduledArrival": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "Connection": {
+        "type": "object",
+        "required": [
+          "connectionId",
+          "from",
+          "to",
+          "operator",
+          "fare",
+          "facilities"
+        ]
+        ,
+        "properties": {
+          "connectionId": {
+            "type": "string"
+          },
+          "from": {
+            "$ref": "#/components/schemas/StationPoint"
+          },
+          "to": {
+            "$ref": "#/components/schemas/StationPoint"
+          },
+          "operator": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              }
+            }
+          },
+          "fare": {
+            "type": "object",
+            "properties": {
+              "amount": {
+                "type": "number"
+              },
+              "currency": {
+                "type": "string"
+              }
+            }
+          },
+          "facilities": {
+            "type": "object",
+            "properties": {
+              "bicyclesAllowed": {
+                "type": "boolean"
+              },
+              "dogsAllowed": {
+                "type": "boolean"
+              }
+            }
+          }
+        }
+      },
+      "ConnectionsResponse": {
+        "type": "object",
+        "properties": {
+          "connections": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Connection"
+            }
+          },
+          "page": {
+            "type": "integer"
+          },
+          "pageSize": {
+            "type": "integer"
+          }
+        }
+      }
+    }
+  }
+}

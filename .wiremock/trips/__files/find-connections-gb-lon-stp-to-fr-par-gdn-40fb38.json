@@ -1,0 +1,75 @@
+{
+  "connections": [
+    {
+      "connectionId": "EST-1022",
+      "from": {
+        "stationCode": "GB-LON-STP",
+        "scheduledDeparture": "2026-11-02T07:01:00Z"
+      },
+      "to": {
+        "stationCode": "FR-PAR-GDN",
+        "scheduledArrival": "2026-11-02T10:20:00Z"
+      },
+      "operator": {
+        "code": "EUR",
+        "name": "Eurostar"
+      },
+      "fare": {
+        "amount": 119.0,
+        "currency": "EUR"
+      },
+      "facilities": {
+        "bicyclesAllowed": false,
+        "dogsAllowed": false
+      }
+    },
+    {
+      "connectionId": "EST-1023",
+      "from": {
+        "stationCode": "GB-LON-STP",
+        "scheduledDeparture": "2026-11-02T11:31:00Z"
+      },
+      "to": {
+        "stationCode": "FR-PAR-GDN",
+        "scheduledArrival": "2026-11-02T14:47:00Z"
+      },
+      "operator": {
+        "code": "EUR",
+        "name": "Eurostar"
+      },
+      "fare": {
+        "amount": 119.0,
+        "currency": "EUR"
+      },
+      "facilities": {
+        "bicyclesAllowed": false,
+        "dogsAllowed": false
+      }
+    },
+    {
+      "connectionId": "EST-1024",
+      "from": {
+        "stationCode": "GB-LON-STP",
+        "scheduledDeparture": "2026-11-02T16:01:00Z"
+      },
+      "to": {
+        "stationCode": "FR-PAR-GDN",
+        "scheduledArrival": "2026-11-02T19:17:00Z"
+      },
+      "operator": {
+        "code": "EUR",
+        "name": "Eurostar"
+      },
+      "fare": {
+        "amount": 119.0,
+        "currency": "EUR"
+      },
+      "facilities": {
+        "bicyclesAllowed": false,
+        "dogsAllowed": false
+      }
+    }
+  ],
+  "page": 1,
+  "pageSize": 10
+}

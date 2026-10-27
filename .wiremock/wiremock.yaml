@@ -1,10 +1,10 @@
 services:
   stripe:
-    template: org/stripe
+    template: public/stripe
     name: 'stripe'
     port: 8080
   google-idp:
-    template: org/google-sign-in
+    template: public/google-sign-in
     name: 'google-idp'
     port: 8081
   stations:

@@ -1,0 +1,107 @@
+arazzo: 1.0.1
+info:
+  title: European Rail Timetable workflows
+  version: 1.0.0
+sourceDescriptions:
+  - name: trips
+    url: ./openapi.json
+    type: openapi
+workflows:
+  - workflowId: findConnections
+    summary: Look up connections on a served route, its return route, a later page and an unserved route
+    steps:
+      - stepId: findBerlinToMunich
+        operationId: findConnections
+        parameters:
+          - name: from
+            in: query
+            value: DE-BER-HBF
+          - name: to
+            in: query
+            value: DE-MUC-HBF
+          - name: date
+            in: query
+            value: '2026-12-01'
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.body#/page == 1
+          - condition: $response.body#/connections/0/connectionId == 'ICE-1001'
+          - condition: $response.body#/connections/0/from/stationCode == 'DE-BER-HBF'
+          - condition: $response.body#/connections/0/to/stationCode == 'DE-MUC-HBF'
+          - context: $response.body
+            type: jsonpath
+            condition: $.connections[?(@.facilities.bicyclesAllowed == true && @.facilities.dogsAllowed == true)]
+        outputs:
+          firstConnectionId: $response.body#/connections/0/connectionId
+      - stepId: findMunichToBerlin
+        operationId: findConnections
+        parameters:
+          - name: from
+            in: query
+            value: DE-MUC-HBF
+          - name: to
+            in: query
+            value: DE-BER-HBF
+          - name: date
+            in: query
+            value: '2026-12-01'
+          - name: page
+            in: query
+            value: 1
+          - name: pageSize
+            in: query
+            value: 20
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.body#/connections/0/from/stationCode == 'DE-MUC-HBF'
+          - context: $response.body
+            type: jsonpath
+            condition: $.connections[?(@.connectionId == 'ICE-1006' && @.fare.currency == 'EUR')]
+      - stepId: findSecondPage
+        operationId: findConnections
+        parameters:
+          - name: from
+            in: query
+            value: DE-BER-HBF
+          - name: to
+            in: query
+            value: DE-MUC-HBF
+          - name: date
+            in: query
+            value: '2026-12-01'
+          - name: page
+            in: query
+            value: 2
+        successCriteria:
+          - condition: $statusCode == 200
+      - stepId: findLondonToParis
+        operationId: findConnections
+        parameters:
+          - name: from
+            in: query
+            value: GB-LON-STP
+          - name: to
+            in: query
+            value: FR-PAR-GDN
+          - name: date
+            in: query
+            value: '2026-12-01'
+        successCriteria:
+          - condition: $statusCode == 200
+          - context: $response.body
+            type: jsonpath
+            condition: $.connections[?(@.operator.name == 'Eurostar' && @.fare.currency == 'GBP')]
+      - stepId: findUnservedRoute
+        operationId: findConnections
+        parameters:
+          - name: from
+            in: query
+            value: DE-BER-HBF
+          - name: to
+            in: query
+            value: ES-MAD-ATO
+          - name: date
+            in: query
+            value: '2026-12-01'
+        successCriteria:
+          - condition: $statusCode == 200

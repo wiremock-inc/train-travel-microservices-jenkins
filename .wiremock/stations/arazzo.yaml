@@ -1,0 +1,75 @@
+arazzo: 1.0.1
+info:
+  title: European Rail Reference Data workflows
+  version: 1.0.0
+sourceDescriptions:
+  - name: stations
+    url: ./openapi.json
+    type: openapi
+workflows:
+  - workflowId: browseStationData
+    summary: Page through the station master list, fetch it all at once, and filter by country
+    steps:
+      - stepId: getFirstPage
+        operationId: getStationData
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.body#/offset == 0
+          - condition: $response.body#/pageSize == 10
+          - condition: $response.body#/stations/0/stationName == 'Amsterdam Centraal'
+        outputs:
+          firstStationCode: $response.body#/stations/0/stationCode
+      - stepId: getSecondPage
+        operationId: getStationData
+        parameters:
+          - name: offset
+            in: query
+            value: 10
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.body#/offset == 10
+          - condition: $response.body#/stations/0/stationName == 'Madrid Puerta de Atocha'
+      - stepId: getAllStations
+        operationId: getStationData
+        parameters:
+          - name: pageSize
+            in: query
+            value: 100
+          - name: offset
+            in: query
+            value: 0
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.body#/pageSize == 100
+          - context: $response.body
+            type: jsonpath
+            condition: $.stations[?(@.stationCode == 'DE-BER-HBF')]
+          - context: $response.body
+            type: jsonpath
+            condition: $.stations[?(@.stationName == 'München Hauptbahnhof')]
+          - context: $response.body
+            type: jsonpath
+            condition: $.stations[?(@.stationCode == 'NL-AMS-CEN')]
+      - stepId: getGermanStations
+        operationId: getStationData
+        parameters:
+          - name: country
+            in: query
+            value: DE
+          - name: pageSize
+            in: query
+            value: 100
+        successCriteria:
+          - condition: $statusCode == 200
+          - context: $response.body
+            type: jsonpath
+            condition: $.stations[?(@.stationCode == 'DE-MUC-HBF' && @.tzId == 'Europe/Berlin')]
+      - stepId: getStationsInUnknownCountry
+        operationId: getStationData
+        parameters:
+          - name: country
+            in: query
+            value: XX
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.body#/offset == 0

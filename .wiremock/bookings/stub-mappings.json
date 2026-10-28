@@ -1,0 +1,308 @@
+{
+  "mappings": [
+    {
+      "name": "Create reservation (HELD)",
+      "persistent": true,
+      "request": {
+        "urlPathTemplate": "/reservations",
+        "method": "POST"
+      },
+      "response": {
+        "status": 201,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": "{{#formatJson}}\n  {{state id context=collectionContext}}\n{{/formatJson}}",
+        "transformers": [
+          "response-template"
+        ]
+      },
+      "serveEventListeners": [
+        {
+          "name": "change-state",
+          "parameters": {
+            "operations": [
+              {
+                "context": "local",
+                "key": "id",
+                "operation": "REQUEST_VAR",
+                "phase": "AFTER_MATCH",
+                "value": "{{randomValue type='UUID'}}"
+              },
+              {
+                "context": "local",
+                "key": "collectionContext",
+                "operation": "REQUEST_VAR",
+                "phase": "AFTER_MATCH",
+                "value": "reservations:{{request.headers.X-User-Id}}"
+              },
+              {
+                "context": "{{collectionContext}}",
+                "key": "{{id}}",
+                "operation": "SET",
+                "phase": "AFTER_MATCH",
+                "value": "{{#jsonMerge request.body}}\n{\n  \"reservationId\" : \"{{id}}\",\n  \"status\" : \"HELD\",\n  \"createdAt\" : \"{{now format='yyyy-MM-dd\\'T\\'HH:mm:ss\\'Z\\''}}\",\n  \"expiresAt\" : \"{{now offset='1 hours' format='yyyy-MM-dd\\'T\\'HH:mm:ss\\'Z\\''}}\"\n}\n{{/jsonMerge}}"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "List the holder's reservations",
+      "persistent": true,
+      "request": {
+        "urlPathTemplate": "/reservations",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": "{{#formatJson}}\n{\n  \"reservations\" : [{{arrayJoin ',' (listState collectionContext)}}]\n}\n{{/formatJson}}",
+        "transformers": [
+          "response-template"
+        ]
+      },
+      "serveEventListeners": [
+        {
+          "name": "change-state",
+          "parameters": {
+            "operations": [
+              {
+                "context": "local",
+                "key": "collectionContext",
+                "operation": "REQUEST_VAR",
+                "phase": "AFTER_MATCH",
+                "value": "reservations:{{request.headers.X-User-Id}}"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Get reservation",
+      "persistent": true,
+      "request": {
+        "urlPathTemplate": "/reservations/{reservationId}",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": "{{#formatJson}}\n  {{state id context=collectionContext}}\n{{/formatJson}}",
+        "transformers": [
+          "response-template"
+        ]
+      },
+      "serveEventListeners": [
+        {
+          "name": "change-state",
+          "parameters": {
+            "operations": [
+              {
+                "context": "local",
+                "key": "id",
+                "operation": "REQUEST_VAR",
+                "phase": "AFTER_MATCH",
+                "value": "{{request.path.reservationId}}"
+              },
+              {
+                "context": "local",
+                "key": "collectionContext",
+                "operation": "REQUEST_VAR",
+                "phase": "AFTER_MATCH",
+                "value": "reservations:{{request.headers.X-User-Id}}"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Delete reservation (release hold)",
+      "persistent": true,
+      "request": {
+        "urlPathTemplate": "/reservations/{reservationId}",
+        "method": "DELETE"
+      },
+      "response": {
+        "status": 204
+      },
+      "serveEventListeners": [
+        {
+          "name": "change-state",
+          "parameters": {
+            "operations": [
+              {
+                "context": "local",
+                "key": "id",
+                "operation": "REQUEST_VAR",
+                "phase": "AFTER_MATCH",
+                "value": "{{request.path.reservationId}}"
+              },
+              {
+                "context": "local",
+                "key": "collectionContext",
+                "operation": "REQUEST_VAR",
+                "phase": "AFTER_MATCH",
+                "value": "reservations:{{request.headers.X-User-Id}}"
+              },
+              {
+                "context": "{{collectionContext}}",
+                "key": "{{id}}",
+                "operation": "DELETE",
+                "phase": "AFTER_MATCH"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Confirm reservation",
+      "persistent": true,
+      "request": {
+        "urlPathTemplate": "/reservations/{reservationId}/confirm",
+        "method": "POST"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": "{{#formatJson}}\n  {{state id context=collectionContext}}\n{{/formatJson}}",
+        "transformers": [
+          "response-template"
+        ]
+      },
+      "serveEventListeners": [
+        {
+          "name": "change-state",
+          "parameters": {
+            "operations": [
+              {
+                "context": "local",
+                "key": "id",
+                "operation": "REQUEST_VAR",
+                "phase": "AFTER_MATCH",
+                "value": "{{request.path.reservationId}}"
+              },
+              {
+                "context": "local",
+                "key": "collectionContext",
+                "operation": "REQUEST_VAR",
+                "phase": "AFTER_MATCH",
+                "value": "reservations:{{request.headers.X-User-Id}}"
+              },
+              {
+                "context": "{{collectionContext}}",
+                "key": "{{id}}",
+                "operation": "SET",
+                "phase": "AFTER_MATCH",
+                "value": "{{#jsonMerge previousValue}}\n{\n  \"status\" : \"CONFIRMED\"\n}\n{{/jsonMerge}}"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Not found - get reservation",
+      "priority": 2,
+      "persistent": true,
+      "request": {
+        "urlPathTemplate": "/reservations/{reservationId}",
+        "method": "GET",
+        "customMatcher": {
+          "name": "custom-and-matcher",
+          "parameters": {
+            "matchers": [
+              {
+                "name": "require-state",
+                "parameters": {
+                  "requirements": [
+                    {
+                      "key": "{{request.path.reservationId}}",
+                      "absent": true,
+                      "context": "reservations:{{request.headers.X-User-Id}}"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      },
+      "response": {
+        "status": 404
+      }
+    },
+    {
+      "name": "Not found - delete reservation",
+      "priority": 2,
+      "persistent": true,
+      "request": {
+        "urlPathTemplate": "/reservations/{reservationId}",
+        "method": "DELETE",
+        "customMatcher": {
+          "name": "custom-and-matcher",
+          "parameters": {
+            "matchers": [
+              {
+                "name": "require-state",
+                "parameters": {
+                  "requirements": [
+                    {
+                      "key": "{{request.path.reservationId}}",
+                      "absent": true,
+                      "context": "reservations:{{request.headers.X-User-Id}}"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      },
+      "response": {
+        "status": 404
+      }
+    },
+    {
+      "name": "Not found - confirm reservation",
+      "priority": 2,
+      "persistent": true,
+      "request": {
+        "urlPathTemplate": "/reservations/{reservationId}/confirm",
+        "method": "POST",
+        "customMatcher": {
+          "name": "custom-and-matcher",
+          "parameters": {
+            "matchers": [
+              {
+                "name": "require-state",
+                "parameters": {
+                  "requirements": [
+                    {
+                      "key": "{{request.path.reservationId}}",
+                      "absent": true,
+                      "context": "reservations:{{request.headers.X-User-Id}}"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      },
+      "response": {
+        "status": 404
+      }
+    }
+  ]
+}

@@ -1,0 +1,167 @@
+arazzo: 1.0.1
+info:
+  title: Rail Reservations workflows
+  version: 1.0.0
+sourceDescriptions:
+  - name: bookings
+    url: ./openapi.json
+    type: openapi
+workflows:
+  - workflowId: reservationLifecycle
+    summary: Hold a trip, read it back, confirm it, check other holders can't see it, then release a second hold
+    steps:
+      - stepId: createReservation
+        operationId: createReservation
+        parameters:
+          - name: X-User-Id
+            in: header
+            value: user-jane
+        requestBody:
+          contentType: application/json
+          payload:
+            tripRef: 4f1c2a9e-6b1d-5c3e-9a7f-2d8e0b6c4a11
+            passengerName: Jane Smith
+            bicycle: true
+            dog: false
+            holderId: user-jane
+        successCriteria:
+          - condition: $statusCode == 201
+          - condition: $response.body#/status == 'HELD'
+          - condition: $response.body#/passengerName == 'Jane Smith'
+          - condition: $response.body#/tripRef == '4f1c2a9e-6b1d-5c3e-9a7f-2d8e0b6c4a11'
+        outputs:
+          reservationId: $response.body#/reservationId
+      - stepId: getReservation
+        operationId: getReservation
+        parameters:
+          - name: reservationId
+            in: path
+            value: $steps.createReservation.outputs.reservationId
+          - name: X-User-Id
+            in: header
+            value: user-jane
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.body#/reservationId == $steps.createReservation.outputs.reservationId
+          - condition: $response.body#/status == 'HELD'
+          - condition: $response.body#/bicycle == true
+      - stepId: listReservations
+        operationId: listReservations
+        parameters:
+          - name: X-User-Id
+            in: header
+            value: user-jane
+        successCriteria:
+          - condition: $statusCode == 200
+          - context: $response.body
+            type: jsonpath
+            condition: $.reservations[?(@.passengerName == 'Jane Smith' && @.status == 'HELD')]
+      - stepId: confirmReservation
+        operationId: confirmReservation
+        parameters:
+          - name: reservationId
+            in: path
+            value: $steps.createReservation.outputs.reservationId
+          - name: X-User-Id
+            in: header
+            value: user-jane
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.body#/status == 'CONFIRMED'
+          - condition: $response.body#/passengerName == 'Jane Smith'
+      - stepId: getConfirmedReservation
+        operationId: getReservation
+        parameters:
+          - name: reservationId
+            in: path
+            value: $steps.createReservation.outputs.reservationId
+          - name: X-User-Id
+            in: header
+            value: user-jane
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.body#/status == 'CONFIRMED'
+      - stepId: getReservationAsOtherHolder
+        operationId: getReservation
+        parameters:
+          - name: reservationId
+            in: path
+            value: $steps.createReservation.outputs.reservationId
+          - name: X-User-Id
+            in: header
+            value: user-bob
+        successCriteria:
+          - condition: $statusCode == 404
+      - stepId: confirmAsOtherHolder
+        operationId: confirmReservation
+        parameters:
+          - name: reservationId
+            in: path
+            value: $steps.createReservation.outputs.reservationId
+          - name: X-User-Id
+            in: header
+            value: user-bob
+        successCriteria:
+          - condition: $statusCode == 404
+      - stepId: createSecondReservation
+        operationId: createReservation
+        parameters:
+          - name: X-User-Id
+            in: header
+            value: user-jane
+        requestBody:
+          contentType: application/json
+          payload:
+            tripRef: 8a2b3c4d-1e2f-5a6b-8c7d-9e0f1a2b3c4d
+            passengerName: Sam Smith
+            dog: true
+            holderId: user-jane
+        successCriteria:
+          - condition: $statusCode == 201
+          - condition: $response.body#/status == 'HELD'
+        outputs:
+          reservationId: $response.body#/reservationId
+      - stepId: deleteSecondReservation
+        operationId: deleteReservation
+        parameters:
+          - name: reservationId
+            in: path
+            value: $steps.createSecondReservation.outputs.reservationId
+          - name: X-User-Id
+            in: header
+            value: user-jane
+        successCriteria:
+          - condition: $statusCode == 204
+      - stepId: getDeletedReservation
+        operationId: getReservation
+        parameters:
+          - name: reservationId
+            in: path
+            value: $steps.createSecondReservation.outputs.reservationId
+          - name: X-User-Id
+            in: header
+            value: user-jane
+        successCriteria:
+          - condition: $statusCode == 404
+      - stepId: deleteDeletedReservation
+        operationId: deleteReservation
+        parameters:
+          - name: reservationId
+            in: path
+            value: $steps.createSecondReservation.outputs.reservationId
+          - name: X-User-Id
+            in: header
+            value: user-jane
+        successCriteria:
+          - condition: $statusCode == 404
+      - stepId: listAfterDelete
+        operationId: listReservations
+        parameters:
+          - name: X-User-Id
+            in: header
+            value: user-jane
+        successCriteria:
+          - condition: $statusCode == 200
+          - context: $response.body
+            type: jsonpath
+            condition: $.reservations[?(@.passengerName == 'Jane Smith' && @.status == 'CONFIRMED')]

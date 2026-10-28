@@ -1,0 +1,179 @@
+{
+  "mappings": [
+    {
+      "name": "ProcessPayment - card 4242 approved",
+      "priority": 5,
+      "request": {
+        "method": "POST",
+        "urlPath": "/payrail/v1",
+        "headers": {
+          "SOAPAction": {
+            "matches": "\"?processPayment\"?"
+          }
+        },
+        "bodyPatterns": [
+          {
+            "matchesXPath": "//*[local-name()='processPaymentRequest']/*[local-name()='paymentMethod']/*[local-name()='card']/*[local-name()='cardNumber'][text()='4242424242424242']"
+          }
+        ]
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "text/xml; charset=utf-8"
+        },
+        "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <pr:processPaymentResponse xmlns:pr=\"http://payrail.example.com/v1\">\n      <pr:transactionId>PR-TX-7F3A9C21</pr:transactionId>\n      <pr:responseCode>APPROVED</pr:responseCode>\n      <pr:maskedCardNumber>************4242</pr:maskedCardNumber>\n      <pr:processedAt>2026-10-28T12:00:00Z</pr:processedAt>\n    </pr:processPaymentResponse>\n  </soap:Body>\n</soap:Envelope>"
+      }
+    },
+    {
+      "name": "ProcessPayment - card 4000000000000002 declined",
+      "priority": 5,
+      "request": {
+        "method": "POST",
+        "urlPath": "/payrail/v1",
+        "headers": {
+          "SOAPAction": {
+            "matches": "\"?processPayment\"?"
+          }
+        },
+        "bodyPatterns": [
+          {
+            "matchesXPath": "//*[local-name()='processPaymentRequest']/*[local-name()='paymentMethod']/*[local-name()='card']/*[local-name()='cardNumber'][text()='4000000000000002']"
+          }
+        ]
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "text/xml; charset=utf-8"
+        },
+        "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <pr:processPaymentResponse xmlns:pr=\"http://payrail.example.com/v1\">\n      <pr:transactionId>PR-TX-0D2B6E44</pr:transactionId>\n      <pr:responseCode>DECLINED</pr:responseCode>\n      <pr:declineReason>Card declined</pr:declineReason>\n      <pr:processedAt>2026-10-28T12:00:00Z</pr:processedAt>\n    </pr:processPaymentResponse>\n  </soap:Body>\n</soap:Envelope>"
+      }
+    },
+    {
+      "name": "ProcessPayment - card 4000000000009995 declined (insufficient funds)",
+      "priority": 5,
+      "request": {
+        "method": "POST",
+        "urlPath": "/payrail/v1",
+        "headers": {
+          "SOAPAction": {
+            "matches": "\"?processPayment\"?"
+          }
+        },
+        "bodyPatterns": [
+          {
+            "matchesXPath": "//*[local-name()='processPaymentRequest']/*[local-name()='paymentMethod']/*[local-name()='card']/*[local-name()='cardNumber'][text()='4000000000009995']"
+          }
+        ]
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "text/xml; charset=utf-8"
+        },
+        "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <pr:processPaymentResponse xmlns:pr=\"http://payrail.example.com/v1\">\n      <pr:transactionId>PR-TX-5C8E1F09</pr:transactionId>\n      <pr:responseCode>DECLINED</pr:responseCode>\n      <pr:declineReason>Insufficient funds</pr:declineReason>\n      <pr:processedAt>2026-10-28T12:00:00Z</pr:processedAt>\n    </pr:processPaymentResponse>\n  </soap:Body>\n</soap:Envelope>"
+      }
+    },
+    {
+      "name": "ProcessPayment - card 4000000000000119 processing error fault",
+      "priority": 5,
+      "request": {
+        "method": "POST",
+        "urlPath": "/payrail/v1",
+        "headers": {
+          "SOAPAction": {
+            "matches": "\"?processPayment\"?"
+          }
+        },
+        "bodyPatterns": [
+          {
+            "matchesXPath": "//*[local-name()='processPaymentRequest']/*[local-name()='paymentMethod']/*[local-name()='card']/*[local-name()='cardNumber'][text()='4000000000000119']"
+          }
+        ]
+      },
+      "response": {
+        "status": 500,
+        "headers": {
+          "Content-Type": "text/xml; charset=utf-8"
+        },
+        "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <soap:Fault>\n      <faultcode>soap:Client</faultcode>\n      <faultstring>PROCESSING_ERROR: The card issuer could not be reached</faultstring>\n      <detail>\n        <pr:PayRailFault xmlns:pr=\"http://payrail.example.com/v1\">\n          <pr:faultCode>PROCESSING_ERROR</pr:faultCode>\n          <pr:faultText>The card issuer could not be reached</pr:faultText>\n        </pr:PayRailFault>\n      </detail>\n    </soap:Fault>\n  </soap:Body>\n</soap:Envelope>"
+      }
+    },
+    {
+      "name": "ProcessPayment - any other card approved",
+      "priority": 8,
+      "request": {
+        "method": "POST",
+        "urlPath": "/payrail/v1",
+        "headers": {
+          "SOAPAction": {
+            "matches": "\"?processPayment\"?"
+          }
+        },
+        "bodyPatterns": [
+          {
+            "matchesXPath": "//*[local-name()='processPaymentRequest']/*[local-name()='paymentMethod']/*[local-name()='card']"
+          }
+        ]
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "text/xml; charset=utf-8"
+        },
+        "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <pr:processPaymentResponse xmlns:pr=\"http://payrail.example.com/v1\">\n      <pr:transactionId>PR-TX-3E91A7B5</pr:transactionId>\n      <pr:responseCode>APPROVED</pr:responseCode>\n      <pr:processedAt>2026-10-28T12:00:00Z</pr:processedAt>\n    </pr:processPaymentResponse>\n  </soap:Body>\n</soap:Envelope>"
+      }
+    },
+    {
+      "name": "ProcessPayment - bank account approved",
+      "priority": 8,
+      "request": {
+        "method": "POST",
+        "urlPath": "/payrail/v1",
+        "headers": {
+          "SOAPAction": {
+            "matches": "\"?processPayment\"?"
+          }
+        },
+        "bodyPatterns": [
+          {
+            "matchesXPath": "//*[local-name()='processPaymentRequest']/*[local-name()='paymentMethod']/*[local-name()='bankAccount']"
+          }
+        ]
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "text/xml; charset=utf-8"
+        },
+        "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <pr:processPaymentResponse xmlns:pr=\"http://payrail.example.com/v1\">\n      <pr:transactionId>PR-TX-9A4D2C63</pr:transactionId>\n      <pr:responseCode>APPROVED</pr:responseCode>\n      <pr:processedAt>2026-10-28T12:00:00Z</pr:processedAt>\n    </pr:processPaymentResponse>\n  </soap:Body>\n</soap:Envelope>"
+      }
+    },
+    {
+      "name": "ProcessPayment - no payment method validation fault",
+      "priority": 9,
+      "request": {
+        "method": "POST",
+        "urlPath": "/payrail/v1",
+        "headers": {
+          "SOAPAction": {
+            "matches": "\"?processPayment\"?"
+          }
+        },
+        "bodyPatterns": [
+          {
+            "matchesXPath": "//*[local-name()='processPaymentRequest']"
+          }
+        ]
+      },
+      "response": {
+        "status": 500,
+        "headers": {
+          "Content-Type": "text/xml; charset=utf-8"
+        },
+        "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <soap:Fault>\n      <faultcode>soap:Client</faultcode>\n      <faultstring>VALIDATION_ERROR: paymentMethod is required</faultstring>\n      <detail>\n        <pr:PayRailFault xmlns:pr=\"http://payrail.example.com/v1\">\n          <pr:faultCode>VALIDATION_ERROR</pr:faultCode>\n          <pr:faultText>paymentMethod is required</pr:faultText>\n        </pr:PayRailFault>\n      </detail>\n    </soap:Fault>\n  </soap:Body>\n</soap:Envelope>"
+      }
+    }
+  ]
+}

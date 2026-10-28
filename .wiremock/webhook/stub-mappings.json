@@ -1,0 +1,19 @@
+{
+  "mappings": [
+    {
+      "name": "newBooking webhook - received",
+      "request": {
+        "method": "POST",
+        "urlPath": "/new-booking",
+        "bodyPatterns": [
+          { "matchesJsonPath": "$.id" },
+          { "matchesJsonPath": "$.trip_id" },
+          { "matchesJsonPath": "$.passenger_name" }
+        ]
+      },
+      "response": {
+        "status": 200
+      }
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:tns="http://payrail.example.com/v1"
+            targetNamespace="http://payrail.example.com/v1"
+            elementFormDefault="qualified">
+
+  <xsd:element name="processPaymentRequest">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="merchantId" type="xsd:string"/>
+        <xsd:element name="merchantReference" type="xsd:string"/>
+        <xsd:element name="amount" type="xsd:decimal"/>
+        <xsd:element name="currencyCode" type="xsd:string"/>
+        <xsd:element name="paymentMethod" type="tns:PaymentMethod" minOccurs="0"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:complexType name="PaymentMethod">
+    <xsd:sequence>
+      <xsd:element name="card" type="tns:Card" minOccurs="0"/>
+      <xsd:element name="bankAccount" type="tns:BankAccount" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="Card">
+    <xsd:sequence>
+      <xsd:element name="cardholderName" type="xsd:string"/>
+      <xsd:element name="cardNumber" type="xsd:string"/>
+      <xsd:element name="expiryMonth" type="xsd:int"/>
+      <xsd:element name="expiryYear" type="xsd:int"/>
+      <xsd:element name="securityCode" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="billingPostCode" type="xsd:string" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="BankAccount">
+    <xsd:sequence>
+      <xsd:element name="accountName" type="xsd:string"/>
+      <xsd:element name="accountNumber" type="xsd:string"/>
+      <xsd:element name="sortCode" type="xsd:string"/>
+      <xsd:element name="accountType" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="bankName" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="countryCode" type="xsd:string" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:element name="processPaymentResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="transactionId" type="xsd:string"/>
+        <xsd:element name="responseCode" type="xsd:string"/>
+        <xsd:element name="declineReason" type="xsd:string" minOccurs="0"/>
+        <xsd:element name="authorisedAmount" type="xsd:decimal" minOccurs="0"/>
+        <xsd:element name="maskedCardNumber" type="xsd:string" minOccurs="0"/>
+        <xsd:element name="maskedAccountNumber" type="xsd:string" minOccurs="0"/>
+        <xsd:element name="processedAt" type="xsd:string" minOccurs="0"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="PayRailFault">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="faultCode" type="xsd:string"/>
+        <xsd:element name="faultText" type="xsd:string"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+
+</xsd:schema>

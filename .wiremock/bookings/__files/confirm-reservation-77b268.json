@@ -1,3 +1,0 @@
-{{#formatJson}}
-  {{state id context=collectionContext}}
-{{/formatJson}}

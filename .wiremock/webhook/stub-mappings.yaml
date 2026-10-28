@@ -1,9 +1,0 @@
----
-mappings:
-- id: "8085491c-ceaa-4255-8e5a-80e3c78e7320"
-  name: "Receive newBooking webhook"
-  request:
-    urlPathTemplate: "/new-booking"
-    method: "POST"
-  response:
-    status: 200

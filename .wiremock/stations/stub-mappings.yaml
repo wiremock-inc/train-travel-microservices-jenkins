@@ -1,0 +1,300 @@
+---
+mappings:
+- id: "6b5fda0a-f907-42b1-901a-606d50ece66b"
+  name: "All stations (page size covers the full list)"
+  request:
+    urlPathTemplate: "/station-data"
+    method: "GET"
+    queryParameters:
+      country:
+        absent: true
+      offset:
+        or:
+        - equalTo: "0"
+        - absent: true
+      pageSize:
+        matches: "^(1[89]|[2-9][0-9]|100)$"
+  response:
+    status: 200
+    bodyFileName: "all-stations-page-size-covers-the-full-list-6b5fda.json"
+    headers:
+      Content-Type: "application/json"
+    transformers:
+    - "response-template"
+  priority: 5
+- id: "21b08261-8c69-43aa-a698-c1ab78cd7e27"
+  name: "First page of stations (default page size)"
+  request:
+    urlPathTemplate: "/station-data"
+    method: "GET"
+    queryParameters:
+      country:
+        absent: true
+      offset:
+        or:
+        - equalTo: "0"
+        - absent: true
+      pageSize:
+        or:
+        - equalTo: "10"
+        - absent: true
+  response:
+    status: 200
+    bodyFileName: "first-page-of-stations-default-page-size-21b082.json"
+    headers:
+      Content-Type: "application/json"
+    transformers:
+    - "response-template"
+  priority: 5
+- id: "33f47365-798c-4056-80d0-ba6a07b6c931"
+  name: "Stations in AT"
+  request:
+    urlPathTemplate: "/station-data"
+    method: "GET"
+    queryParameters:
+      country:
+        equalTo: "AT"
+      offset:
+        or:
+        - equalTo: "0"
+        - absent: true
+  response:
+    status: 200
+    bodyFileName: "stations-in-at-33f473.json"
+    headers:
+      Content-Type: "application/json"
+    transformers:
+    - "response-template"
+  priority: 5
+- id: "93c795da-42e9-46b7-9335-ddf5555316d4"
+  name: "Stations in BE"
+  request:
+    urlPathTemplate: "/station-data"
+    method: "GET"
+    queryParameters:
+      country:
+        equalTo: "BE"
+      offset:
+        or:
+        - equalTo: "0"
+        - absent: true
+  response:
+    status: 200
+    bodyFileName: "stations-in-be-93c795.json"
+    headers:
+      Content-Type: "application/json"
+    transformers:
+    - "response-template"
+  priority: 5
+- id: "3d4a21a2-d4b4-42a4-a37d-531e3e2f2142"
+  name: "Stations in CH"
+  request:
+    urlPathTemplate: "/station-data"
+    method: "GET"
+    queryParameters:
+      country:
+        equalTo: "CH"
+      offset:
+        or:
+        - equalTo: "0"
+        - absent: true
+  response:
+    status: 200
+    bodyFileName: "stations-in-ch-3d4a21.json"
+    headers:
+      Content-Type: "application/json"
+    transformers:
+    - "response-template"
+  priority: 5
+- id: "b270897b-82fa-4559-8a87-a651c1e9b336"
+  name: "Stations in CZ"
+  request:
+    urlPathTemplate: "/station-data"
+    method: "GET"
+    queryParameters:
+      country:
+        equalTo: "CZ"
+      offset:
+        or:
+        - equalTo: "0"
+        - absent: true
+  response:
+    status: 200
+    bodyFileName: "stations-in-cz-b27089.json"
+    headers:
+      Content-Type: "application/json"
+    transformers:
+    - "response-template"
+  priority: 5
+- id: "6840a0b1-b56f-497d-9808-f56eaf19d480"
+  name: "Stations in DE"
+  request:
+    urlPathTemplate: "/station-data"
+    method: "GET"
+    queryParameters:
+      country:
+        equalTo: "DE"
+      offset:
+        or:
+        - equalTo: "0"
+        - absent: true
+  response:
+    status: 200
+    bodyFileName: "stations-in-de-6840a0.json"
+    headers:
+      Content-Type: "application/json"
+    transformers:
+    - "response-template"
+  priority: 5
+- id: "9b4b8cf6-f03f-4a1f-8f62-369726deab7a"
+  name: "Stations in DK"
+  request:
+    urlPathTemplate: "/station-data"
+    method: "GET"
+    queryParameters:
+      country:
+        equalTo: "DK"
+      offset:
+        or:
+        - equalTo: "0"
+        - absent: true
+  response:
+    status: 200
+    bodyFileName: "stations-in-dk-9b4b8c.json"
+    headers:
+      Content-Type: "application/json"
+    transformers:
+    - "response-template"
+  priority: 5
+- id: "51326f09-5e38-4768-9222-a2a7e5c02e57"
+  name: "Stations in ES"
+  request:
+    urlPathTemplate: "/station-data"
+    method: "GET"
+    queryParameters:
+      country:
+        equalTo: "ES"
+      offset:
+        or:
+        - equalTo: "0"
+        - absent: true
+  response:
+    status: 200
+    bodyFileName: "stations-in-es-51326f.json"
+    headers:
+      Content-Type: "application/json"
+    transformers:
+    - "response-template"
+  priority: 5
+- id: "3f3b8f7f-b364-4923-b01b-56c4ebab80ec"
+  name: "Stations in FR"
+  request:
+    urlPathTemplate: "/station-data"
+    method: "GET"
+    queryParameters:
+      country:
+        equalTo: "FR"
+      offset:
+        or:
+        - equalTo: "0"
+        - absent: true
+  response:
+    status: 200
+    bodyFileName: "stations-in-fr-3f3b8f.json"
+    headers:
+      Content-Type: "application/json"
+    transformers:
+    - "response-template"
+  priority: 5
+- id: "7dd4d26f-fa5b-4e8b-9b36-038e6ab1410b"
+  name: "Stations in GB"
+  request:
+    urlPathTemplate: "/station-data"
+    method: "GET"
+    queryParameters:
+      country:
+        equalTo: "GB"
+      offset:
+        or:
+        - equalTo: "0"
+        - absent: true
+  response:
+    status: 200
+    bodyFileName: "stations-in-gb-7dd4d2.json"
+    headers:
+      Content-Type: "application/json"
+    transformers:
+    - "response-template"
+  priority: 5
+- id: "06ad66f0-dd28-445e-a59a-5a08049a481f"
+  name: "Stations in IT"
+  request:
+    urlPathTemplate: "/station-data"
+    method: "GET"
+    queryParameters:
+      country:
+        equalTo: "IT"
+      offset:
+        or:
+        - equalTo: "0"
+        - absent: true
+  response:
+    status: 200
+    bodyFileName: "stations-in-it-06ad66.json"
+    headers:
+      Content-Type: "application/json"
+    transformers:
+    - "response-template"
+  priority: 5
+- id: "95dbee33-fb59-4827-8872-3a39bc01798a"
+  name: "Stations in NL"
+  request:
+    urlPathTemplate: "/station-data"
+    method: "GET"
+    queryParameters:
+      country:
+        equalTo: "NL"
+      offset:
+        or:
+        - equalTo: "0"
+        - absent: true
+  response:
+    status: 200
+    bodyFileName: "stations-in-nl-95dbee.json"
+    headers:
+      Content-Type: "application/json"
+    transformers:
+    - "response-template"
+  priority: 5
+- id: "25858884-19d1-40ae-8877-60e63bfb192a"
+  name: "Offset beyond the end of the station list"
+  request:
+    urlPathTemplate: "/station-data"
+    method: "GET"
+    queryParameters:
+      offset:
+        matches: "^([1-9][0-9]+)$"
+  response:
+    status: 200
+    bodyFileName: "offset-beyond-the-end-of-the-station-list-258588.json"
+    headers:
+      Content-Type: "application/json"
+    transformers:
+    - "response-template"
+  priority: 8
+- id: "f22f8df3-3343-4030-9dbf-59ab1d4e1975"
+  name: "Stations in a country with no stations"
+  request:
+    urlPathTemplate: "/station-data"
+    method: "GET"
+    queryParameters:
+      country:
+        matches: ".+"
+  response:
+    status: 200
+    bodyFileName: "stations-in-a-country-with-no-stations-f22f8d.json"
+    headers:
+      Content-Type: "application/json"
+    transformers:
+    - "response-template"
+  priority: 9

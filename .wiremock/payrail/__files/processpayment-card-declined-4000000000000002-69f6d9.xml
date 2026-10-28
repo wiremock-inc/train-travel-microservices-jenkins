@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+  <soapenv:Body>
+    <pr:processPaymentResponse xmlns:pr="http://payrail.example.com/v1">
+      <pr:transactionId>TXN-{{randomValue type='ALPHANUMERIC' length=12 uppercase=true}}</pr:transactionId>
+      <pr:responseCode>DECLINED</pr:responseCode>
+      <pr:declineReason>Card declined by issuer</pr:declineReason>
+      <pr:processedAt>{{now format="yyyy-MM-dd'T'HH:mm:ss'Z'"}}</pr:processedAt>
+    </pr:processPaymentResponse>
+  </soapenv:Body>
+</soapenv:Envelope>

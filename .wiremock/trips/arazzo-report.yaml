@@ -1,0 +1,143 @@
+summary:
+  arazzoDocument: "arazzo.yaml"
+  startTime: "2026-10-28T13:46:01.431292Z"
+  endTime: "2026-10-28T13:46:02.554963Z"
+  durationMs: 1123
+  success: true
+  totalWorkflows: 1
+  successfulWorkflows: 1
+  failedWorkflows: 0
+  totalSteps: 4
+  successfulSteps: 4
+  failedSteps: 0
+workflows:
+- workflowId: "findConnections"
+  success: true
+  durationMs: 977
+  steps:
+  - stepId: "berlinToMunich"
+    stepIndex: 0
+    success: true
+    durationMs: 703
+    outputs:
+      connectionId: "ICE-1001"
+    request:
+      method: "GET"
+      url: "https://ej7q61.wiremockapi.cloud/connections?page=1&pageSize=10&from=DE-BER-HBF&to=DE-MUC-HBF&date=2026-12-01"
+    response:
+      statusCode: 200
+      headers:
+        content-type:
+        - "application/json"
+        matched-stub-id:
+        - "0c235bfa-92ad-4613-b457-b885c09c3dd5"
+        matched-stub-name:
+        - "Connections DE-BER-HBF to DE-MUC-HBF"
+        vary:
+        - "Origin"
+      body: "{\n  \"connections\": [\n    {\n      \"connectionId\": \"ICE-1001\"\
+        ,\n      \"from\": {\n        \"stationCode\": \"DE-BER-HBF\",\n        \"\
+        scheduledDeparture\": \"2026-12-01T06:00:00Z\"\n      },\n      \"to\": {\n\
+        \        \"stationCode\": \"DE-MUC-HBF\",\n        \"scheduledArrival\": \"\
+        2026-12-01T10:00:00Z\"\n      },\n      \"operator\": {\n        \"code\"\
+        : \"DB\",\n        \"name\": \"Deutsche Bahn\"\n      },\n      \"fare\":\
+        \ {\n        \"amount\": 89.9,\n        \"currency\": \"EUR\"\n      },\n\
+        \      \"facilities\": {\n        \"bicyclesAllowed\": true,\n        \"dogsAllowed\"\
+        : true\n      }\n    },\n    {\n      \"connectionId\": \"ICE-1003\",\n  \
+        \    \"from\": {\n        \"stationCode\": \"DE-BER-HBF\",\n        \"scheduledDeparture\"\
+        : \"2026-12-01T09:00:00Z\"\n      },\n      \"to\": {\n        \"stationCode\"\
+        : \"DE-MUC-HBF\",\n        \"scheduledArrival\": \"2026-12-01T13:04:00Z\"\n\
+        \      },\n      \"operator\": {\n        \"code\": \"DB\",\n        \"name\"\
+        : \"Deutsche Bahn\"\n      },\n      \"fare\": {\n        \"amount\": 109.9,\n\
+        \        \"currency\": \"EUR\"\n      },\n      \"facilities\": {\n      \
+        \  \"bicyclesAllowed\": false,\n        \"dogsAllowed\": true\n      }\n \
+        \   },\n    {\n      \"connectionId\": \"ICE-1005\",\n      \"from\": {\n\
+        \        \"stationCode\": \"DE-BER-HBF\",\n        \"scheduledDeparture\"\
+        : \"2026-12-01T13:00:00Z\"\n      },\n      \"to\": {\n        \"stationCode\"\
+        : \"DE-MUC-HBF\",\n        \"scheduledArrival\": \"2026-12-01T17:02:00Z\"\n\
+        \      },\n      \"operator\": {\n        \"code\": \"DB\",\n        \"name\"\
+        : \"Deutsche Bahn\"\n      },\n      \"fare\": {\n        \"amount\": 99.9,\n\
+        \        \"currency\": \"EUR\"\n      },\n      \"facilities\": {\n      \
+        \  \"bicyclesAllowed\": true,\n        \"dogsAllowed\": false\n      }\n \
+        \   },\n    {\n      \"connectionId\": \"FLX-1241\",\n      \"from\": {\n\
+        \        \"stationCode\": \"DE-BER-HBF\",\n        \"scheduledDeparture\"\
+        : \"2026-12-01T17:30:00Z\"\n      },\n      \"to\": {\n        \"stationCode\"\
+        : \"DE-MUC-HBF\",\n        \"scheduledArrival\": \"2026-12-01T22:55:00Z\"\n\
+        \      },\n      \"operator\": {\n        \"code\": \"FLX\",\n        \"name\"\
+        : \"Flixtrain\"\n      },\n      \"fare\": {\n        \"amount\": 39.99,\n\
+        \        \"currency\": \"EUR\"\n      },\n      \"facilities\": {\n      \
+        \  \"bicyclesAllowed\": true,\n        \"dogsAllowed\": true\n      }\n  \
+        \  }\n  ],\n  \"page\": 1,\n  \"pageSize\": 10\n}"
+  - stepId: "secondPage"
+    stepIndex: 1
+    success: true
+    durationMs: 91
+    request:
+      method: "GET"
+      url: "https://ej7q61.wiremockapi.cloud/connections?pageSize=10&from=DE-BER-HBF&to=DE-MUC-HBF&date=2026-12-01&page=2"
+    response:
+      statusCode: 200
+      headers:
+        content-type:
+        - "application/json"
+        matched-stub-id:
+        - "76d36a5b-a1a0-43f0-8169-e3f2d44bd32b"
+        matched-stub-name:
+        - "No connections beyond the first page"
+        vary:
+        - "Origin"
+      body: "{\n  \"connections\": [],\n  \"page\": 2,\n  \"pageSize\": 10\n}"
+  - stepId: "parisToLondon"
+    stepIndex: 2
+    success: true
+    durationMs: 89
+    request:
+      method: "GET"
+      url: "https://ej7q61.wiremockapi.cloud/connections?page=1&pageSize=10&from=FR-PAR-NRD&to=GB-LON-STP&date=2026-12-24"
+    response:
+      statusCode: 200
+      headers:
+        content-type:
+        - "application/json"
+        matched-stub-id:
+        - "643f4cf8-51e2-4587-85aa-e00876f3efe7"
+        matched-stub-name:
+        - "Connections FR-PAR-NRD to GB-LON-STP"
+        vary:
+        - "Origin"
+      body: "{\n  \"connections\": [\n    {\n      \"connectionId\": \"EST-9010\"\
+        ,\n      \"from\": {\n        \"stationCode\": \"FR-PAR-NRD\",\n        \"\
+        scheduledDeparture\": \"2026-12-24T07:13:00Z\"\n      },\n      \"to\": {\n\
+        \        \"stationCode\": \"GB-LON-STP\",\n        \"scheduledArrival\": \"\
+        2026-12-24T07:57:00Z\"\n      },\n      \"operator\": {\n        \"code\"\
+        : \"ES\",\n        \"name\": \"Eurostar\"\n      },\n      \"fare\": {\n \
+        \       \"amount\": 79.0,\n        \"currency\": \"EUR\"\n      },\n     \
+        \ \"facilities\": {\n        \"bicyclesAllowed\": false,\n        \"dogsAllowed\"\
+        : false\n      }\n    },\n    {\n      \"connectionId\": \"EST-9024\",\n \
+        \     \"from\": {\n        \"stationCode\": \"FR-PAR-NRD\",\n        \"scheduledDeparture\"\
+        : \"2026-12-24T11:13:00Z\"\n      },\n      \"to\": {\n        \"stationCode\"\
+        : \"GB-LON-STP\",\n        \"scheduledArrival\": \"2026-12-24T11:57:00Z\"\n\
+        \      },\n      \"operator\": {\n        \"code\": \"ES\",\n        \"name\"\
+        : \"Eurostar\"\n      },\n      \"fare\": {\n        \"amount\": 99.0,\n \
+        \       \"currency\": \"EUR\"\n      },\n      \"facilities\": {\n       \
+        \ \"bicyclesAllowed\": true,\n        \"dogsAllowed\": false\n      }\n  \
+        \  }\n  ],\n  \"page\": 1,\n  \"pageSize\": 10\n}"
+  - stepId: "noService"
+    stepIndex: 3
+    success: true
+    durationMs: 89
+    request:
+      method: "GET"
+      url: "https://ej7q61.wiremockapi.cloud/connections?page=1&pageSize=10&from=ES-MAD-ATO&to=DK-CPH-HBN&date=2026-12-01"
+    response:
+      statusCode: 200
+      headers:
+        content-type:
+        - "application/json"
+        matched-stub-id:
+        - "28dd21cb-16cc-4acf-8f70-937d440d1ac3"
+        matched-stub-name:
+        - "No connections between these stations"
+        vary:
+        - "Origin"
+      body: "{\n  \"connections\": [],\n  \"page\": 1,\n  \"pageSize\": 10\n}"

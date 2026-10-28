@@ -1,0 +1,52 @@
+{
+  "connections": [
+    {
+      "connectionId": "EST-9007",
+      "from": {
+        "stationCode": "GB-LON-STP",
+        "scheduledDeparture": "{{request.query.date}}T06:31:00Z"
+      },
+      "to": {
+        "stationCode": "FR-PAR-NRD",
+        "scheduledArrival": "{{request.query.date}}T09:47:00Z"
+      },
+      "operator": {
+        "code": "ES",
+        "name": "Eurostar"
+      },
+      "fare": {
+        "amount": 79.0,
+        "currency": "GBP"
+      },
+      "facilities": {
+        "bicyclesAllowed": false,
+        "dogsAllowed": false
+      }
+    },
+    {
+      "connectionId": "EST-9031",
+      "from": {
+        "stationCode": "GB-LON-STP",
+        "scheduledDeparture": "{{request.query.date}}T14:31:00Z"
+      },
+      "to": {
+        "stationCode": "FR-PAR-NRD",
+        "scheduledArrival": "{{request.query.date}}T17:47:00Z"
+      },
+      "operator": {
+        "code": "ES",
+        "name": "Eurostar"
+      },
+      "fare": {
+        "amount": 99.0,
+        "currency": "GBP"
+      },
+      "facilities": {
+        "bicyclesAllowed": true,
+        "dogsAllowed": false
+      }
+    }
+  ],
+  "page": {{#if request.query.page}}{{request.query.page}}{{else}}1{{/if}},
+  "pageSize": {{#if request.query.pageSize}}{{request.query.pageSize}}{{else}}10{{/if}}
+}

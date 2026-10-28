@@ -1,0 +1,85 @@
+arazzo: 1.0.1
+info:
+  title: European Rail Timetable workflows
+  version: 1.0.0
+sourceDescriptions:
+  - name: trips
+    url: ./openapi.json
+    type: openapi
+workflows:
+  - workflowId: findConnections
+    summary: Find connections on a route, page past the end, and try a route with no service
+    steps:
+      - stepId: berlinToMunich
+        operationId: findConnections
+        parameters:
+          - name: from
+            in: query
+            value: DE-BER-HBF
+          - name: to
+            in: query
+            value: DE-MUC-HBF
+          - name: date
+            in: query
+            value: "2026-12-01"
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.body#/page == 1
+          - condition: $response.body#/connections/0/connectionId == 'ICE-1001'
+          - condition: $response.body#/connections/0/from/scheduledDeparture == '2026-12-01T06:00:00Z'
+          - context: $response.body
+            type: jsonpath
+            condition: $.connections[?(@.to.stationCode == 'DE-MUC-HBF')]
+        outputs:
+          connectionId: $response.body#/connections/0/connectionId
+      - stepId: secondPage
+        operationId: findConnections
+        parameters:
+          - name: from
+            in: query
+            value: DE-BER-HBF
+          - name: to
+            in: query
+            value: DE-MUC-HBF
+          - name: date
+            in: query
+            value: "2026-12-01"
+          - name: page
+            in: query
+            value: 2
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.body#/page == 2
+          - condition: $response.body#/connections/0 == null
+      - stepId: parisToLondon
+        operationId: findConnections
+        parameters:
+          - name: from
+            in: query
+            value: FR-PAR-NRD
+          - name: to
+            in: query
+            value: GB-LON-STP
+          - name: date
+            in: query
+            value: "2026-12-24"
+        successCriteria:
+          - condition: $statusCode == 200
+          - context: $response.body
+            type: jsonpath
+            condition: $.connections[?(@.connectionId == 'EST-9024')]
+      - stepId: noService
+        operationId: findConnections
+        parameters:
+          - name: from
+            in: query
+            value: ES-MAD-ATO
+          - name: to
+            in: query
+            value: DK-CPH-HBN
+          - name: date
+            in: query
+            value: "2026-12-01"
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.body#/connections/0 == null

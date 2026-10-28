@@ -1,0 +1,172 @@
+{
+  "mappings": [
+    {
+      "name": "ProcessPayment - card approved",
+      "priority": 5,
+      "request": {
+        "method": "POST",
+        "urlPath": "/payrail/v1",
+        "headers": {
+          "SOAPAction": {
+            "matches": "^\"?processPayment\"?$"
+          }
+        },
+        "bodyPatterns": [
+          {
+            "matchesXPath": "//*[local-name()='Envelope']/*[local-name()='Body']/*[local-name()='processPaymentRequest']/*[local-name()='paymentMethod']/*[local-name()='card']"
+          }
+        ]
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "text/xml; charset=utf-8"
+        },
+        "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soapenv:Body>\n    <pr:processPaymentResponse xmlns:pr=\"http://payrail.example.com/v1\">\n      <pr:transactionId>TXN-{{randomValue type='ALPHANUMERIC' length=12 uppercase=true}}</pr:transactionId>\n      <pr:responseCode>APPROVED</pr:responseCode>\n      <pr:authorisedAmount>{{xPath request.body \"//*[local-name()='processPaymentRequest']/*[local-name()='amount']/text()\"}}</pr:authorisedAmount>\n      <pr:maskedCardNumber>************{{regexExtract (xPath request.body \"//*[local-name()='card']/*[local-name()='cardNumber']/text()\") '[0-9]{4}$'}}</pr:maskedCardNumber>\n      <pr:processedAt>{{now format=\"yyyy-MM-dd'T'HH:mm:ss'Z'\"}}</pr:processedAt>\n    </pr:processPaymentResponse>\n  </soapenv:Body>\n</soapenv:Envelope>",
+        "transformers": [
+          "response-template"
+        ]
+      }
+    },
+    {
+      "name": "ProcessPayment - bank account approved",
+      "priority": 5,
+      "request": {
+        "method": "POST",
+        "urlPath": "/payrail/v1",
+        "headers": {
+          "SOAPAction": {
+            "matches": "^\"?processPayment\"?$"
+          }
+        },
+        "bodyPatterns": [
+          {
+            "matchesXPath": "//*[local-name()='Envelope']/*[local-name()='Body']/*[local-name()='processPaymentRequest']/*[local-name()='paymentMethod']/*[local-name()='bankAccount']"
+          }
+        ]
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "text/xml; charset=utf-8"
+        },
+        "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soapenv:Body>\n    <pr:processPaymentResponse xmlns:pr=\"http://payrail.example.com/v1\">\n      <pr:transactionId>TXN-{{randomValue type='ALPHANUMERIC' length=12 uppercase=true}}</pr:transactionId>\n      <pr:responseCode>APPROVED</pr:responseCode>\n      <pr:authorisedAmount>{{xPath request.body \"//*[local-name()='processPaymentRequest']/*[local-name()='amount']/text()\"}}</pr:authorisedAmount>\n      <pr:maskedAccountNumber>******{{regexExtract (xPath request.body \"//*[local-name()='bankAccount']/*[local-name()='accountNumber']/text()\") '[0-9]{4}$'}}</pr:maskedAccountNumber>\n      <pr:processedAt>{{now format=\"yyyy-MM-dd'T'HH:mm:ss'Z'\"}}</pr:processedAt>\n    </pr:processPaymentResponse>\n  </soapenv:Body>\n</soapenv:Envelope>",
+        "transformers": [
+          "response-template"
+        ]
+      }
+    },
+    {
+      "name": "ProcessPayment - card declined (4000000000000002)",
+      "priority": 2,
+      "request": {
+        "method": "POST",
+        "urlPath": "/payrail/v1",
+        "headers": {
+          "SOAPAction": {
+            "matches": "^\"?processPayment\"?$"
+          }
+        },
+        "bodyPatterns": [
+          {
+            "matchesXPath": "//*[local-name()='Envelope']/*[local-name()='Body']/*[local-name()='processPaymentRequest']/*[local-name()='paymentMethod']/*[local-name()='card']/*[local-name()='cardNumber'][text()='4000000000000002']"
+          }
+        ]
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "text/xml; charset=utf-8"
+        },
+        "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soapenv:Body>\n    <pr:processPaymentResponse xmlns:pr=\"http://payrail.example.com/v1\">\n      <pr:transactionId>TXN-{{randomValue type='ALPHANUMERIC' length=12 uppercase=true}}</pr:transactionId>\n      <pr:responseCode>DECLINED</pr:responseCode>\n      <pr:declineReason>Card declined by issuer</pr:declineReason>\n      <pr:processedAt>{{now format=\"yyyy-MM-dd'T'HH:mm:ss'Z'\"}}</pr:processedAt>\n    </pr:processPaymentResponse>\n  </soapenv:Body>\n</soapenv:Envelope>",
+        "transformers": [
+          "response-template"
+        ]
+      }
+    },
+    {
+      "name": "ProcessPayment - insufficient funds (4000000000009995)",
+      "priority": 2,
+      "request": {
+        "method": "POST",
+        "urlPath": "/payrail/v1",
+        "headers": {
+          "SOAPAction": {
+            "matches": "^\"?processPayment\"?$"
+          }
+        },
+        "bodyPatterns": [
+          {
+            "matchesXPath": "//*[local-name()='Envelope']/*[local-name()='Body']/*[local-name()='processPaymentRequest']/*[local-name()='paymentMethod']/*[local-name()='card']/*[local-name()='cardNumber'][text()='4000000000009995']"
+          }
+        ]
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "text/xml; charset=utf-8"
+        },
+        "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soapenv:Body>\n    <pr:processPaymentResponse xmlns:pr=\"http://payrail.example.com/v1\">\n      <pr:transactionId>TXN-{{randomValue type='ALPHANUMERIC' length=12 uppercase=true}}</pr:transactionId>\n      <pr:responseCode>DECLINED</pr:responseCode>\n      <pr:declineReason>Insufficient funds</pr:declineReason>\n      <pr:processedAt>{{now format=\"yyyy-MM-dd'T'HH:mm:ss'Z'\"}}</pr:processedAt>\n    </pr:processPaymentResponse>\n  </soapenv:Body>\n</soapenv:Envelope>",
+        "transformers": [
+          "response-template"
+        ]
+      }
+    },
+    {
+      "name": "ProcessPayment - processing error fault (4000000000000119)",
+      "priority": 2,
+      "request": {
+        "method": "POST",
+        "urlPath": "/payrail/v1",
+        "headers": {
+          "SOAPAction": {
+            "matches": "^\"?processPayment\"?$"
+          }
+        },
+        "bodyPatterns": [
+          {
+            "matchesXPath": "//*[local-name()='Envelope']/*[local-name()='Body']/*[local-name()='processPaymentRequest']/*[local-name()='paymentMethod']/*[local-name()='card']/*[local-name()='cardNumber'][text()='4000000000000119']"
+          }
+        ]
+      },
+      "response": {
+        "status": 500,
+        "headers": {
+          "Content-Type": "text/xml; charset=utf-8"
+        },
+        "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soapenv:Body>\n    <soapenv:Fault>\n      <faultcode>soapenv:Server</faultcode>\n      <faultstring>PROCESSING_ERROR: the payment could not be processed</faultstring>\n      <detail>\n        <pr:PayRailFault xmlns:pr=\"http://payrail.example.com/v1\">\n          <pr:faultCode>PROCESSING_ERROR</pr:faultCode>\n          <pr:faultText>The payment could not be processed. Retry later.</pr:faultText>\n        </pr:PayRailFault>\n      </detail>\n    </soapenv:Fault>\n  </soapenv:Body>\n</soapenv:Envelope>",
+        "transformers": [
+          "response-template"
+        ]
+      }
+    },
+    {
+      "name": "ProcessPayment - validation fault (no payment method)",
+      "priority": 3,
+      "request": {
+        "method": "POST",
+        "urlPath": "/payrail/v1",
+        "headers": {
+          "SOAPAction": {
+            "matches": "^\"?processPayment\"?$"
+          }
+        },
+        "bodyPatterns": [
+          {
+            "matchesXPath": "//*[local-name()='Envelope']/*[local-name()='Body']/*[local-name()='processPaymentRequest'][not(*[local-name()='paymentMethod']/*)]"
+          }
+        ]
+      },
+      "response": {
+        "status": 500,
+        "headers": {
+          "Content-Type": "text/xml; charset=utf-8"
+        },
+        "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soapenv:Body>\n    <soapenv:Fault>\n      <faultcode>soapenv:Client</faultcode>\n      <faultstring>VALIDATION: paymentMethod must contain a card or a bankAccount</faultstring>\n      <detail>\n        <pr:PayRailFault xmlns:pr=\"http://payrail.example.com/v1\">\n          <pr:faultCode>VALIDATION</pr:faultCode>\n          <pr:faultText>paymentMethod must contain a card or a bankAccount</pr:faultText>\n        </pr:PayRailFault>\n      </detail>\n    </soapenv:Fault>\n  </soapenv:Body>\n</soapenv:Envelope>",
+        "transformers": [
+          "response-template"
+        ]
+      }
+    }
+  ]
+}

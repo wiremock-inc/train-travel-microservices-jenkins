@@ -1,0 +1,410 @@
+{
+  "mappings": [
+    {
+      "name": "Connections DE-BER-HBF to DE-MUC-HBF",
+      "priority": 5,
+      "request": {
+        "method": "GET",
+        "urlPathTemplate": "/connections",
+        "queryParameters": {
+          "date": {
+            "matches": "^\\d{4}-\\d{2}-\\d{2}$"
+          },
+          "from": {
+            "equalTo": "DE-BER-HBF"
+          },
+          "to": {
+            "equalTo": "DE-MUC-HBF"
+          },
+          "page": {
+            "or": [
+              {
+                "equalTo": "1"
+              },
+              {
+                "absent": true
+              }
+            ]
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": "{\n  \"connections\": [\n    {\n      \"connectionId\": \"ICE-1001\",\n      \"from\": {\n        \"stationCode\": \"DE-BER-HBF\",\n        \"scheduledDeparture\": \"{{request.query.date}}T06:00:00Z\"\n      },\n      \"to\": {\n        \"stationCode\": \"DE-MUC-HBF\",\n        \"scheduledArrival\": \"{{request.query.date}}T10:00:00Z\"\n      },\n      \"operator\": {\n        \"code\": \"DB\",\n        \"name\": \"Deutsche Bahn\"\n      },\n      \"fare\": {\n        \"amount\": 89.9,\n        \"currency\": \"EUR\"\n      },\n      \"facilities\": {\n        \"bicyclesAllowed\": true,\n        \"dogsAllowed\": true\n      }\n    },\n    {\n      \"connectionId\": \"ICE-1003\",\n      \"from\": {\n        \"stationCode\": \"DE-BER-HBF\",\n        \"scheduledDeparture\": \"{{request.query.date}}T09:00:00Z\"\n      },\n      \"to\": {\n        \"stationCode\": \"DE-MUC-HBF\",\n        \"scheduledArrival\": \"{{request.query.date}}T13:04:00Z\"\n      },\n      \"operator\": {\n        \"code\": \"DB\",\n        \"name\": \"Deutsche Bahn\"\n      },\n      \"fare\": {\n        \"amount\": 109.9,\n        \"currency\": \"EUR\"\n      },\n      \"facilities\": {\n        \"bicyclesAllowed\": false,\n        \"dogsAllowed\": true\n      }\n    },\n    {\n      \"connectionId\": \"ICE-1005\",\n      \"from\": {\n        \"stationCode\": \"DE-BER-HBF\",\n        \"scheduledDeparture\": \"{{request.query.date}}T13:00:00Z\"\n      },\n      \"to\": {\n        \"stationCode\": \"DE-MUC-HBF\",\n        \"scheduledArrival\": \"{{request.query.date}}T17:02:00Z\"\n      },\n      \"operator\": {\n        \"code\": \"DB\",\n        \"name\": \"Deutsche Bahn\"\n      },\n      \"fare\": {\n        \"amount\": 99.9,\n        \"currency\": \"EUR\"\n      },\n      \"facilities\": {\n        \"bicyclesAllowed\": true,\n        \"dogsAllowed\": false\n      }\n    },\n    {\n      \"connectionId\": \"FLX-1241\",\n      \"from\": {\n        \"stationCode\": \"DE-BER-HBF\",\n        \"scheduledDeparture\": \"{{request.query.date}}T17:30:00Z\"\n      },\n      \"to\": {\n        \"stationCode\": \"DE-MUC-HBF\",\n        \"scheduledArrival\": \"{{request.query.date}}T22:55:00Z\"\n      },\n      \"operator\": {\n        \"code\": \"FLX\",\n        \"name\": \"Flixtrain\"\n      },\n      \"fare\": {\n        \"amount\": 39.99,\n        \"currency\": \"EUR\"\n      },\n      \"facilities\": {\n        \"bicyclesAllowed\": true,\n        \"dogsAllowed\": true\n      }\n    }\n  ],\n  \"page\": {{#if request.query.page}}{{request.query.page}}{{else}}1{{/if}},\n  \"pageSize\": {{#if request.query.pageSize}}{{request.query.pageSize}}{{else}}10{{/if}}\n}",
+        "transformers": [
+          "response-template"
+        ]
+      }
+    },
+    {
+      "name": "Connections DE-MUC-HBF to DE-BER-HBF",
+      "priority": 5,
+      "request": {
+        "method": "GET",
+        "urlPathTemplate": "/connections",
+        "queryParameters": {
+          "date": {
+            "matches": "^\\d{4}-\\d{2}-\\d{2}$"
+          },
+          "from": {
+            "equalTo": "DE-MUC-HBF"
+          },
+          "to": {
+            "equalTo": "DE-BER-HBF"
+          },
+          "page": {
+            "or": [
+              {
+                "equalTo": "1"
+              },
+              {
+                "absent": true
+              }
+            ]
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": "{\n  \"connections\": [\n    {\n      \"connectionId\": \"ICE-1002\",\n      \"from\": {\n        \"stationCode\": \"DE-MUC-HBF\",\n        \"scheduledDeparture\": \"{{request.query.date}}T07:00:00Z\"\n      },\n      \"to\": {\n        \"stationCode\": \"DE-BER-HBF\",\n        \"scheduledArrival\": \"{{request.query.date}}T11:01:00Z\"\n      },\n      \"operator\": {\n        \"code\": \"DB\",\n        \"name\": \"Deutsche Bahn\"\n      },\n      \"fare\": {\n        \"amount\": 89.9,\n        \"currency\": \"EUR\"\n      },\n      \"facilities\": {\n        \"bicyclesAllowed\": true,\n        \"dogsAllowed\": true\n      }\n    },\n    {\n      \"connectionId\": \"ICE-1004\",\n      \"from\": {\n        \"stationCode\": \"DE-MUC-HBF\",\n        \"scheduledDeparture\": \"{{request.query.date}}T12:00:00Z\"\n      },\n      \"to\": {\n        \"stationCode\": \"DE-BER-HBF\",\n        \"scheduledArrival\": \"{{request.query.date}}T16:03:00Z\"\n      },\n      \"operator\": {\n        \"code\": \"DB\",\n        \"name\": \"Deutsche Bahn\"\n      },\n      \"fare\": {\n        \"amount\": 109.9,\n        \"currency\": \"EUR\"\n      },\n      \"facilities\": {\n        \"bicyclesAllowed\": false,\n        \"dogsAllowed\": true\n      }\n    },\n    {\n      \"connectionId\": \"ICE-1006\",\n      \"from\": {\n        \"stationCode\": \"DE-MUC-HBF\",\n        \"scheduledDeparture\": \"{{request.query.date}}T16:00:00Z\"\n      },\n      \"to\": {\n        \"stationCode\": \"DE-BER-HBF\",\n        \"scheduledArrival\": \"{{request.query.date}}T20:02:00Z\"\n      },\n      \"operator\": {\n        \"code\": \"DB\",\n        \"name\": \"Deutsche Bahn\"\n      },\n      \"fare\": {\n        \"amount\": 99.9,\n        \"currency\": \"EUR\"\n      },\n      \"facilities\": {\n        \"bicyclesAllowed\": true,\n        \"dogsAllowed\": false\n      }\n    }\n  ],\n  \"page\": {{#if request.query.page}}{{request.query.page}}{{else}}1{{/if}},\n  \"pageSize\": {{#if request.query.pageSize}}{{request.query.pageSize}}{{else}}10{{/if}}\n}",
+        "transformers": [
+          "response-template"
+        ]
+      }
+    },
+    {
+      "name": "Connections DE-BER-HBF to DE-HAM-HBF",
+      "priority": 5,
+      "request": {
+        "method": "GET",
+        "urlPathTemplate": "/connections",
+        "queryParameters": {
+          "date": {
+            "matches": "^\\d{4}-\\d{2}-\\d{2}$"
+          },
+          "from": {
+            "equalTo": "DE-BER-HBF"
+          },
+          "to": {
+            "equalTo": "DE-HAM-HBF"
+          },
+          "page": {
+            "or": [
+              {
+                "equalTo": "1"
+              },
+              {
+                "absent": true
+              }
+            ]
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": "{\n  \"connections\": [\n    {\n      \"connectionId\": \"ICE-1501\",\n      \"from\": {\n        \"stationCode\": \"DE-BER-HBF\",\n        \"scheduledDeparture\": \"{{request.query.date}}T07:36:00Z\"\n      },\n      \"to\": {\n        \"stationCode\": \"DE-HAM-HBF\",\n        \"scheduledArrival\": \"{{request.query.date}}T09:21:00Z\"\n      },\n      \"operator\": {\n        \"code\": \"DB\",\n        \"name\": \"Deutsche Bahn\"\n      },\n      \"fare\": {\n        \"amount\": 49.9,\n        \"currency\": \"EUR\"\n      },\n      \"facilities\": {\n        \"bicyclesAllowed\": true,\n        \"dogsAllowed\": true\n      }\n    },\n    {\n      \"connectionId\": \"ICE-1503\",\n      \"from\": {\n        \"stationCode\": \"DE-BER-HBF\",\n        \"scheduledDeparture\": \"{{request.query.date}}T10:36:00Z\"\n      },\n      \"to\": {\n        \"stationCode\": \"DE-HAM-HBF\",\n        \"scheduledArrival\": \"{{request.query.date}}T12:21:00Z\"\n      },\n      \"operator\": {\n        \"code\": \"DB\",\n        \"name\": \"Deutsche Bahn\"\n      },\n      \"fare\": {\n        \"amount\": 59.9,\n        \"currency\": \"EUR\"\n      },\n      \"facilities\": {\n        \"bicyclesAllowed\": false,\n        \"dogsAllowed\": true\n      }\n    }\n  ],\n  \"page\": {{#if request.query.page}}{{request.query.page}}{{else}}1{{/if}},\n  \"pageSize\": {{#if request.query.pageSize}}{{request.query.pageSize}}{{else}}10{{/if}}\n}",
+        "transformers": [
+          "response-template"
+        ]
+      }
+    },
+    {
+      "name": "Connections FR-PAR-NRD to GB-LON-STP",
+      "priority": 5,
+      "request": {
+        "method": "GET",
+        "urlPathTemplate": "/connections",
+        "queryParameters": {
+          "date": {
+            "matches": "^\\d{4}-\\d{2}-\\d{2}$"
+          },
+          "from": {
+            "equalTo": "FR-PAR-NRD"
+          },
+          "to": {
+            "equalTo": "GB-LON-STP"
+          },
+          "page": {
+            "or": [
+              {
+                "equalTo": "1"
+              },
+              {
+                "absent": true
+              }
+            ]
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": "{\n  \"connections\": [\n    {\n      \"connectionId\": \"EST-9010\",\n      \"from\": {\n        \"stationCode\": \"FR-PAR-NRD\",\n        \"scheduledDeparture\": \"{{request.query.date}}T07:13:00Z\"\n      },\n      \"to\": {\n        \"stationCode\": \"GB-LON-STP\",\n        \"scheduledArrival\": \"{{request.query.date}}T07:57:00Z\"\n      },\n      \"operator\": {\n        \"code\": \"ES\",\n        \"name\": \"Eurostar\"\n      },\n      \"fare\": {\n        \"amount\": 79.0,\n        \"currency\": \"EUR\"\n      },\n      \"facilities\": {\n        \"bicyclesAllowed\": false,\n        \"dogsAllowed\": false\n      }\n    },\n    {\n      \"connectionId\": \"EST-9024\",\n      \"from\": {\n        \"stationCode\": \"FR-PAR-NRD\",\n        \"scheduledDeparture\": \"{{request.query.date}}T11:13:00Z\"\n      },\n      \"to\": {\n        \"stationCode\": \"GB-LON-STP\",\n        \"scheduledArrival\": \"{{request.query.date}}T11:57:00Z\"\n      },\n      \"operator\": {\n        \"code\": \"ES\",\n        \"name\": \"Eurostar\"\n      },\n      \"fare\": {\n        \"amount\": 99.0,\n        \"currency\": \"EUR\"\n      },\n      \"facilities\": {\n        \"bicyclesAllowed\": true,\n        \"dogsAllowed\": false\n      }\n    }\n  ],\n  \"page\": {{#if request.query.page}}{{request.query.page}}{{else}}1{{/if}},\n  \"pageSize\": {{#if request.query.pageSize}}{{request.query.pageSize}}{{else}}10{{/if}}\n}",
+        "transformers": [
+          "response-template"
+        ]
+      }
+    },
+    {
+      "name": "Connections GB-LON-STP to FR-PAR-NRD",
+      "priority": 5,
+      "request": {
+        "method": "GET",
+        "urlPathTemplate": "/connections",
+        "queryParameters": {
+          "date": {
+            "matches": "^\\d{4}-\\d{2}-\\d{2}$"
+          },
+          "from": {
+            "equalTo": "GB-LON-STP"
+          },
+          "to": {
+            "equalTo": "FR-PAR-NRD"
+          },
+          "page": {
+            "or": [
+              {
+                "equalTo": "1"
+              },
+              {
+                "absent": true
+              }
+            ]
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": "{\n  \"connections\": [\n    {\n      \"connectionId\": \"EST-9007\",\n      \"from\": {\n        \"stationCode\": \"GB-LON-STP\",\n        \"scheduledDeparture\": \"{{request.query.date}}T06:31:00Z\"\n      },\n      \"to\": {\n        \"stationCode\": \"FR-PAR-NRD\",\n        \"scheduledArrival\": \"{{request.query.date}}T09:47:00Z\"\n      },\n      \"operator\": {\n        \"code\": \"ES\",\n        \"name\": \"Eurostar\"\n      },\n      \"fare\": {\n        \"amount\": 79.0,\n        \"currency\": \"GBP\"\n      },\n      \"facilities\": {\n        \"bicyclesAllowed\": false,\n        \"dogsAllowed\": false\n      }\n    },\n    {\n      \"connectionId\": \"EST-9031\",\n      \"from\": {\n        \"stationCode\": \"GB-LON-STP\",\n        \"scheduledDeparture\": \"{{request.query.date}}T14:31:00Z\"\n      },\n      \"to\": {\n        \"stationCode\": \"FR-PAR-NRD\",\n        \"scheduledArrival\": \"{{request.query.date}}T17:47:00Z\"\n      },\n      \"operator\": {\n        \"code\": \"ES\",\n        \"name\": \"Eurostar\"\n      },\n      \"fare\": {\n        \"amount\": 99.0,\n        \"currency\": \"GBP\"\n      },\n      \"facilities\": {\n        \"bicyclesAllowed\": true,\n        \"dogsAllowed\": false\n      }\n    }\n  ],\n  \"page\": {{#if request.query.page}}{{request.query.page}}{{else}}1{{/if}},\n  \"pageSize\": {{#if request.query.pageSize}}{{request.query.pageSize}}{{else}}10{{/if}}\n}",
+        "transformers": [
+          "response-template"
+        ]
+      }
+    },
+    {
+      "name": "Connections FR-PAR-LYO to FR-LYS-PDI",
+      "priority": 5,
+      "request": {
+        "method": "GET",
+        "urlPathTemplate": "/connections",
+        "queryParameters": {
+          "date": {
+            "matches": "^\\d{4}-\\d{2}-\\d{2}$"
+          },
+          "from": {
+            "equalTo": "FR-PAR-LYO"
+          },
+          "to": {
+            "equalTo": "FR-LYS-PDI"
+          },
+          "page": {
+            "or": [
+              {
+                "equalTo": "1"
+              },
+              {
+                "absent": true
+              }
+            ]
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": "{\n  \"connections\": [\n    {\n      \"connectionId\": \"TGV-6601\",\n      \"from\": {\n        \"stationCode\": \"FR-PAR-LYO\",\n        \"scheduledDeparture\": \"{{request.query.date}}T06:58:00Z\"\n      },\n      \"to\": {\n        \"stationCode\": \"FR-LYS-PDI\",\n        \"scheduledArrival\": \"{{request.query.date}}T08:56:00Z\"\n      },\n      \"operator\": {\n        \"code\": \"SNCF\",\n        \"name\": \"SNCF Voyageurs\"\n      },\n      \"fare\": {\n        \"amount\": 65.0,\n        \"currency\": \"EUR\"\n      },\n      \"facilities\": {\n        \"bicyclesAllowed\": true,\n        \"dogsAllowed\": true\n      }\n    },\n    {\n      \"connectionId\": \"OUI-7801\",\n      \"from\": {\n        \"stationCode\": \"FR-PAR-LYO\",\n        \"scheduledDeparture\": \"{{request.query.date}}T10:16:00Z\"\n      },\n      \"to\": {\n        \"stationCode\": \"FR-LYS-PDI\",\n        \"scheduledArrival\": \"{{request.query.date}}T12:18:00Z\"\n      },\n      \"operator\": {\n        \"code\": \"SNCF\",\n        \"name\": \"Ouigo\"\n      },\n      \"fare\": {\n        \"amount\": 25.0,\n        \"currency\": \"EUR\"\n      },\n      \"facilities\": {\n        \"bicyclesAllowed\": false,\n        \"dogsAllowed\": true\n      }\n    }\n  ],\n  \"page\": {{#if request.query.page}}{{request.query.page}}{{else}}1{{/if}},\n  \"pageSize\": {{#if request.query.pageSize}}{{request.query.pageSize}}{{else}}10{{/if}}\n}",
+        "transformers": [
+          "response-template"
+        ]
+      }
+    },
+    {
+      "name": "Connections NL-AMS-CEN to BE-BRU-MID",
+      "priority": 5,
+      "request": {
+        "method": "GET",
+        "urlPathTemplate": "/connections",
+        "queryParameters": {
+          "date": {
+            "matches": "^\\d{4}-\\d{2}-\\d{2}$"
+          },
+          "from": {
+            "equalTo": "NL-AMS-CEN"
+          },
+          "to": {
+            "equalTo": "BE-BRU-MID"
+          },
+          "page": {
+            "or": [
+              {
+                "equalTo": "1"
+              },
+              {
+                "absent": true
+              }
+            ]
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": "{\n  \"connections\": [\n    {\n      \"connectionId\": \"EUR-9311\",\n      \"from\": {\n        \"stationCode\": \"NL-AMS-CEN\",\n        \"scheduledDeparture\": \"{{request.query.date}}T08:17:00Z\"\n      },\n      \"to\": {\n        \"stationCode\": \"BE-BRU-MID\",\n        \"scheduledArrival\": \"{{request.query.date}}T10:07:00Z\"\n      },\n      \"operator\": {\n        \"code\": \"ES\",\n        \"name\": \"Eurostar\"\n      },\n      \"fare\": {\n        \"amount\": 45.0,\n        \"currency\": \"EUR\"\n      },\n      \"facilities\": {\n        \"bicyclesAllowed\": true,\n        \"dogsAllowed\": false\n      }\n    },\n    {\n      \"connectionId\": \"IC-9221\",\n      \"from\": {\n        \"stationCode\": \"NL-AMS-CEN\",\n        \"scheduledDeparture\": \"{{request.query.date}}T09:52:00Z\"\n      },\n      \"to\": {\n        \"stationCode\": \"BE-BRU-MID\",\n        \"scheduledArrival\": \"{{request.query.date}}T12:42:00Z\"\n      },\n      \"operator\": {\n        \"code\": \"NS\",\n        \"name\": \"NS International\"\n      },\n      \"fare\": {\n        \"amount\": 29.0,\n        \"currency\": \"EUR\"\n      },\n      \"facilities\": {\n        \"bicyclesAllowed\": true,\n        \"dogsAllowed\": true\n      }\n    }\n  ],\n  \"page\": {{#if request.query.page}}{{request.query.page}}{{else}}1{{/if}},\n  \"pageSize\": {{#if request.query.pageSize}}{{request.query.pageSize}}{{else}}10{{/if}}\n}",
+        "transformers": [
+          "response-template"
+        ]
+      }
+    },
+    {
+      "name": "Connections AT-VIE-HBF to DE-MUC-HBF",
+      "priority": 5,
+      "request": {
+        "method": "GET",
+        "urlPathTemplate": "/connections",
+        "queryParameters": {
+          "date": {
+            "matches": "^\\d{4}-\\d{2}-\\d{2}$"
+          },
+          "from": {
+            "equalTo": "AT-VIE-HBF"
+          },
+          "to": {
+            "equalTo": "DE-MUC-HBF"
+          },
+          "page": {
+            "or": [
+              {
+                "equalTo": "1"
+              },
+              {
+                "absent": true
+              }
+            ]
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": "{\n  \"connections\": [\n    {\n      \"connectionId\": \"RJX-0060\",\n      \"from\": {\n        \"stationCode\": \"AT-VIE-HBF\",\n        \"scheduledDeparture\": \"{{request.query.date}}T07:30:00Z\"\n      },\n      \"to\": {\n        \"stationCode\": \"DE-MUC-HBF\",\n        \"scheduledArrival\": \"{{request.query.date}}T11:30:00Z\"\n      },\n      \"operator\": {\n        \"code\": \"OBB\",\n        \"name\": \"ÖBB\"\n      },\n      \"fare\": {\n        \"amount\": 59.9,\n        \"currency\": \"EUR\"\n      },\n      \"facilities\": {\n        \"bicyclesAllowed\": true,\n        \"dogsAllowed\": true\n      }\n    }\n  ],\n  \"page\": {{#if request.query.page}}{{request.query.page}}{{else}}1{{/if}},\n  \"pageSize\": {{#if request.query.pageSize}}{{request.query.pageSize}}{{else}}10{{/if}}\n}",
+        "transformers": [
+          "response-template"
+        ]
+      }
+    },
+    {
+      "name": "Connections IT-MIL-CEN to IT-ROM-TER",
+      "priority": 5,
+      "request": {
+        "method": "GET",
+        "urlPathTemplate": "/connections",
+        "queryParameters": {
+          "date": {
+            "matches": "^\\d{4}-\\d{2}-\\d{2}$"
+          },
+          "from": {
+            "equalTo": "IT-MIL-CEN"
+          },
+          "to": {
+            "equalTo": "IT-ROM-TER"
+          },
+          "page": {
+            "or": [
+              {
+                "equalTo": "1"
+              },
+              {
+                "absent": true
+              }
+            ]
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": "{\n  \"connections\": [\n    {\n      \"connectionId\": \"FR-9511\",\n      \"from\": {\n        \"stationCode\": \"IT-MIL-CEN\",\n        \"scheduledDeparture\": \"{{request.query.date}}T07:00:00Z\"\n      },\n      \"to\": {\n        \"stationCode\": \"IT-ROM-TER\",\n        \"scheduledArrival\": \"{{request.query.date}}T09:59:00Z\"\n      },\n      \"operator\": {\n        \"code\": \"TI\",\n        \"name\": \"Trenitalia\"\n      },\n      \"fare\": {\n        \"amount\": 69.9,\n        \"currency\": \"EUR\"\n      },\n      \"facilities\": {\n        \"bicyclesAllowed\": false,\n        \"dogsAllowed\": true\n      }\n    },\n    {\n      \"connectionId\": \"ITA-9915\",\n      \"from\": {\n        \"stationCode\": \"IT-MIL-CEN\",\n        \"scheduledDeparture\": \"{{request.query.date}}T08:15:00Z\"\n      },\n      \"to\": {\n        \"stationCode\": \"IT-ROM-TER\",\n        \"scheduledArrival\": \"{{request.query.date}}T11:15:00Z\"\n      },\n      \"operator\": {\n        \"code\": \"NTV\",\n        \"name\": \"Italo\"\n      },\n      \"fare\": {\n        \"amount\": 49.9,\n        \"currency\": \"EUR\"\n      },\n      \"facilities\": {\n        \"bicyclesAllowed\": false,\n        \"dogsAllowed\": true\n      }\n    }\n  ],\n  \"page\": {{#if request.query.page}}{{request.query.page}}{{else}}1{{/if}},\n  \"pageSize\": {{#if request.query.pageSize}}{{request.query.pageSize}}{{else}}10{{/if}}\n}",
+        "transformers": [
+          "response-template"
+        ]
+      }
+    },
+    {
+      "name": "No connections beyond the first page",
+      "priority": 7,
+      "request": {
+        "method": "GET",
+        "urlPathTemplate": "/connections",
+        "queryParameters": {
+          "date": {
+            "matches": "^\\d{4}-\\d{2}-\\d{2}$"
+          },
+          "page": {
+            "matches": "^([2-9]|[1-9][0-9]+)$"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": "{\n  \"connections\": [],\n  \"page\": {{#if request.query.page}}{{request.query.page}}{{else}}1{{/if}},\n  \"pageSize\": {{#if request.query.pageSize}}{{request.query.pageSize}}{{else}}10{{/if}}\n}",
+        "transformers": [
+          "response-template"
+        ]
+      }
+    },
+    {
+      "name": "No connections between these stations",
+      "priority": 9,
+      "request": {
+        "method": "GET",
+        "urlPathTemplate": "/connections",
+        "queryParameters": {
+          "date": {
+            "matches": "^\\d{4}-\\d{2}-\\d{2}$"
+          },
+          "from": {
+            "matches": ".+"
+          },
+          "to": {
+            "matches": ".+"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": "{\n  \"connections\": [],\n  \"page\": {{#if request.query.page}}{{request.query.page}}{{else}}1{{/if}},\n  \"pageSize\": {{#if request.query.pageSize}}{{request.query.pageSize}}{{else}}10{{/if}}\n}",
+        "transformers": [
+          "response-template"
+        ]
+      }
+    }
+  ]
+}

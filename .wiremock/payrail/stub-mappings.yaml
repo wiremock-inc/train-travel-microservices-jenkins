@@ -1,0 +1,110 @@
+---
+mappings:
+- id: "69f6d9ee-77e8-47b3-bd5c-eba6ff8af0d6"
+  name: "ProcessPayment - card declined (4000000000000002)"
+  request:
+    urlPath: "/payrail/v1"
+    method: "POST"
+    headers:
+      SOAPAction:
+        matches: "^\"?processPayment\"?$"
+    bodyPatterns:
+    - matchesXPath: "//*[local-name()='Envelope']/*[local-name()='Body']/*[local-name()='processPaymentRequest']/*[local-name()='paymentMethod']/*[local-name()='card']/*[local-name()='cardNumber'][text()='4000000000000002']"
+  response:
+    status: 200
+    bodyFileName: "processpayment-card-declined-4000000000000002-69f6d9.xml"
+    headers:
+      Content-Type: "text/xml; charset=utf-8"
+    transformers:
+    - "response-template"
+  priority: 2
+- id: "0a371361-ae1b-41c4-a901-c3b7bb437e5a"
+  name: "ProcessPayment - insufficient funds (4000000000009995)"
+  request:
+    urlPath: "/payrail/v1"
+    method: "POST"
+    headers:
+      SOAPAction:
+        matches: "^\"?processPayment\"?$"
+    bodyPatterns:
+    - matchesXPath: "//*[local-name()='Envelope']/*[local-name()='Body']/*[local-name()='processPaymentRequest']/*[local-name()='paymentMethod']/*[local-name()='card']/*[local-name()='cardNumber'][text()='4000000000009995']"
+  response:
+    status: 200
+    bodyFileName: "processpayment-insufficient-funds-4000000000009995-0a3713.xml"
+    headers:
+      Content-Type: "text/xml; charset=utf-8"
+    transformers:
+    - "response-template"
+  priority: 2
+- id: "27133cf4-08a9-4304-aebc-5395c740af33"
+  name: "ProcessPayment - processing error fault (4000000000000119)"
+  request:
+    urlPath: "/payrail/v1"
+    method: "POST"
+    headers:
+      SOAPAction:
+        matches: "^\"?processPayment\"?$"
+    bodyPatterns:
+    - matchesXPath: "//*[local-name()='Envelope']/*[local-name()='Body']/*[local-name()='processPaymentRequest']/*[local-name()='paymentMethod']/*[local-name()='card']/*[local-name()='cardNumber'][text()='4000000000000119']"
+  response:
+    status: 500
+    bodyFileName: "processpayment-processing-error-fault-4000000000000119-27133c.xml"
+    headers:
+      Content-Type: "text/xml; charset=utf-8"
+    transformers:
+    - "response-template"
+  priority: 2
+- id: "7c0c2a59-f0d7-4a39-a0c3-1310abdecf8e"
+  name: "ProcessPayment - validation fault (no payment method)"
+  request:
+    urlPath: "/payrail/v1"
+    method: "POST"
+    headers:
+      SOAPAction:
+        matches: "^\"?processPayment\"?$"
+    bodyPatterns:
+    - matchesXPath: "//*[local-name()='Envelope']/*[local-name()='Body']/*[local-name()='processPaymentRequest'][not(*[local-name()='paymentMethod']/*)]"
+  response:
+    status: 500
+    bodyFileName: "processpayment-validation-fault-no-payment-method-7c0c2a.xml"
+    headers:
+      Content-Type: "text/xml; charset=utf-8"
+    transformers:
+    - "response-template"
+  priority: 3
+- id: "50016835-ee4b-4ccd-adbc-3a044bcf3067"
+  name: "ProcessPayment - card approved"
+  request:
+    urlPath: "/payrail/v1"
+    method: "POST"
+    headers:
+      SOAPAction:
+        matches: "^\"?processPayment\"?$"
+    bodyPatterns:
+    - matchesXPath: "//*[local-name()='Envelope']/*[local-name()='Body']/*[local-name()='processPaymentRequest']/*[local-name()='paymentMethod']/*[local-name()='card']"
+  response:
+    status: 200
+    bodyFileName: "processpayment-card-approved-500168.xml"
+    headers:
+      Content-Type: "text/xml; charset=utf-8"
+    transformers:
+    - "response-template"
+  priority: 5
+- id: "a8c24227-4842-4052-8e29-124f00a66d86"
+  name: "ProcessPayment - bank account approved"
+  request:
+    urlPath: "/payrail/v1"
+    method: "POST"
+    headers:
+      SOAPAction:
+        matches: "^\"?processPayment\"?$"
+    bodyPatterns:
+    - matchesXPath: "//*[local-name()='Envelope']/*[local-name()='Body']/*[local-name()='processPaymentRequest']/*[local-name()='paymentMethod']/*[local-name()='bankAccount']"
+  response:
+    status: 200
+    bodyFileName: "processpayment-bank-account-approved-a8c242.xml"
+    headers:
+      Content-Type: "text/xml; charset=utf-8"
+    transformers:
+    - "response-template"
+  priority: 5

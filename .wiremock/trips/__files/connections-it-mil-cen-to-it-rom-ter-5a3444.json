@@ -1,0 +1,52 @@
+{
+  "connections": [
+    {
+      "connectionId": "FR-9511",
+      "from": {
+        "stationCode": "IT-MIL-CEN",
+        "scheduledDeparture": "{{request.query.date}}T07:00:00Z"
+      },
+      "to": {
+        "stationCode": "IT-ROM-TER",
+        "scheduledArrival": "{{request.query.date}}T09:59:00Z"
+      },
+      "operator": {
+        "code": "TI",
+        "name": "Trenitalia"
+      },
+      "fare": {
+        "amount": 69.9,
+        "currency": "EUR"
+      },
+      "facilities": {
+        "bicyclesAllowed": false,
+        "dogsAllowed": true
+      }
+    },
+    {
+      "connectionId": "ITA-9915",
+      "from": {
+        "stationCode": "IT-MIL-CEN",
+        "scheduledDeparture": "{{request.query.date}}T08:15:00Z"
+      },
+      "to": {
+        "stationCode": "IT-ROM-TER",
+        "scheduledArrival": "{{request.query.date}}T11:15:00Z"
+      },
+      "operator": {
+        "code": "NTV",
+        "name": "Italo"
+      },
+      "fare": {
+        "amount": 49.9,
+        "currency": "EUR"
+      },
+      "facilities": {
+        "bicyclesAllowed": false,
+        "dogsAllowed": true
+      }
+    }
+  ],
+  "page": {{#if request.query.page}}{{request.query.page}}{{else}}1{{/if}},
+  "pageSize": {{#if request.query.pageSize}}{{request.query.pageSize}}{{else}}10{{/if}}
+}

@@ -1,0 +1,258 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Rail Reservations",
+    "description": "Reservation-system API holding trip reservations (holds) per customer. State is scoped per holder via the X-User-Id header.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://9emz58.wiremockapi.cloud"
+    }
+  ],
+  "paths": {
+    "/reservations": {
+      "post": {
+        "summary": "Create a reservation (hold)",
+        "operationId": "createReservation",
+        "parameters": [
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateReservationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Reservation created as HELD",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Reservation"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "List the calling holder's reservations",
+        "operationId": "listReservations",
+        "parameters": [
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Reservations in creation order",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReservationList"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reservations/{reservationId}": {
+      "parameters": [
+        {
+          "name": "reservationId",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        {
+          "name": "X-User-Id",
+          "in": "header",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get a reservation",
+        "operationId": "getReservation",
+        "responses": {
+          "200": {
+            "description": "Reservation details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Reservation"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown reservation for this holder"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a reservation (release the hold)",
+        "operationId": "deleteReservation",
+        "responses": {
+          "204": {
+            "description": "Reservation deleted"
+          },
+          "404": {
+            "description": "Unknown reservation for this holder"
+          }
+        }
+      }
+    },
+    "/reservations/{reservationId}/confirm": {
+      "post": {
+        "summary": "Confirm a reservation (after successful payment)",
+        "operationId": "confirmReservation",
+        "parameters": [
+          {
+            "name": "reservationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Reservation confirmed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Reservation"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown reservation for this holder"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CreateReservationRequest": {
+        "type": "object",
+        "required": [
+          "tripRef",
+          "passengerName"
+        ],
+        "properties": {
+          "tripRef": {
+            "type": "string",
+            "description": "Opaque reference to the booked trip (consumer's trip id)"
+          },
+          "passengerName": {
+            "type": "string"
+          },
+          "bicycle": {
+            "type": "boolean"
+          },
+          "dog": {
+            "type": "boolean"
+          },
+          "holderId": {
+            "type": "string"
+          }
+        }
+      },
+      "Reservation": {
+        "type": "object",
+        "required": [
+          "reservationId",
+          "status",
+          "expiresAt",
+          "tripRef",
+          "passengerName"
+        ],
+        "properties": {
+          "reservationId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "HELD",
+              "CONFIRMED"
+            ]
+          },
+          "expiresAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Hold expiry (HELD reservations only; set at creation, now + 1 hour)"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "tripRef": {
+            "type": "string"
+          },
+          "passengerName": {
+            "type": "string"
+          },
+          "bicycle": {
+            "type": "boolean"
+          },
+          "dog": {
+            "type": "boolean"
+          },
+          "holderId": {
+            "type": "string"
+          }
+        }
+      },
+      "ReservationList": {
+        "type": "object",
+        "properties": {
+          "reservations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Reservation"
+            }
+          }
+        }
+      }
+    }
+  }
+}

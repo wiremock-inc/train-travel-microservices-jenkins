@@ -1,0 +1,48 @@
+{
+  "stations": [
+    {
+      "stationCode": "FR-LYS-PDI",
+      "stationName": "Lyon Part-Dieu",
+      "addressLines": [
+        "5 Place Charles Béraudier",
+        "69003 Lyon"
+      ],
+      "countryIsoCode": "FR",
+      "geo": {
+        "latitude": 45.7606,
+        "longitude": 4.8597
+      },
+      "tzId": "Europe/Paris"
+    },
+    {
+      "stationCode": "FR-PAR-LYO",
+      "stationName": "Paris Gare de Lyon",
+      "addressLines": [
+        "Place Louis-Armand",
+        "75012 Paris"
+      ],
+      "countryIsoCode": "FR",
+      "geo": {
+        "latitude": 48.8443,
+        "longitude": 2.3744
+      },
+      "tzId": "Europe/Paris"
+    },
+    {
+      "stationCode": "FR-PAR-NRD",
+      "stationName": "Paris Gare du Nord",
+      "addressLines": [
+        "18 Rue de Dunkerque",
+        "75010 Paris"
+      ],
+      "countryIsoCode": "FR",
+      "geo": {
+        "latitude": 48.8809,
+        "longitude": 2.3553
+      },
+      "tzId": "Europe/Paris"
+    }
+  ],
+  "offset": 0,
+  "pageSize": {{#if request.query.pageSize}}{{request.query.pageSize}}{{else}}10{{/if}}
+}

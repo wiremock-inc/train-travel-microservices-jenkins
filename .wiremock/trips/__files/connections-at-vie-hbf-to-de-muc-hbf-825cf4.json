@@ -1,0 +1,29 @@
+{
+  "connections": [
+    {
+      "connectionId": "RJX-0060",
+      "from": {
+        "stationCode": "AT-VIE-HBF",
+        "scheduledDeparture": "{{request.query.date}}T07:30:00Z"
+      },
+      "to": {
+        "stationCode": "DE-MUC-HBF",
+        "scheduledArrival": "{{request.query.date}}T11:30:00Z"
+      },
+      "operator": {
+        "code": "OBB",
+        "name": "ÖBB"
+      },
+      "fare": {
+        "amount": 59.9,
+        "currency": "EUR"
+      },
+      "facilities": {
+        "bicyclesAllowed": true,
+        "dogsAllowed": true
+      }
+    }
+  ],
+  "page": {{#if request.query.page}}{{request.query.page}}{{else}}1{{/if}},
+  "pageSize": {{#if request.query.pageSize}}{{request.query.pageSize}}{{else}}10{{/if}}
+}

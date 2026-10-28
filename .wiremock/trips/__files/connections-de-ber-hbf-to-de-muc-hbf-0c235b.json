@@ -1,0 +1,98 @@
+{
+  "connections": [
+    {
+      "connectionId": "ICE-1001",
+      "from": {
+        "stationCode": "DE-BER-HBF",
+        "scheduledDeparture": "{{request.query.date}}T06:00:00Z"
+      },
+      "to": {
+        "stationCode": "DE-MUC-HBF",
+        "scheduledArrival": "{{request.query.date}}T10:00:00Z"
+      },
+      "operator": {
+        "code": "DB",
+        "name": "Deutsche Bahn"
+      },
+      "fare": {
+        "amount": 89.9,
+        "currency": "EUR"
+      },
+      "facilities": {
+        "bicyclesAllowed": true,
+        "dogsAllowed": true
+      }
+    },
+    {
+      "connectionId": "ICE-1003",
+      "from": {
+        "stationCode": "DE-BER-HBF",
+        "scheduledDeparture": "{{request.query.date}}T09:00:00Z"
+      },
+      "to": {
+        "stationCode": "DE-MUC-HBF",
+        "scheduledArrival": "{{request.query.date}}T13:04:00Z"
+      },
+      "operator": {
+        "code": "DB",
+        "name": "Deutsche Bahn"
+      },
+      "fare": {
+        "amount": 109.9,
+        "currency": "EUR"
+      },
+      "facilities": {
+        "bicyclesAllowed": false,
+        "dogsAllowed": true
+      }
+    },
+    {
+      "connectionId": "ICE-1005",
+      "from": {
+        "stationCode": "DE-BER-HBF",
+        "scheduledDeparture": "{{request.query.date}}T13:00:00Z"
+      },
+      "to": {
+        "stationCode": "DE-MUC-HBF",
+        "scheduledArrival": "{{request.query.date}}T17:02:00Z"
+      },
+      "operator": {
+        "code": "DB",
+        "name": "Deutsche Bahn"
+      },
+      "fare": {
+        "amount": 99.9,
+        "currency": "EUR"
+      },
+      "facilities": {
+        "bicyclesAllowed": true,
+        "dogsAllowed": false
+      }
+    },
+    {
+      "connectionId": "FLX-1241",
+      "from": {
+        "stationCode": "DE-BER-HBF",
+        "scheduledDeparture": "{{request.query.date}}T17:30:00Z"
+      },
+      "to": {
+        "stationCode": "DE-MUC-HBF",
+        "scheduledArrival": "{{request.query.date}}T22:55:00Z"
+      },
+      "operator": {
+        "code": "FLX",
+        "name": "Flixtrain"
+      },
+      "fare": {
+        "amount": 39.99,
+        "currency": "EUR"
+      },
+      "facilities": {
+        "bicyclesAllowed": true,
+        "dogsAllowed": true
+      }
+    }
+  ],
+  "page": {{#if request.query.page}}{{request.query.page}}{{else}}1{{/if}},
+  "pageSize": {{#if request.query.pageSize}}{{request.query.pageSize}}{{else}}10{{/if}}
+}

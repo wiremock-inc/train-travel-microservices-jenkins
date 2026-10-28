@@ -1,0 +1,256 @@
+---
+mappings:
+- id: "0c235bfa-92ad-4613-b457-b885c09c3dd5"
+  name: "Connections DE-BER-HBF to DE-MUC-HBF"
+  request:
+    urlPathTemplate: "/connections"
+    method: "GET"
+    queryParameters:
+      date:
+        matches: "^\\d{4}-\\d{2}-\\d{2}$"
+      from:
+        equalTo: "DE-BER-HBF"
+      to:
+        equalTo: "DE-MUC-HBF"
+      page:
+        or:
+        - equalTo: "1"
+        - absent: true
+  response:
+    status: 200
+    bodyFileName: "connections-de-ber-hbf-to-de-muc-hbf-0c235b.json"
+    headers:
+      Content-Type: "application/json"
+    transformers:
+    - "response-template"
+  priority: 5
+- id: "bf84c492-f9c2-4a89-bc1e-48b8c8fff12b"
+  name: "Connections DE-MUC-HBF to DE-BER-HBF"
+  request:
+    urlPathTemplate: "/connections"
+    method: "GET"
+    queryParameters:
+      date:
+        matches: "^\\d{4}-\\d{2}-\\d{2}$"
+      from:
+        equalTo: "DE-MUC-HBF"
+      to:
+        equalTo: "DE-BER-HBF"
+      page:
+        or:
+        - equalTo: "1"
+        - absent: true
+  response:
+    status: 200
+    bodyFileName: "connections-de-muc-hbf-to-de-ber-hbf-bf84c4.json"
+    headers:
+      Content-Type: "application/json"
+    transformers:
+    - "response-template"
+  priority: 5
+- id: "2599ef76-60ad-4882-8cb1-98f3091eb880"
+  name: "Connections DE-BER-HBF to DE-HAM-HBF"
+  request:
+    urlPathTemplate: "/connections"
+    method: "GET"
+    queryParameters:
+      date:
+        matches: "^\\d{4}-\\d{2}-\\d{2}$"
+      from:
+        equalTo: "DE-BER-HBF"
+      to:
+        equalTo: "DE-HAM-HBF"
+      page:
+        or:
+        - equalTo: "1"
+        - absent: true
+  response:
+    status: 200
+    bodyFileName: "connections-de-ber-hbf-to-de-ham-hbf-2599ef.json"
+    headers:
+      Content-Type: "application/json"
+    transformers:
+    - "response-template"
+  priority: 5
+- id: "643f4cf8-51e2-4587-85aa-e00876f3efe7"
+  name: "Connections FR-PAR-NRD to GB-LON-STP"
+  request:
+    urlPathTemplate: "/connections"
+    method: "GET"
+    queryParameters:
+      date:
+        matches: "^\\d{4}-\\d{2}-\\d{2}$"
+      from:
+        equalTo: "FR-PAR-NRD"
+      to:
+        equalTo: "GB-LON-STP"
+      page:
+        or:
+        - equalTo: "1"
+        - absent: true
+  response:
+    status: 200
+    bodyFileName: "connections-fr-par-nrd-to-gb-lon-stp-643f4c.json"
+    headers:
+      Content-Type: "application/json"
+    transformers:
+    - "response-template"
+  priority: 5
+- id: "4507d430-21a6-4d60-9928-4d66d1aecede"
+  name: "Connections GB-LON-STP to FR-PAR-NRD"
+  request:
+    urlPathTemplate: "/connections"
+    method: "GET"
+    queryParameters:
+      date:
+        matches: "^\\d{4}-\\d{2}-\\d{2}$"
+      from:
+        equalTo: "GB-LON-STP"
+      to:
+        equalTo: "FR-PAR-NRD"
+      page:
+        or:
+        - equalTo: "1"
+        - absent: true
+  response:
+    status: 200
+    bodyFileName: "connections-gb-lon-stp-to-fr-par-nrd-4507d4.json"
+    headers:
+      Content-Type: "application/json"
+    transformers:
+    - "response-template"
+  priority: 5
+- id: "485100c3-7dba-454b-a847-eb1a1bcf77ea"
+  name: "Connections FR-PAR-LYO to FR-LYS-PDI"
+  request:
+    urlPathTemplate: "/connections"
+    method: "GET"
+    queryParameters:
+      date:
+        matches: "^\\d{4}-\\d{2}-\\d{2}$"
+      from:
+        equalTo: "FR-PAR-LYO"
+      to:
+        equalTo: "FR-LYS-PDI"
+      page:
+        or:
+        - equalTo: "1"
+        - absent: true
+  response:
+    status: 200
+    bodyFileName: "connections-fr-par-lyo-to-fr-lys-pdi-485100.json"
+    headers:
+      Content-Type: "application/json"
+    transformers:
+    - "response-template"
+  priority: 5
+- id: "6b2f451b-99a2-4b2a-b9ee-6b0459cca18c"
+  name: "Connections NL-AMS-CEN to BE-BRU-MID"
+  request:
+    urlPathTemplate: "/connections"
+    method: "GET"
+    queryParameters:
+      date:
+        matches: "^\\d{4}-\\d{2}-\\d{2}$"
+      from:
+        equalTo: "NL-AMS-CEN"
+      to:
+        equalTo: "BE-BRU-MID"
+      page:
+        or:
+        - equalTo: "1"
+        - absent: true
+  response:
+    status: 200
+    bodyFileName: "connections-nl-ams-cen-to-be-bru-mid-6b2f45.json"
+    headers:
+      Content-Type: "application/json"
+    transformers:
+    - "response-template"
+  priority: 5
+- id: "825cf4a9-b66c-4e85-b1fd-1b403def7af6"
+  name: "Connections AT-VIE-HBF to DE-MUC-HBF"
+  request:
+    urlPathTemplate: "/connections"
+    method: "GET"
+    queryParameters:
+      date:
+        matches: "^\\d{4}-\\d{2}-\\d{2}$"
+      from:
+        equalTo: "AT-VIE-HBF"
+      to:
+        equalTo: "DE-MUC-HBF"
+      page:
+        or:
+        - equalTo: "1"
+        - absent: true
+  response:
+    status: 200
+    bodyFileName: "connections-at-vie-hbf-to-de-muc-hbf-825cf4.json"
+    headers:
+      Content-Type: "application/json"
+    transformers:
+    - "response-template"
+  priority: 5
+- id: "5a3444d6-6d2e-402e-af7d-a06790cd0e5b"
+  name: "Connections IT-MIL-CEN to IT-ROM-TER"
+  request:
+    urlPathTemplate: "/connections"
+    method: "GET"
+    queryParameters:
+      date:
+        matches: "^\\d{4}-\\d{2}-\\d{2}$"
+      from:
+        equalTo: "IT-MIL-CEN"
+      to:
+        equalTo: "IT-ROM-TER"
+      page:
+        or:
+        - equalTo: "1"
+        - absent: true
+  response:
+    status: 200
+    bodyFileName: "connections-it-mil-cen-to-it-rom-ter-5a3444.json"
+    headers:
+      Content-Type: "application/json"
+    transformers:
+    - "response-template"
+  priority: 5
+- id: "76d36a5b-a1a0-43f0-8169-e3f2d44bd32b"
+  name: "No connections beyond the first page"
+  request:
+    urlPathTemplate: "/connections"
+    method: "GET"
+    queryParameters:
+      date:
+        matches: "^\\d{4}-\\d{2}-\\d{2}$"
+      page:
+        matches: "^([2-9]|[1-9][0-9]+)$"
+  response:
+    status: 200
+    bodyFileName: "no-connections-beyond-the-first-page-76d36a.json"
+    headers:
+      Content-Type: "application/json"
+    transformers:
+    - "response-template"
+  priority: 7
+- id: "28dd21cb-16cc-4acf-8f70-937d440d1ac3"
+  name: "No connections between these stations"
+  request:
+    urlPathTemplate: "/connections"
+    method: "GET"
+    queryParameters:
+      date:
+        matches: "^\\d{4}-\\d{2}-\\d{2}$"
+      from:
+        matches: ".+"
+      to:
+        matches: ".+"
+  response:
+    status: 200
+    bodyFileName: "no-connections-between-these-stations-28dd21.json"
+    headers:
+      Content-Type: "application/json"
+    transformers:
+    - "response-template"
+  priority: 9

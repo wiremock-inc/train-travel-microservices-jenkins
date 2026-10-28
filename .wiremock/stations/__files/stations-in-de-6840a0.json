@@ -1,0 +1,76 @@
+{
+  "stations": [
+    {
+      "stationCode": "DE-BER-HBF",
+      "stationName": "Berlin Hauptbahnhof",
+      "addressLines": [
+        "Europaplatz 1",
+        "10557 Berlin"
+      ],
+      "countryIsoCode": "DE",
+      "geo": {
+        "latitude": 52.5251,
+        "longitude": 13.3694
+      },
+      "tzId": "Europe/Berlin"
+    },
+    {
+      "stationCode": "DE-FRA-HBF",
+      "stationName": "Frankfurt (Main) Hauptbahnhof",
+      "addressLines": [
+        "Am Hauptbahnhof",
+        "60329 Frankfurt am Main"
+      ],
+      "countryIsoCode": "DE",
+      "geo": {
+        "latitude": 50.1071,
+        "longitude": 8.6638
+      },
+      "tzId": "Europe/Berlin"
+    },
+    {
+      "stationCode": "DE-HAM-HBF",
+      "stationName": "Hamburg Hauptbahnhof",
+      "addressLines": [
+        "Hachmannplatz 16",
+        "20099 Hamburg"
+      ],
+      "countryIsoCode": "DE",
+      "geo": {
+        "latitude": 53.5528,
+        "longitude": 10.0067
+      },
+      "tzId": "Europe/Berlin"
+    },
+    {
+      "stationCode": "DE-KOL-HBF",
+      "stationName": "Köln Hauptbahnhof",
+      "addressLines": [
+        "Trankgasse 11",
+        "50667 Köln"
+      ],
+      "countryIsoCode": "DE",
+      "geo": {
+        "latitude": 50.943,
+        "longitude": 6.9589
+      },
+      "tzId": "Europe/Berlin"
+    },
+    {
+      "stationCode": "DE-MUC-HBF",
+      "stationName": "München Hauptbahnhof",
+      "addressLines": [
+        "Bayerstraße 10a",
+        "80335 München"
+      ],
+      "countryIsoCode": "DE",
+      "geo": {
+        "latitude": 48.1402,
+        "longitude": 11.5586
+      },
+      "tzId": "Europe/Berlin"
+    }
+  ],
+  "offset": 0,
+  "pageSize": {{#if request.query.pageSize}}{{request.query.pageSize}}{{else}}10{{/if}}
+}

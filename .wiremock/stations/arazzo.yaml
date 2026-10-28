@@ -1,0 +1,65 @@
+arazzo: 1.0.1
+info:
+  title: European Rail Reference Data workflows
+  version: 1.0.0
+sourceDescriptions:
+  - name: stations
+    url: ./openapi.json
+    type: openapi
+workflows:
+  - workflowId: browseStations
+    summary: Page through the station master data and filter it by country
+    steps:
+      - stepId: firstPage
+        operationId: getStationData
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.body#/offset == 0
+          - context: $response.body
+            type: jsonpath
+            condition: $.stations[?(@.stationCode == 'DE-BER-HBF')]
+      - stepId: fullList
+        operationId: getStationData
+        parameters:
+          - name: pageSize
+            in: query
+            value: 100
+          - name: offset
+            in: query
+            value: 0
+        successCriteria:
+          - condition: $statusCode == 200
+          - context: $response.body
+            type: jsonpath
+            condition: $.stations[?(@.stationCode == 'DK-CPH-HBN')]
+          - context: $response.body
+            type: jsonpath
+            condition: $.stations[?(@.stationName == 'München Hauptbahnhof')]
+      - stepId: germanStations
+        operationId: getStationData
+        parameters:
+          - name: country
+            in: query
+            value: DE
+          - name: pageSize
+            in: query
+            value: 100
+        successCriteria:
+          - condition: $statusCode == 200
+          - context: $response.body
+            type: jsonpath
+            condition: $.stations[?(@.stationCode == 'DE-MUC-HBF')]
+          - context: $response.body
+            type: jsonpath
+            condition: $.stations[?(@.countryIsoCode == 'DE')]
+        outputs:
+          firstGermanStation: $response.body#/stations/0/stationCode
+      - stepId: unknownCountry
+        operationId: getStationData
+        parameters:
+          - name: country
+            in: query
+            value: PT
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.body#/stations/0 == null

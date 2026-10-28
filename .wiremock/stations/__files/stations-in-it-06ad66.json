@@ -1,0 +1,34 @@
+{
+  "stations": [
+    {
+      "stationCode": "IT-MIL-CEN",
+      "stationName": "Milano Centrale",
+      "addressLines": [
+        "Piazza Duca d'Aosta 1",
+        "20124 Milano"
+      ],
+      "countryIsoCode": "IT",
+      "geo": {
+        "latitude": 45.4864,
+        "longitude": 9.2046
+      },
+      "tzId": "Europe/Rome"
+    },
+    {
+      "stationCode": "IT-ROM-TER",
+      "stationName": "Roma Termini",
+      "addressLines": [
+        "Piazza dei Cinquecento",
+        "00185 Roma"
+      ],
+      "countryIsoCode": "IT",
+      "geo": {
+        "latitude": 41.901,
+        "longitude": 12.5011
+      },
+      "tzId": "Europe/Rome"
+    }
+  ],
+  "offset": 0,
+  "pageSize": {{#if request.query.pageSize}}{{request.query.pageSize}}{{else}}10{{/if}}
+}

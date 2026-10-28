@@ -1,0 +1,5 @@
+{{#formatJson}}
+{
+  "reservations" : [{{arrayJoin ',' (listState collectionContext)}}]
+}
+{{/formatJson}}

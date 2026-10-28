@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="PayRail"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  xmlns:tns="http://payrail.example.com/v1"
+                  targetNamespace="http://payrail.example.com/v1">
+
+  <wsdl:types>
+    <xsd:schema>
+      <xsd:import namespace="http://payrail.example.com/v1" schemaLocation="payrail.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+
+  <wsdl:message name="ProcessPaymentRequest">
+    <wsdl:part name="parameters" element="tns:processPaymentRequest"/>
+  </wsdl:message>
+
+  <wsdl:message name="ProcessPaymentResponse">
+    <wsdl:part name="parameters" element="tns:processPaymentResponse"/>
+  </wsdl:message>
+
+  <wsdl:message name="PayRailFaultMessage">
+    <wsdl:part name="PayRailFault" element="tns:PayRailFault"/>
+  </wsdl:message>
+
+  <wsdl:portType name="PayRailPortType">
+    <wsdl:operation name="ProcessPayment">
+      <wsdl:input message="tns:ProcessPaymentRequest"/>
+      <wsdl:output message="tns:ProcessPaymentResponse"/>
+      <wsdl:fault name="PayRailFault" message="tns:PayRailFaultMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+
+  <wsdl:binding name="PayRailSoap11Binding" type="tns:PayRailPortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="ProcessPayment">
+      <soap:operation soapAction="processPayment"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="PayRailFault">
+        <soap:fault name="PayRailFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+
+  <wsdl:service name="PayRailService">
+    <wsdl:port name="PayRailPort" binding="tns:PayRailSoap11Binding">
+      <soap:address location="https://<payrail-mock-id>.wiremockapi.cloud/payrail/v1"/>
+    </wsdl:port>
+  </wsdl:service>
+
+</wsdl:definitions>

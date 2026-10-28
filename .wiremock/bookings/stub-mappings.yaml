@@ -1,0 +1,203 @@
+---
+mappings:
+- id: "de21d9ab-8a6e-4337-9c04-6832ce06a9bc"
+  name: "Not found - get reservation"
+  request:
+    urlPathTemplate: "/reservations/{reservationId}"
+    method: "GET"
+    customMatcher:
+      name: "custom-and-matcher"
+      parameters:
+        matchers:
+        - name: "require-state"
+          parameters:
+            requirements:
+            - key: "{{request.path.reservationId}}"
+              absent: true
+              context: "reservations:{{request.headers.x-user-id}}"
+  response:
+    status: 404
+  priority: 2
+- id: "da84208f-7d6b-41ba-aa91-ddd283f5cdf5"
+  name: "Not found - delete reservation"
+  request:
+    urlPathTemplate: "/reservations/{reservationId}"
+    method: "DELETE"
+    customMatcher:
+      name: "custom-and-matcher"
+      parameters:
+        matchers:
+        - name: "require-state"
+          parameters:
+            requirements:
+            - key: "{{request.path.reservationId}}"
+              absent: true
+              context: "reservations:{{request.headers.x-user-id}}"
+  response:
+    status: 404
+  priority: 2
+- id: "5e9a1ac5-e35f-4a23-a3a2-8681a9dd5e60"
+  name: "Not found - confirm reservation"
+  request:
+    urlPathTemplate: "/reservations/{reservationId}/confirm"
+    method: "POST"
+    customMatcher:
+      name: "custom-and-matcher"
+      parameters:
+        matchers:
+        - name: "require-state"
+          parameters:
+            requirements:
+            - key: "{{request.path.reservationId}}"
+              absent: true
+              context: "reservations:{{request.headers.x-user-id}}"
+  response:
+    status: 404
+  priority: 2
+- id: "6e83e894-0cc0-4485-9b80-cc18f162ed6d"
+  name: "Create a reservation (hold)"
+  request:
+    urlPathTemplate: "/reservations"
+    method: "POST"
+  response:
+    status: 201
+    bodyFileName: "create-a-reservation-hold-6e83e8.json"
+    headers:
+      Content-Type: "application/json"
+    transformers:
+    - "response-template"
+  serveEventListeners:
+  - name: "change-state"
+    parameters:
+      operations:
+      - context: "local"
+        key: "id"
+        operation: "REQUEST_VAR"
+        phase: "AFTER_MATCH"
+        value: "{{randomValue type='UUID'}}"
+      - context: "local"
+        key: "collectionContext"
+        operation: "REQUEST_VAR"
+        phase: "AFTER_MATCH"
+        value: "reservations:{{request.headers.x-user-id}}"
+      - context: "{{collectionContext}}"
+        key: "{{id}}"
+        operation: "SET"
+        phase: "AFTER_MATCH"
+        value: |-
+          {{#jsonMerge request.body}}
+          {
+            "reservationId" : "{{id}}",
+            "status" : "HELD",
+            "createdAt" : "{{now format="yyyy-MM-dd'T'HH:mm:ss'Z'"}}",
+            "expiresAt" : "{{now offset='1 hours' format="yyyy-MM-dd'T'HH:mm:ss'Z'"}}"
+          }
+          {{/jsonMerge}}
+- id: "f10ec696-41d9-497b-9a78-2d645b14a716"
+  name: "List the calling holder's reservations"
+  request:
+    urlPathTemplate: "/reservations"
+    method: "GET"
+  response:
+    status: 200
+    bodyFileName: "list-the-calling-holder-s-reservations-f10ec6.json"
+    headers:
+      Content-Type: "application/json"
+    transformers:
+    - "response-template"
+  serveEventListeners:
+  - name: "change-state"
+    parameters:
+      operations:
+      - context: "local"
+        key: "collectionContext"
+        operation: "REQUEST_VAR"
+        phase: "AFTER_MATCH"
+        value: "reservations:{{request.headers.x-user-id}}"
+- id: "f92ef58c-4d51-484d-82d4-fb754315e32d"
+  name: "Get a reservation"
+  request:
+    urlPathTemplate: "/reservations/{reservationId}"
+    method: "GET"
+  response:
+    status: 200
+    bodyFileName: "get-a-reservation-f92ef5.json"
+    headers:
+      Content-Type: "application/json"
+    transformers:
+    - "response-template"
+  serveEventListeners:
+  - name: "change-state"
+    parameters:
+      operations:
+      - context: "local"
+        key: "id"
+        operation: "REQUEST_VAR"
+        phase: "AFTER_MATCH"
+        value: "{{request.path.reservationId}}"
+      - context: "local"
+        key: "collectionContext"
+        operation: "REQUEST_VAR"
+        phase: "AFTER_MATCH"
+        value: "reservations:{{request.headers.x-user-id}}"
+- id: "25453926-86e0-41b9-9b79-27a313a9df94"
+  name: "Delete a reservation (release the hold)"
+  request:
+    urlPathTemplate: "/reservations/{reservationId}"
+    method: "DELETE"
+  response:
+    status: 204
+  serveEventListeners:
+  - name: "change-state"
+    parameters:
+      operations:
+      - context: "local"
+        key: "id"
+        operation: "REQUEST_VAR"
+        phase: "AFTER_MATCH"
+        value: "{{request.path.reservationId}}"
+      - context: "local"
+        key: "collectionContext"
+        operation: "REQUEST_VAR"
+        phase: "AFTER_MATCH"
+        value: "reservations:{{request.headers.x-user-id}}"
+      - context: "{{collectionContext}}"
+        key: "{{id}}"
+        operation: "DELETE"
+        phase: "AFTER_MATCH"
+- id: "f08f3558-90f9-4229-97ca-3ae9d52cac1a"
+  name: "Confirm a reservation"
+  request:
+    urlPathTemplate: "/reservations/{reservationId}/confirm"
+    method: "POST"
+  response:
+    status: 200
+    bodyFileName: "confirm-a-reservation-f08f35.json"
+    headers:
+      Content-Type: "application/json"
+    transformers:
+    - "response-template"
+  serveEventListeners:
+  - name: "change-state"
+    parameters:
+      operations:
+      - context: "local"
+        key: "id"
+        operation: "REQUEST_VAR"
+        phase: "AFTER_MATCH"
+        value: "{{request.path.reservationId}}"
+      - context: "local"
+        key: "collectionContext"
+        operation: "REQUEST_VAR"
+        phase: "AFTER_MATCH"
+        value: "reservations:{{request.headers.x-user-id}}"
+      - context: "{{collectionContext}}"
+        key: "{{id}}"
+        operation: "SET"
+        phase: "AFTER_MATCH"
+        value: |-
+          {{#jsonMerge previousValue}}
+          {
+            "status" : "CONFIRMED"
+          }
+          {{/jsonMerge}}

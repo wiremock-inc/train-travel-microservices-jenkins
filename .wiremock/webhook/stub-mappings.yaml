@@ -1,0 +1,24 @@
+---
+mappings:
+- id: "1a853ffb-1894-483f-af69-f8ea2b3ca5f7"
+  name: "newBooking webhook received"
+  request:
+    urlPath: "/new-booking"
+    method: "POST"
+    bodyPatterns:
+    - matchesJsonPath: "$.id"
+    - matchesJsonPath: "$.passenger_name"
+  response:
+    status: 200
+  priority: 5
+- id: "0b022932-52d7-4ce0-8f6a-fe6097c6b94c"
+  name: "newBooking webhook rejected - not a booking payload"
+  request:
+    urlPath: "/new-booking"
+    method: "POST"
+  response:
+    status: 400
+    bodyFileName: "newbooking-webhook-rejected-not-a-booking-payload-0b0229.json"
+    headers:
+      Content-Type: "application/json"
+  priority: 9

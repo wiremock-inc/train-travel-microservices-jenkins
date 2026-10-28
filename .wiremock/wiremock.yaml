@@ -1,0 +1,42 @@
+environment_id: 'xkr85'
+services:
+  stations:
+    type: 'REST'
+    name: 'stations'
+    path: './stations'
+    port: 8080
+    cloud_id: '3z2m01'
+  trips:
+    type: 'REST'
+    name: 'trips'
+    path: './trips'
+    port: 8081
+    cloud_id: 'ej7q61'
+  bookings:
+    type: 'REST'
+    name: 'bookings'
+    path: './bookings'
+    port: 8082
+    cloud_id: '9emz58'
+  payrail:
+    type: 'Unstructured'
+    name: 'payrail'
+    path: './payrail'
+    port: 8083
+    cloud_id: 'g479j7'
+  webhook:
+    type: 'Unstructured'
+    name: 'webhook'
+    path: './webhook'
+    port: 8084
+    cloud_id: '78vl28'
+  stripe:
+    template: 'public/stripe'
+    name: 'stripe'
+    port: 8085
+    cloud_id: 'mqlzwg'
+  google-idp:
+    template: 'public/google-sign-in'
+    name: 'google-idp'
+    port: 8086
+    cloud_id: '4654yr'

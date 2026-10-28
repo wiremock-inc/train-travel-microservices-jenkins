@@ -1,0 +1,20 @@
+{
+  "stations": [
+    {
+      "stationCode": "DK-CPH-HBN",
+      "stationName": "København H",
+      "addressLines": [
+        "Bernstorffsgade 16",
+        "1577 København V"
+      ],
+      "countryIsoCode": "DK",
+      "geo": {
+        "latitude": 55.6726,
+        "longitude": 12.5647
+      },
+      "tzId": "Europe/Copenhagen"
+    }
+  ],
+  "offset": 0,
+  "pageSize": {{#if request.query.pageSize}}{{request.query.pageSize}}{{else}}10{{/if}}
+}

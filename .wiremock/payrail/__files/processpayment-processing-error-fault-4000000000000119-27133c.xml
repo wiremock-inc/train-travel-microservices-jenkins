@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+  <soapenv:Body>
+    <soapenv:Fault>
+      <faultcode>soapenv:Server</faultcode>
+      <faultstring>PROCESSING_ERROR: the payment could not be processed</faultstring>
+      <detail>
+        <pr:PayRailFault xmlns:pr="http://payrail.example.com/v1">
+          <pr:faultCode>PROCESSING_ERROR</pr:faultCode>
+          <pr:faultText>The payment could not be processed. Retry later.</pr:faultText>
+        </pr:PayRailFault>
+      </detail>
+    </soapenv:Fault>
+  </soapenv:Body>
+</soapenv:Envelope>

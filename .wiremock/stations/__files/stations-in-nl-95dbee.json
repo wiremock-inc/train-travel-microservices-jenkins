@@ -1,0 +1,20 @@
+{
+  "stations": [
+    {
+      "stationCode": "NL-AMS-CEN",
+      "stationName": "Amsterdam Centraal",
+      "addressLines": [
+        "Stationsplein",
+        "1012 AB Amsterdam"
+      ],
+      "countryIsoCode": "NL",
+      "geo": {
+        "latitude": 52.3791,
+        "longitude": 4.9003
+      },
+      "tzId": "Europe/Amsterdam"
+    }
+  ],
+  "offset": 0,
+  "pageSize": {{#if request.query.pageSize}}{{request.query.pageSize}}{{else}}10{{/if}}
+}

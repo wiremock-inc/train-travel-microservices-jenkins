@@ -1,0 +1,258 @@
+{
+  "stations": [
+    {
+      "stationCode": "NL-AMS-CEN",
+      "stationName": "Amsterdam Centraal",
+      "addressLines": [
+        "Stationsplein",
+        "1012 AB Amsterdam"
+      ],
+      "countryIsoCode": "NL",
+      "geo": {
+        "latitude": 52.3791,
+        "longitude": 4.9003
+      },
+      "tzId": "Europe/Amsterdam"
+    },
+    {
+      "stationCode": "DE-BER-HBF",
+      "stationName": "Berlin Hauptbahnhof",
+      "addressLines": [
+        "Europaplatz 1",
+        "10557 Berlin"
+      ],
+      "countryIsoCode": "DE",
+      "geo": {
+        "latitude": 52.5251,
+        "longitude": 13.3694
+      },
+      "tzId": "Europe/Berlin"
+    },
+    {
+      "stationCode": "BE-BRU-MID",
+      "stationName": "Bruxelles-Midi",
+      "addressLines": [
+        "Avenue Fonsny 47B",
+        "1060 Saint-Gilles"
+      ],
+      "countryIsoCode": "BE",
+      "geo": {
+        "latitude": 50.8357,
+        "longitude": 4.3365
+      },
+      "tzId": "Europe/Brussels"
+    },
+    {
+      "stationCode": "DE-FRA-HBF",
+      "stationName": "Frankfurt (Main) Hauptbahnhof",
+      "addressLines": [
+        "Am Hauptbahnhof",
+        "60329 Frankfurt am Main"
+      ],
+      "countryIsoCode": "DE",
+      "geo": {
+        "latitude": 50.1071,
+        "longitude": 8.6638
+      },
+      "tzId": "Europe/Berlin"
+    },
+    {
+      "stationCode": "DE-HAM-HBF",
+      "stationName": "Hamburg Hauptbahnhof",
+      "addressLines": [
+        "Hachmannplatz 16",
+        "20099 Hamburg"
+      ],
+      "countryIsoCode": "DE",
+      "geo": {
+        "latitude": 53.5528,
+        "longitude": 10.0067
+      },
+      "tzId": "Europe/Berlin"
+    },
+    {
+      "stationCode": "DE-KOL-HBF",
+      "stationName": "Köln Hauptbahnhof",
+      "addressLines": [
+        "Trankgasse 11",
+        "50667 Köln"
+      ],
+      "countryIsoCode": "DE",
+      "geo": {
+        "latitude": 50.943,
+        "longitude": 6.9589
+      },
+      "tzId": "Europe/Berlin"
+    },
+    {
+      "stationCode": "DK-CPH-HBN",
+      "stationName": "København H",
+      "addressLines": [
+        "Bernstorffsgade 16",
+        "1577 København V"
+      ],
+      "countryIsoCode": "DK",
+      "geo": {
+        "latitude": 55.6726,
+        "longitude": 12.5647
+      },
+      "tzId": "Europe/Copenhagen"
+    },
+    {
+      "stationCode": "GB-LON-STP",
+      "stationName": "London St Pancras International",
+      "addressLines": [
+        "Euston Road",
+        "London N1C 4QP"
+      ],
+      "countryIsoCode": "GB",
+      "geo": {
+        "latitude": 51.5322,
+        "longitude": -0.1269
+      },
+      "tzId": "Europe/London"
+    },
+    {
+      "stationCode": "FR-LYS-PDI",
+      "stationName": "Lyon Part-Dieu",
+      "addressLines": [
+        "5 Place Charles Béraudier",
+        "69003 Lyon"
+      ],
+      "countryIsoCode": "FR",
+      "geo": {
+        "latitude": 45.7606,
+        "longitude": 4.8597
+      },
+      "tzId": "Europe/Paris"
+    },
+    {
+      "stationCode": "ES-MAD-ATO",
+      "stationName": "Madrid Puerta de Atocha",
+      "addressLines": [
+        "Plaza del Emperador Carlos V",
+        "28045 Madrid"
+      ],
+      "countryIsoCode": "ES",
+      "geo": {
+        "latitude": 40.4066,
+        "longitude": -3.6892
+      },
+      "tzId": "Europe/Madrid"
+    },
+    {
+      "stationCode": "IT-MIL-CEN",
+      "stationName": "Milano Centrale",
+      "addressLines": [
+        "Piazza Duca d'Aosta 1",
+        "20124 Milano"
+      ],
+      "countryIsoCode": "IT",
+      "geo": {
+        "latitude": 45.4864,
+        "longitude": 9.2046
+      },
+      "tzId": "Europe/Rome"
+    },
+    {
+      "stationCode": "DE-MUC-HBF",
+      "stationName": "München Hauptbahnhof",
+      "addressLines": [
+        "Bayerstraße 10a",
+        "80335 München"
+      ],
+      "countryIsoCode": "DE",
+      "geo": {
+        "latitude": 48.1402,
+        "longitude": 11.5586
+      },
+      "tzId": "Europe/Berlin"
+    },
+    {
+      "stationCode": "FR-PAR-LYO",
+      "stationName": "Paris Gare de Lyon",
+      "addressLines": [
+        "Place Louis-Armand",
+        "75012 Paris"
+      ],
+      "countryIsoCode": "FR",
+      "geo": {
+        "latitude": 48.8443,
+        "longitude": 2.3744
+      },
+      "tzId": "Europe/Paris"
+    },
+    {
+      "stationCode": "FR-PAR-NRD",
+      "stationName": "Paris Gare du Nord",
+      "addressLines": [
+        "18 Rue de Dunkerque",
+        "75010 Paris"
+      ],
+      "countryIsoCode": "FR",
+      "geo": {
+        "latitude": 48.8809,
+        "longitude": 2.3553
+      },
+      "tzId": "Europe/Paris"
+    },
+    {
+      "stationCode": "CZ-PRG-HLN",
+      "stationName": "Praha hlavní nádraží",
+      "addressLines": [
+        "Wilsonova 300/8",
+        "120 00 Praha 2"
+      ],
+      "countryIsoCode": "CZ",
+      "geo": {
+        "latitude": 50.0831,
+        "longitude": 14.4353
+      },
+      "tzId": "Europe/Prague"
+    },
+    {
+      "stationCode": "IT-ROM-TER",
+      "stationName": "Roma Termini",
+      "addressLines": [
+        "Piazza dei Cinquecento",
+        "00185 Roma"
+      ],
+      "countryIsoCode": "IT",
+      "geo": {
+        "latitude": 41.901,
+        "longitude": 12.5011
+      },
+      "tzId": "Europe/Rome"
+    },
+    {
+      "stationCode": "AT-VIE-HBF",
+      "stationName": "Wien Hauptbahnhof",
+      "addressLines": [
+        "Am Hauptbahnhof 1",
+        "1100 Wien"
+      ],
+      "countryIsoCode": "AT",
+      "geo": {
+        "latitude": 48.1852,
+        "longitude": 16.3762
+      },
+      "tzId": "Europe/Vienna"
+    },
+    {
+      "stationCode": "CH-ZRH-HBF",
+      "stationName": "Zürich HB",
+      "addressLines": [
+        "Bahnhofplatz",
+        "8001 Zürich"
+      ],
+      "countryIsoCode": "CH",
+      "geo": {
+        "latitude": 47.3779,
+        "longitude": 8.5403
+      },
+      "tzId": "Europe/Zurich"
+    }
+  ],
+  "offset": 0,
+  "pageSize": {{#if request.query.pageSize}}{{request.query.pageSize}}{{else}}10{{/if}}
+}

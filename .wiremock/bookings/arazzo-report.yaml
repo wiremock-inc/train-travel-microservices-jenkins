@@ -1,0 +1,297 @@
+summary:
+  arazzoDocument: "arazzo.yaml"
+  startTime: "2026-10-28T13:46:53.799201Z"
+  endTime: "2026-10-28T13:46:55.551631Z"
+  durationMs: 1752
+  success: true
+  totalWorkflows: 1
+  successfulWorkflows: 1
+  failedWorkflows: 0
+  totalSteps: 11
+  successfulSteps: 11
+  failedSteps: 0
+workflows:
+- workflowId: "reservationLifecycle"
+  success: true
+  durationMs: 1633
+  steps:
+  - stepId: "createHold"
+    stepIndex: 0
+    success: true
+    durationMs: 541
+    outputs:
+      reservationId: "fce2b918-9c1d-4cf1-97ed-29eaf1c41992"
+    request:
+      method: "POST"
+      url: "https://9emz58.wiremockapi.cloud/reservations"
+      headers:
+        X-User-Id:
+        - "user-arazzo-1"
+      body: "{\"tripRef\":\"3f0d5c1e-8b2a-5c4d-9e6f-0a1b2c3d4e5f\",\"passengerName\"\
+        :\"Jane Smith\",\"bicycle\":true,\"dog\":false,\"holderId\":\"user-arazzo-1\"\
+        }"
+    response:
+      statusCode: 201
+      headers:
+        content-type:
+        - "application/json"
+        matched-stub-id:
+        - "6e83e894-0cc0-4485-9b80-cc18f162ed6d"
+        matched-stub-name:
+        - "Create a reservation (hold)"
+        vary:
+        - "Origin"
+      body: "{\n  \"tripRef\" : \"3f0d5c1e-8b2a-5c4d-9e6f-0a1b2c3d4e5f\",\n  \"passengerName\"\
+        \ : \"Jane Smith\",\n  \"bicycle\" : true,\n  \"dog\" : false,\n  \"holderId\"\
+        \ : \"user-arazzo-1\",\n  \"reservationId\" : \"fce2b918-9c1d-4cf1-97ed-29eaf1c41992\"\
+        ,\n  \"status\" : \"HELD\",\n  \"createdAt\" : \"2026-10-28T13:46:54Z\",\n\
+        \  \"expiresAt\" : \"2026-10-28T14:46:54Z\"\n}"
+  - stepId: "getHold"
+    stepIndex: 1
+    success: true
+    durationMs: 222
+    request:
+      method: "GET"
+      url: "https://9emz58.wiremockapi.cloud/reservations/fce2b918-9c1d-4cf1-97ed-29eaf1c41992"
+      headers:
+        X-User-Id:
+        - "user-arazzo-1"
+    response:
+      statusCode: 200
+      headers:
+        content-type:
+        - "application/json"
+        matched-stub-id:
+        - "f92ef58c-4d51-484d-82d4-fb754315e32d"
+        matched-stub-name:
+        - "Get a reservation"
+        vary:
+        - "Origin"
+      body: "{\n  \"tripRef\" : \"3f0d5c1e-8b2a-5c4d-9e6f-0a1b2c3d4e5f\",\n  \"passengerName\"\
+        \ : \"Jane Smith\",\n  \"bicycle\" : true,\n  \"dog\" : false,\n  \"holderId\"\
+        \ : \"user-arazzo-1\",\n  \"reservationId\" : \"fce2b918-9c1d-4cf1-97ed-29eaf1c41992\"\
+        ,\n  \"status\" : \"HELD\",\n  \"createdAt\" : \"2026-10-28T13:46:54Z\",\n\
+        \  \"expiresAt\" : \"2026-10-28T14:46:54Z\"\n}"
+  - stepId: "listHolds"
+    stepIndex: 2
+    success: true
+    durationMs: 147
+    request:
+      method: "GET"
+      url: "https://9emz58.wiremockapi.cloud/reservations"
+      headers:
+        X-User-Id:
+        - "user-arazzo-1"
+    response:
+      statusCode: 200
+      headers:
+        content-type:
+        - "application/json"
+        matched-stub-id:
+        - "f10ec696-41d9-497b-9a78-2d645b14a716"
+        matched-stub-name:
+        - "List the calling holder's reservations"
+        vary:
+        - "Origin"
+      body: "{\n  \"reservations\" : [ {\n    \"tripRef\" : \"3f0d5c1e-8b2a-5c4d-9e6f-0a1b2c3d4e5f\"\
+        ,\n    \"passengerName\" : \"Jane Smith\",\n    \"bicycle\" : true,\n    \"\
+        dog\" : false,\n    \"holderId\" : \"user-arazzo-1\",\n    \"reservationId\"\
+        \ : \"fce2b918-9c1d-4cf1-97ed-29eaf1c41992\",\n    \"status\" : \"HELD\",\n\
+        \    \"createdAt\" : \"2026-10-28T13:46:54Z\",\n    \"expiresAt\" : \"2026-10-28T14:46:54Z\"\
+        \n  } ]\n}"
+  - stepId: "confirmHold"
+    stepIndex: 3
+    success: true
+    durationMs: 86
+    request:
+      method: "POST"
+      url: "https://9emz58.wiremockapi.cloud/reservations/fce2b918-9c1d-4cf1-97ed-29eaf1c41992/confirm"
+      headers:
+        X-User-Id:
+        - "user-arazzo-1"
+      body: ""
+    response:
+      statusCode: 200
+      headers:
+        content-type:
+        - "application/json"
+        matched-stub-id:
+        - "f08f3558-90f9-4229-97ca-3ae9d52cac1a"
+        matched-stub-name:
+        - "Confirm a reservation"
+        vary:
+        - "Origin"
+      body: "{\n  \"tripRef\" : \"3f0d5c1e-8b2a-5c4d-9e6f-0a1b2c3d4e5f\",\n  \"passengerName\"\
+        \ : \"Jane Smith\",\n  \"bicycle\" : true,\n  \"dog\" : false,\n  \"holderId\"\
+        \ : \"user-arazzo-1\",\n  \"reservationId\" : \"fce2b918-9c1d-4cf1-97ed-29eaf1c41992\"\
+        ,\n  \"status\" : \"CONFIRMED\",\n  \"createdAt\" : \"2026-10-28T13:46:54Z\"\
+        ,\n  \"expiresAt\" : \"2026-10-28T14:46:54Z\"\n}"
+  - stepId: "getConfirmed"
+    stepIndex: 4
+    success: true
+    durationMs: 87
+    request:
+      method: "GET"
+      url: "https://9emz58.wiremockapi.cloud/reservations/fce2b918-9c1d-4cf1-97ed-29eaf1c41992"
+      headers:
+        X-User-Id:
+        - "user-arazzo-1"
+    response:
+      statusCode: 200
+      headers:
+        content-type:
+        - "application/json"
+        matched-stub-id:
+        - "f92ef58c-4d51-484d-82d4-fb754315e32d"
+        matched-stub-name:
+        - "Get a reservation"
+        vary:
+        - "Origin"
+      body: "{\n  \"tripRef\" : \"3f0d5c1e-8b2a-5c4d-9e6f-0a1b2c3d4e5f\",\n  \"passengerName\"\
+        \ : \"Jane Smith\",\n  \"bicycle\" : true,\n  \"dog\" : false,\n  \"holderId\"\
+        \ : \"user-arazzo-1\",\n  \"reservationId\" : \"fce2b918-9c1d-4cf1-97ed-29eaf1c41992\"\
+        ,\n  \"status\" : \"CONFIRMED\",\n  \"createdAt\" : \"2026-10-28T13:46:54Z\"\
+        ,\n  \"expiresAt\" : \"2026-10-28T14:46:54Z\"\n}"
+  - stepId: "otherHolderCannotSee"
+    stepIndex: 5
+    success: true
+    durationMs: 100
+    request:
+      method: "GET"
+      url: "https://9emz58.wiremockapi.cloud/reservations/fce2b918-9c1d-4cf1-97ed-29eaf1c41992"
+      headers:
+        X-User-Id:
+        - "user-arazzo-2"
+    response:
+      statusCode: 404
+      headers:
+        content-length:
+        - "0"
+        matched-stub-id:
+        - "de21d9ab-8a6e-4337-9c04-6832ce06a9bc"
+        matched-stub-name:
+        - "Not found - get reservation"
+        vary:
+        - "Origin"
+      body: ""
+  - stepId: "createSecondHold"
+    stepIndex: 6
+    success: true
+    durationMs: 89
+    outputs:
+      reservationId: "cc86b1d4-c1a6-4c3c-bc19-beae7d865b4f"
+    request:
+      method: "POST"
+      url: "https://9emz58.wiremockapi.cloud/reservations"
+      headers:
+        X-User-Id:
+        - "user-arazzo-1"
+      body: "{\"tripRef\":\"7a1e9b20-4c3d-5e6f-8a9b-0c1d2e3f4a5b\",\"passengerName\"\
+        :\"John Doe\",\"holderId\":\"user-arazzo-1\"}"
+    response:
+      statusCode: 201
+      headers:
+        content-type:
+        - "application/json"
+        matched-stub-id:
+        - "6e83e894-0cc0-4485-9b80-cc18f162ed6d"
+        matched-stub-name:
+        - "Create a reservation (hold)"
+        vary:
+        - "Origin"
+      body: "{\n  \"tripRef\" : \"7a1e9b20-4c3d-5e6f-8a9b-0c1d2e3f4a5b\",\n  \"passengerName\"\
+        \ : \"John Doe\",\n  \"holderId\" : \"user-arazzo-1\",\n  \"reservationId\"\
+        \ : \"cc86b1d4-c1a6-4c3c-bc19-beae7d865b4f\",\n  \"status\" : \"HELD\",\n\
+        \  \"createdAt\" : \"2026-10-28T13:46:55Z\",\n  \"expiresAt\" : \"2026-10-28T14:46:55Z\"\
+        \n}"
+  - stepId: "releaseSecondHold"
+    stepIndex: 7
+    success: true
+    durationMs: 85
+    request:
+      method: "DELETE"
+      url: "https://9emz58.wiremockapi.cloud/reservations/cc86b1d4-c1a6-4c3c-bc19-beae7d865b4f"
+      headers:
+        X-User-Id:
+        - "user-arazzo-1"
+      body: ""
+    response:
+      statusCode: 204
+      headers:
+        content-length:
+        - "0"
+        matched-stub-id:
+        - "25453926-86e0-41b9-9b79-27a313a9df94"
+        matched-stub-name:
+        - "Delete a reservation (release the hold)"
+        vary:
+        - "Origin"
+      body: ""
+  - stepId: "releasedHoldIsGone"
+    stepIndex: 8
+    success: true
+    durationMs: 87
+    request:
+      method: "GET"
+      url: "https://9emz58.wiremockapi.cloud/reservations/cc86b1d4-c1a6-4c3c-bc19-beae7d865b4f"
+      headers:
+        X-User-Id:
+        - "user-arazzo-1"
+    response:
+      statusCode: 404
+      headers:
+        content-length:
+        - "0"
+        matched-stub-id:
+        - "de21d9ab-8a6e-4337-9c04-6832ce06a9bc"
+        matched-stub-name:
+        - "Not found - get reservation"
+        vary:
+        - "Origin"
+      body: ""
+  - stepId: "deleteUnknown"
+    stepIndex: 9
+    success: true
+    durationMs: 98
+    request:
+      method: "DELETE"
+      url: "https://9emz58.wiremockapi.cloud/reservations/00000000-0000-4000-8000-000000000000"
+      headers:
+        X-User-Id:
+        - "user-arazzo-1"
+      body: ""
+    response:
+      statusCode: 404
+      headers:
+        content-length:
+        - "0"
+        matched-stub-id:
+        - "da84208f-7d6b-41ba-aa91-ddd283f5cdf5"
+        matched-stub-name:
+        - "Not found - delete reservation"
+        vary:
+        - "Origin"
+      body: ""
+  - stepId: "confirmUnknown"
+    stepIndex: 10
+    success: true
+    durationMs: 86
+    request:
+      method: "POST"
+      url: "https://9emz58.wiremockapi.cloud/reservations/00000000-0000-4000-8000-000000000000/confirm"
+      headers:
+        X-User-Id:
+        - "user-arazzo-1"
+      body: ""
+    response:
+      statusCode: 404
+      headers:
+        content-length:
+        - "0"
+        matched-stub-id:
+        - "5e9a1ac5-e35f-4a23-a3a2-8681a9dd5e60"
+        matched-stub-name:
+        - "Not found - confirm reservation"
+        vary:
+        - "Origin"
+      body: ""

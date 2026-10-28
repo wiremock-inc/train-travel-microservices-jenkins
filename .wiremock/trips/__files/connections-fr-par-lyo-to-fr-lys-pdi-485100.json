@@ -1,0 +1,52 @@
+{
+  "connections": [
+    {
+      "connectionId": "TGV-6601",
+      "from": {
+        "stationCode": "FR-PAR-LYO",
+        "scheduledDeparture": "{{request.query.date}}T06:58:00Z"
+      },
+      "to": {
+        "stationCode": "FR-LYS-PDI",
+        "scheduledArrival": "{{request.query.date}}T08:56:00Z"
+      },
+      "operator": {
+        "code": "SNCF",
+        "name": "SNCF Voyageurs"
+      },
+      "fare": {
+        "amount": 65.0,
+        "currency": "EUR"
+      },
+      "facilities": {
+        "bicyclesAllowed": true,
+        "dogsAllowed": true
+      }
+    },
+    {
+      "connectionId": "OUI-7801",
+      "from": {
+        "stationCode": "FR-PAR-LYO",
+        "scheduledDeparture": "{{request.query.date}}T10:16:00Z"
+      },
+      "to": {
+        "stationCode": "FR-LYS-PDI",
+        "scheduledArrival": "{{request.query.date}}T12:18:00Z"
+      },
+      "operator": {
+        "code": "SNCF",
+        "name": "Ouigo"
+      },
+      "fare": {
+        "amount": 25.0,
+        "currency": "EUR"
+      },
+      "facilities": {
+        "bicyclesAllowed": false,
+        "dogsAllowed": true
+      }
+    }
+  ],
+  "page": {{#if request.query.page}}{{request.query.page}}{{else}}1{{/if}},
+  "pageSize": {{#if request.query.pageSize}}{{request.query.pageSize}}{{else}}10{{/if}}
+}

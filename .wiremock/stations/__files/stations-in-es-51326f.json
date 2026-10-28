@@ -1,0 +1,20 @@
+{
+  "stations": [
+    {
+      "stationCode": "ES-MAD-ATO",
+      "stationName": "Madrid Puerta de Atocha",
+      "addressLines": [
+        "Plaza del Emperador Carlos V",
+        "28045 Madrid"
+      ],
+      "countryIsoCode": "ES",
+      "geo": {
+        "latitude": 40.4066,
+        "longitude": -3.6892
+      },
+      "tzId": "Europe/Madrid"
+    }
+  ],
+  "offset": 0,
+  "pageSize": {{#if request.query.pageSize}}{{request.query.pageSize}}{{else}}10{{/if}}
+}

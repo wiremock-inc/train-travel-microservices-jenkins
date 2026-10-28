@@ -1,0 +1,254 @@
+summary:
+  arazzoDocument: "arazzo.yaml"
+  startTime: "2026-10-28T13:45:12.811903Z"
+  endTime: "2026-10-28T13:45:13.891548Z"
+  durationMs: 1080
+  success: true
+  totalWorkflows: 1
+  successfulWorkflows: 1
+  failedWorkflows: 0
+  totalSteps: 4
+  successfulSteps: 4
+  failedSteps: 0
+workflows:
+- workflowId: "browseStations"
+  success: true
+  durationMs: 951
+  steps:
+  - stepId: "firstPage"
+    stepIndex: 0
+    success: true
+    durationMs: 626
+    request:
+      method: "GET"
+      url: "https://3z2m01.wiremockapi.cloud/station-data?pageSize=10&offset=0"
+    response:
+      statusCode: 200
+      headers:
+        content-type:
+        - "application/json"
+        matched-stub-id:
+        - "21b08261-8c69-43aa-a698-c1ab78cd7e27"
+        matched-stub-name:
+        - "First page of stations (default page size)"
+        vary:
+        - "Origin"
+      body: "{\n  \"stations\": [\n    {\n      \"stationCode\": \"NL-AMS-CEN\",\n\
+        \      \"stationName\": \"Amsterdam Centraal\",\n      \"addressLines\": [\n\
+        \        \"Stationsplein\",\n        \"1012 AB Amsterdam\"\n      ],\n   \
+        \   \"countryIsoCode\": \"NL\",\n      \"geo\": {\n        \"latitude\": 52.3791,\n\
+        \        \"longitude\": 4.9003\n      },\n      \"tzId\": \"Europe/Amsterdam\"\
+        \n    },\n    {\n      \"stationCode\": \"DE-BER-HBF\",\n      \"stationName\"\
+        : \"Berlin Hauptbahnhof\",\n      \"addressLines\": [\n        \"Europaplatz\
+        \ 1\",\n        \"10557 Berlin\"\n      ],\n      \"countryIsoCode\": \"DE\"\
+        ,\n      \"geo\": {\n        \"latitude\": 52.5251,\n        \"longitude\"\
+        : 13.3694\n      },\n      \"tzId\": \"Europe/Berlin\"\n    },\n    {\n  \
+        \    \"stationCode\": \"BE-BRU-MID\",\n      \"stationName\": \"Bruxelles-Midi\"\
+        ,\n      \"addressLines\": [\n        \"Avenue Fonsny 47B\",\n        \"1060\
+        \ Saint-Gilles\"\n      ],\n      \"countryIsoCode\": \"BE\",\n      \"geo\"\
+        : {\n        \"latitude\": 50.8357,\n        \"longitude\": 4.3365\n     \
+        \ },\n      \"tzId\": \"Europe/Brussels\"\n    },\n    {\n      \"stationCode\"\
+        : \"DE-FRA-HBF\",\n      \"stationName\": \"Frankfurt (Main) Hauptbahnhof\"\
+        ,\n      \"addressLines\": [\n        \"Am Hauptbahnhof\",\n        \"60329\
+        \ Frankfurt am Main\"\n      ],\n      \"countryIsoCode\": \"DE\",\n     \
+        \ \"geo\": {\n        \"latitude\": 50.1071,\n        \"longitude\": 8.6638\n\
+        \      },\n      \"tzId\": \"Europe/Berlin\"\n    },\n    {\n      \"stationCode\"\
+        : \"DE-HAM-HBF\",\n      \"stationName\": \"Hamburg Hauptbahnhof\",\n    \
+        \  \"addressLines\": [\n        \"Hachmannplatz 16\",\n        \"20099 Hamburg\"\
+        \n      ],\n      \"countryIsoCode\": \"DE\",\n      \"geo\": {\n        \"\
+        latitude\": 53.5528,\n        \"longitude\": 10.0067\n      },\n      \"tzId\"\
+        : \"Europe/Berlin\"\n    },\n    {\n      \"stationCode\": \"DE-KOL-HBF\"\
+        ,\n      \"stationName\": \"Köln Hauptbahnhof\",\n      \"addressLines\":\
+        \ [\n        \"Trankgasse 11\",\n        \"50667 Köln\"\n      ],\n      \"\
+        countryIsoCode\": \"DE\",\n      \"geo\": {\n        \"latitude\": 50.943,\n\
+        \        \"longitude\": 6.9589\n      },\n      \"tzId\": \"Europe/Berlin\"\
+        \n    },\n    {\n      \"stationCode\": \"DK-CPH-HBN\",\n      \"stationName\"\
+        : \"København H\",\n      \"addressLines\": [\n        \"Bernstorffsgade 16\"\
+        ,\n        \"1577 København V\"\n      ],\n      \"countryIsoCode\": \"DK\"\
+        ,\n      \"geo\": {\n        \"latitude\": 55.6726,\n        \"longitude\"\
+        : 12.5647\n      },\n      \"tzId\": \"Europe/Copenhagen\"\n    },\n    {\n\
+        \      \"stationCode\": \"GB-LON-STP\",\n      \"stationName\": \"London St\
+        \ Pancras International\",\n      \"addressLines\": [\n        \"Euston Road\"\
+        ,\n        \"London N1C 4QP\"\n      ],\n      \"countryIsoCode\": \"GB\"\
+        ,\n      \"geo\": {\n        \"latitude\": 51.5322,\n        \"longitude\"\
+        : -0.1269\n      },\n      \"tzId\": \"Europe/London\"\n    },\n    {\n  \
+        \    \"stationCode\": \"FR-LYS-PDI\",\n      \"stationName\": \"Lyon Part-Dieu\"\
+        ,\n      \"addressLines\": [\n        \"5 Place Charles Béraudier\",\n   \
+        \     \"69003 Lyon\"\n      ],\n      \"countryIsoCode\": \"FR\",\n      \"\
+        geo\": {\n        \"latitude\": 45.7606,\n        \"longitude\": 4.8597\n\
+        \      },\n      \"tzId\": \"Europe/Paris\"\n    },\n    {\n      \"stationCode\"\
+        : \"ES-MAD-ATO\",\n      \"stationName\": \"Madrid Puerta de Atocha\",\n \
+        \     \"addressLines\": [\n        \"Plaza del Emperador Carlos V\",\n   \
+        \     \"28045 Madrid\"\n      ],\n      \"countryIsoCode\": \"ES\",\n    \
+        \  \"geo\": {\n        \"latitude\": 40.4066,\n        \"longitude\": -3.6892\n\
+        \      },\n      \"tzId\": \"Europe/Madrid\"\n    }\n  ],\n  \"offset\": 0,\n\
+        \  \"pageSize\": 10\n}"
+  - stepId: "fullList"
+    stepIndex: 1
+    success: true
+    durationMs: 143
+    request:
+      method: "GET"
+      url: "https://3z2m01.wiremockapi.cloud/station-data?pageSize=100&offset=0"
+    response:
+      statusCode: 200
+      headers:
+        content-type:
+        - "application/json"
+        matched-stub-id:
+        - "6b5fda0a-f907-42b1-901a-606d50ece66b"
+        matched-stub-name:
+        - "All stations (page size covers the full list)"
+        vary:
+        - "Origin"
+      body: "{\n  \"stations\": [\n    {\n      \"stationCode\": \"NL-AMS-CEN\",\n\
+        \      \"stationName\": \"Amsterdam Centraal\",\n      \"addressLines\": [\n\
+        \        \"Stationsplein\",\n        \"1012 AB Amsterdam\"\n      ],\n   \
+        \   \"countryIsoCode\": \"NL\",\n      \"geo\": {\n        \"latitude\": 52.3791,\n\
+        \        \"longitude\": 4.9003\n      },\n      \"tzId\": \"Europe/Amsterdam\"\
+        \n    },\n    {\n      \"stationCode\": \"DE-BER-HBF\",\n      \"stationName\"\
+        : \"Berlin Hauptbahnhof\",\n      \"addressLines\": [\n        \"Europaplatz\
+        \ 1\",\n        \"10557 Berlin\"\n      ],\n      \"countryIsoCode\": \"DE\"\
+        ,\n      \"geo\": {\n        \"latitude\": 52.5251,\n        \"longitude\"\
+        : 13.3694\n      },\n      \"tzId\": \"Europe/Berlin\"\n    },\n    {\n  \
+        \    \"stationCode\": \"BE-BRU-MID\",\n      \"stationName\": \"Bruxelles-Midi\"\
+        ,\n      \"addressLines\": [\n        \"Avenue Fonsny 47B\",\n        \"1060\
+        \ Saint-Gilles\"\n      ],\n      \"countryIsoCode\": \"BE\",\n      \"geo\"\
+        : {\n        \"latitude\": 50.8357,\n        \"longitude\": 4.3365\n     \
+        \ },\n      \"tzId\": \"Europe/Brussels\"\n    },\n    {\n      \"stationCode\"\
+        : \"DE-FRA-HBF\",\n      \"stationName\": \"Frankfurt (Main) Hauptbahnhof\"\
+        ,\n      \"addressLines\": [\n        \"Am Hauptbahnhof\",\n        \"60329\
+        \ Frankfurt am Main\"\n      ],\n      \"countryIsoCode\": \"DE\",\n     \
+        \ \"geo\": {\n        \"latitude\": 50.1071,\n        \"longitude\": 8.6638\n\
+        \      },\n      \"tzId\": \"Europe/Berlin\"\n    },\n    {\n      \"stationCode\"\
+        : \"DE-HAM-HBF\",\n      \"stationName\": \"Hamburg Hauptbahnhof\",\n    \
+        \  \"addressLines\": [\n        \"Hachmannplatz 16\",\n        \"20099 Hamburg\"\
+        \n      ],\n      \"countryIsoCode\": \"DE\",\n      \"geo\": {\n        \"\
+        latitude\": 53.5528,\n        \"longitude\": 10.0067\n      },\n      \"tzId\"\
+        : \"Europe/Berlin\"\n    },\n    {\n      \"stationCode\": \"DE-KOL-HBF\"\
+        ,\n      \"stationName\": \"Köln Hauptbahnhof\",\n      \"addressLines\":\
+        \ [\n        \"Trankgasse 11\",\n        \"50667 Köln\"\n      ],\n      \"\
+        countryIsoCode\": \"DE\",\n      \"geo\": {\n        \"latitude\": 50.943,\n\
+        \        \"longitude\": 6.9589\n      },\n      \"tzId\": \"Europe/Berlin\"\
+        \n    },\n    {\n      \"stationCode\": \"DK-CPH-HBN\",\n      \"stationName\"\
+        : \"København H\",\n      \"addressLines\": [\n        \"Bernstorffsgade 16\"\
+        ,\n        \"1577 København V\"\n      ],\n      \"countryIsoCode\": \"DK\"\
+        ,\n      \"geo\": {\n        \"latitude\": 55.6726,\n        \"longitude\"\
+        : 12.5647\n      },\n      \"tzId\": \"Europe/Copenhagen\"\n    },\n    {\n\
+        \      \"stationCode\": \"GB-LON-STP\",\n      \"stationName\": \"London St\
+        \ Pancras International\",\n      \"addressLines\": [\n        \"Euston Road\"\
+        ,\n        \"London N1C 4QP\"\n      ],\n      \"countryIsoCode\": \"GB\"\
+        ,\n      \"geo\": {\n        \"latitude\": 51.5322,\n        \"longitude\"\
+        : -0.1269\n      },\n      \"tzId\": \"Europe/London\"\n    },\n    {\n  \
+        \    \"stationCode\": \"FR-LYS-PDI\",\n      \"stationName\": \"Lyon Part-Dieu\"\
+        ,\n      \"addressLines\": [\n        \"5 Place Charles Béraudier\",\n   \
+        \     \"69003 Lyon\"\n      ],\n      \"countryIsoCode\": \"FR\",\n      \"\
+        geo\": {\n        \"latitude\": 45.7606,\n        \"longitude\": 4.8597\n\
+        \      },\n      \"tzId\": \"Europe/Paris\"\n    },\n    {\n      \"stationCode\"\
+        : \"ES-MAD-ATO\",\n      \"stationName\": \"Madrid Puerta de Atocha\",\n \
+        \     \"addressLines\": [\n        \"Plaza del Emperador Carlos V\",\n   \
+        \     \"28045 Madrid\"\n      ],\n      \"countryIsoCode\": \"ES\",\n    \
+        \  \"geo\": {\n        \"latitude\": 40.4066,\n        \"longitude\": -3.6892\n\
+        \      },\n      \"tzId\": \"Europe/Madrid\"\n    },\n    {\n      \"stationCode\"\
+        : \"IT-MIL-CEN\",\n      \"stationName\": \"Milano Centrale\",\n      \"addressLines\"\
+        : [\n        \"Piazza Duca d'Aosta 1\",\n        \"20124 Milano\"\n      ],\n\
+        \      \"countryIsoCode\": \"IT\",\n      \"geo\": {\n        \"latitude\"\
+        : 45.4864,\n        \"longitude\": 9.2046\n      },\n      \"tzId\": \"Europe/Rome\"\
+        \n    },\n    {\n      \"stationCode\": \"DE-MUC-HBF\",\n      \"stationName\"\
+        : \"München Hauptbahnhof\",\n      \"addressLines\": [\n        \"Bayerstraß\
+        e 10a\",\n        \"80335 München\"\n      ],\n      \"countryIsoCode\": \"\
+        DE\",\n      \"geo\": {\n        \"latitude\": 48.1402,\n        \"longitude\"\
+        : 11.5586\n      },\n      \"tzId\": \"Europe/Berlin\"\n    },\n    {\n  \
+        \    \"stationCode\": \"FR-PAR-LYO\",\n      \"stationName\": \"Paris Gare\
+        \ de Lyon\",\n      \"addressLines\": [\n        \"Place Louis-Armand\",\n\
+        \        \"75012 Paris\"\n      ],\n      \"countryIsoCode\": \"FR\",\n  \
+        \    \"geo\": {\n        \"latitude\": 48.8443,\n        \"longitude\": 2.3744\n\
+        \      },\n      \"tzId\": \"Europe/Paris\"\n    },\n    {\n      \"stationCode\"\
+        : \"FR-PAR-NRD\",\n      \"stationName\": \"Paris Gare du Nord\",\n      \"\
+        addressLines\": [\n        \"18 Rue de Dunkerque\",\n        \"75010 Paris\"\
+        \n      ],\n      \"countryIsoCode\": \"FR\",\n      \"geo\": {\n        \"\
+        latitude\": 48.8809,\n        \"longitude\": 2.3553\n      },\n      \"tzId\"\
+        : \"Europe/Paris\"\n    },\n    {\n      \"stationCode\": \"CZ-PRG-HLN\",\n\
+        \      \"stationName\": \"Praha hlavní nádraží\",\n      \"addressLines\"\
+        : [\n        \"Wilsonova 300/8\",\n        \"120 00 Praha 2\"\n      ],\n\
+        \      \"countryIsoCode\": \"CZ\",\n      \"geo\": {\n        \"latitude\"\
+        : 50.0831,\n        \"longitude\": 14.4353\n      },\n      \"tzId\": \"Europe/Prague\"\
+        \n    },\n    {\n      \"stationCode\": \"IT-ROM-TER\",\n      \"stationName\"\
+        : \"Roma Termini\",\n      \"addressLines\": [\n        \"Piazza dei Cinquecento\"\
+        ,\n        \"00185 Roma\"\n      ],\n      \"countryIsoCode\": \"IT\",\n \
+        \     \"geo\": {\n        \"latitude\": 41.901,\n        \"longitude\": 12.5011\n\
+        \      },\n      \"tzId\": \"Europe/Rome\"\n    },\n    {\n      \"stationCode\"\
+        : \"AT-VIE-HBF\",\n      \"stationName\": \"Wien Hauptbahnhof\",\n      \"\
+        addressLines\": [\n        \"Am Hauptbahnhof 1\",\n        \"1100 Wien\"\n\
+        \      ],\n      \"countryIsoCode\": \"AT\",\n      \"geo\": {\n        \"\
+        latitude\": 48.1852,\n        \"longitude\": 16.3762\n      },\n      \"tzId\"\
+        : \"Europe/Vienna\"\n    },\n    {\n      \"stationCode\": \"CH-ZRH-HBF\"\
+        ,\n      \"stationName\": \"Zürich HB\",\n      \"addressLines\": [\n    \
+        \    \"Bahnhofplatz\",\n        \"8001 Zürich\"\n      ],\n      \"countryIsoCode\"\
+        : \"CH\",\n      \"geo\": {\n        \"latitude\": 47.3779,\n        \"longitude\"\
+        : 8.5403\n      },\n      \"tzId\": \"Europe/Zurich\"\n    }\n  ],\n  \"offset\"\
+        : 0,\n  \"pageSize\": 100\n}"
+  - stepId: "germanStations"
+    stepIndex: 2
+    success: true
+    durationMs: 90
+    outputs:
+      firstGermanStation: "DE-BER-HBF"
+    request:
+      method: "GET"
+      url: "https://3z2m01.wiremockapi.cloud/station-data?offset=0&country=DE&pageSize=100"
+    response:
+      statusCode: 200
+      headers:
+        content-type:
+        - "application/json"
+        matched-stub-id:
+        - "6840a0b1-b56f-497d-9808-f56eaf19d480"
+        matched-stub-name:
+        - "Stations in DE"
+        vary:
+        - "Origin"
+      body: "{\n  \"stations\": [\n    {\n      \"stationCode\": \"DE-BER-HBF\",\n\
+        \      \"stationName\": \"Berlin Hauptbahnhof\",\n      \"addressLines\":\
+        \ [\n        \"Europaplatz 1\",\n        \"10557 Berlin\"\n      ],\n    \
+        \  \"countryIsoCode\": \"DE\",\n      \"geo\": {\n        \"latitude\": 52.5251,\n\
+        \        \"longitude\": 13.3694\n      },\n      \"tzId\": \"Europe/Berlin\"\
+        \n    },\n    {\n      \"stationCode\": \"DE-FRA-HBF\",\n      \"stationName\"\
+        : \"Frankfurt (Main) Hauptbahnhof\",\n      \"addressLines\": [\n        \"\
+        Am Hauptbahnhof\",\n        \"60329 Frankfurt am Main\"\n      ],\n      \"\
+        countryIsoCode\": \"DE\",\n      \"geo\": {\n        \"latitude\": 50.1071,\n\
+        \        \"longitude\": 8.6638\n      },\n      \"tzId\": \"Europe/Berlin\"\
+        \n    },\n    {\n      \"stationCode\": \"DE-HAM-HBF\",\n      \"stationName\"\
+        : \"Hamburg Hauptbahnhof\",\n      \"addressLines\": [\n        \"Hachmannplatz\
+        \ 16\",\n        \"20099 Hamburg\"\n      ],\n      \"countryIsoCode\": \"\
+        DE\",\n      \"geo\": {\n        \"latitude\": 53.5528,\n        \"longitude\"\
+        : 10.0067\n      },\n      \"tzId\": \"Europe/Berlin\"\n    },\n    {\n  \
+        \    \"stationCode\": \"DE-KOL-HBF\",\n      \"stationName\": \"Köln Hauptbahnhof\"\
+        ,\n      \"addressLines\": [\n        \"Trankgasse 11\",\n        \"50667\
+        \ Köln\"\n      ],\n      \"countryIsoCode\": \"DE\",\n      \"geo\": {\n\
+        \        \"latitude\": 50.943,\n        \"longitude\": 6.9589\n      },\n\
+        \      \"tzId\": \"Europe/Berlin\"\n    },\n    {\n      \"stationCode\":\
+        \ \"DE-MUC-HBF\",\n      \"stationName\": \"München Hauptbahnhof\",\n    \
+        \  \"addressLines\": [\n        \"Bayerstraße 10a\",\n        \"80335 München\"\
+        \n      ],\n      \"countryIsoCode\": \"DE\",\n      \"geo\": {\n        \"\
+        latitude\": 48.1402,\n        \"longitude\": 11.5586\n      },\n      \"tzId\"\
+        : \"Europe/Berlin\"\n    }\n  ],\n  \"offset\": 0,\n  \"pageSize\": 100\n}"
+  - stepId: "unknownCountry"
+    stepIndex: 3
+    success: true
+    durationMs: 88
+    request:
+      method: "GET"
+      url: "https://3z2m01.wiremockapi.cloud/station-data?pageSize=10&offset=0&country=PT"
+    response:
+      statusCode: 200
+      headers:
+        content-type:
+        - "application/json"
+        matched-stub-id:
+        - "f22f8df3-3343-4030-9dbf-59ab1d4e1975"
+        matched-stub-name:
+        - "Stations in a country with no stations"
+        vary:
+        - "Origin"
+      body: "{\n  \"stations\": [],\n  \"offset\": 0,\n  \"pageSize\": 10\n}"
